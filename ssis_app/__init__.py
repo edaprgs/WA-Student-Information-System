@@ -19,29 +19,45 @@ def create_app(test_config=None):
     bootstrap.init_app(app)
     mysql.init_app(app)
     CSRFProtect(app)
-
-    @app.route("/home")
+  
+    @app.route("/")
     def home():
         return render_template('home.html')
-
-    @app.route("/student")
-    def student():
-        return render_template('student.html')
-
-    @app.route("/college")
+    
+    @app.route('/college/')
     def college():
         return render_template('college.html')
 
-    @app.route("/course")
+    @app.route('/course/')
     def course():
-        return render_template('course.html')
+        return render_template('course.html')   
 
-    @app.route("/add_college")
+    @app.route('/student/')
+    def student():
+        return render_template('student.html')
+    
+    @app.route('/add_college/')
     def add_college():
         return render_template('add_college.html')
-
-    @app.route("/add_course")
+    
+    @app.route('/add_course/')
     def add_course():
         return render_template('add_course.html')
+
+    @app.route('/add_student/')
+    def add_student():
+        return render_template('add_student.html')
+    
+    @app.route('/college_list/')
+    def college_list():
+        return render_template('college_list.html')
+    
+    @app.route('/course_list/')
+    def course_list():
+        return render_template('course_list.html')
+    
+    @app.route('/student_list/')
+    def student_list():
+        return render_template('student_list.html')
 
     return app

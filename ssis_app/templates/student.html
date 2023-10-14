@@ -1,44 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SSIS | Student</title>
-    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,500;0,700;0,900;1,300&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <header>
-        <a href="home.html">
-            <div class="logo style"></div>
-            <div class="main logo">STUDENT INFORMATION SYSTEM</div>
-        </a>
-    </header>
-    <nav>
-        <ul>
-            <li><a href="college.html">COLLEGE</a></li>
-            <li> <a href="course.html">COURSE</a></li>
-            <li class="current tab"><a href="student.html">STUDENT</a></li>
-        </ul>
-    </nav>
+{% extends "base.html" %}
 
-    <a href="add_student.html">
-        <div class="studentaddrect"></div>
-        <div class="addtext">ADD STUDENT</div>
-        <div class="addicon"><img src="images/add-icon.png"></div>
-    </a>
+{% block content %}
+<nav>
+    <ul>
+        <li><a href="{{ url_for('college') }}">COLLEGE</a></li>
+        <li> <a href="{{ url_for('course') }}">COURSE</a></li>
+        <li class="current tab"><a href="{{ url_for('student') }}">STUDENT</a></li>
+    </ul>
+</nav>
 
-    <a href="#">
-        <div class="studentlistrect"></div>
-        <div class="listtext">LIST</div>
-        <div class="listicon"><img src="images/list-icon.png"></div>
-    </a>
-    
-    <footer>
-        <div class="footer rect">Copyright © 2023 Paragoso</div>
-    </footer>
-</body>
-</html>
+<a href="{{ url_for('add_student') }}">
+    <div class="studentaddrect"></div>
+    <div class="addtext">ADD STUDENT</div>
+    <div class="addicon"><img src="{{ url_for('static', filename='images/add-icon.png') }}"></div>
+</a>
+
+<a href="{{ url_for('student_list') }}">
+    <div class="studentlistrect"></div>
+    <div class="listtext">LIST</div>
+    <div class="listicon"><img src="{{ url_for('static', filename='images/list-icon.png') }}"></div>
+</a>
+{% endblock %}  

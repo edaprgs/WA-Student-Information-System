@@ -1,53 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SSIS | College</title>
-    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,500;0,700;0,900;1,300&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="style.css">
+{% extends "base.html" %}
 
-</head>
-<body>
-    <header>
-        <a href="home.html">
-            <div class="logo style"></div>
-            <div class="main logo">STUDENT INFORMATION SYSTEM</div>
-        </a>
-    </header>
-    <nav>
-        <ul>
-            <li class="current tab"><a href="college.html">COLLEGE</a></li>
-            <li><a href="course.html">COURSE</a></li>
-            <li><a href="student.html">STUDENT</a></li>
-        </ul>
-    </nav>
+{% block content %}
+<nav>
+    <ul>
+        <li class="current tab"><a href="{{ url_for('college') }}">COLLEGE</a></li>
+        <li><a href="{{ url_for('course') }}">COURSE</a></li>
+        <li><a href="{{ url_for('student') }}">STUDENT</a></li>
+    </ul>
+</nav>
 
-    <div class="addentity bg"></div>
-    <div class="backicon"><a href="course.html"><img src="images/back-icon.png"></a></div>
-    <div class="addentityheading">ADD COURSE</div>
+<div class="addentity bg"></div>
+<div class="backicon"><a href="{{ url_for('course') }}"><img src="{{ url_for('static', filename='images/back-icon.png') }}"></a></div>
+<div class="addentityheading">ADD COURSE</div>
 
-    <div class="inputBox code">
-        <input type="text" required="required">
-        <span>CODE</span>
-    </div>
+<div class="inputBox code">
+    <input type="text" required="required">
+    <span>CODE</span>
+</div>
 
-    <div class="inputBox name">
-        <input type="text" required="required">
-        <span>NAME</span>
-    </div>
+<div class="inputBox name">
+    <input type="text" required="required">
+    <span>NAME</span>
+</div>
 
-    <div class="container">
-        <button class="btn btn1">SUBMIT</button>
-    </div>
+<div class="container">
+    <button class="btn btn1">SUBMIT</button>
+</div>
 
-    <div class="sideicon"><img src="images/COURSE ICON.png" width="350"></div>
-
-    <footer>
-        <div class="footer rect">Copyright © 2023 Paragoso</div>
-    </footer>
-</body>
-</html>
+<div class="sideicon"><img src="{{ url_for('static', filename='images/COURSE ICON.png') }}" width="350"></div>
+{% endblock %}  
