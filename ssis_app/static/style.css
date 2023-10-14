@@ -1,0 +1,387 @@
+:root {
+    --purpleA: #9979C2;
+    --purpleB: #DCCBED;
+    --purpleC: #F3EEF6;
+    --cyanA: #7ADFF1;
+    --cyanB: #B1F7EF;
+    --cyanC: #E8FFFC;
+    --pinkA: #FF84B1;
+    --pinkB: #FBB7D0;
+    --pinkC: #FEE5EB;
+    --cream: #FCFBF7;
+    --red-orange: #FF4C4C;
+    --orange: #FF9090;
+    --light-yellow: #FFFDC3;
+    --shadow-gray: #5E6678;
+}
+
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0%;
+    font-family: "Roboto";
+}
+
+/* logo */
+.logo.style {
+    width: 15px;
+    height: 60px;
+    background-color: var(--pinkA);
+    top: 15px;
+    left: 20px;
+    position: absolute;
+}
+.main.logo {
+    color: #000;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    top: 31px;
+    left: 60px;
+    position: absolute;
+}
+
+/* home page nav */
+.left.rectangle {
+    width: 260px; 
+    height: 380px; 
+    background-color: var(--pinkA);
+    border-radius: 12px;
+    top: 140px;
+    left: 410px;
+    position: absolute;
+}
+.s.icon {
+    top: 110px;
+    left: 380px;
+    position: absolute;
+}
+.s.title.text {
+    color: #FFF;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    bottom: 220px;
+    left: 500px;
+    position: absolute;
+}
+.right.rectangle {
+    width: 440px; 
+    height: 180px; 
+    border-radius: 12px;
+    position: absolute;
+    left: 695px;
+}
+.right.rectangle.college {
+    background-color: var(--purpleA);
+    top: 140px;
+}
+.college.icon {
+    top: 80px;
+    left: 865px;
+    position: absolute;
+}
+.college.title.text {
+    color: #FFF;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    top: 210px;
+    left: 740px;
+    position: absolute;
+}
+.right.rectangle.course {
+    background-color: var(--cyanA);
+    top: 340px;
+}
+.course.icon {
+    bottom: 150px;
+    left: 730px;
+    position: absolute;
+}
+.course.title.text {
+    color: #FFF;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    bottom: 290px;
+    left: 1005px;
+    position: absolute;
+}
+
+/* footer styles */
+.footer.rect {
+    font-size: small;
+    width: 100%; 
+    height: 50px;
+    background-color: var(--pinkC);
+    text-align: left;
+    padding: 15px;
+    position: fixed; 
+    bottom: 0;
+    left: 0; 
+    right: 0; 
+    z-index: 999; 
+}
+
+/* header navigation */
+nav ul {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 20px;
+    right: 20px; 
+    gap: 40px;
+    list-style: none;
+}
+nav li {
+    background-color: var(--pinkB); 
+    padding: 10px 30px;
+    border-radius: 5px;
+}
+nav a {
+text-decoration: none;
+color: #fff;
+}
+.current.tab {
+    background-color: var(--pinkA); 
+    padding: 10px 30px;
+    border-radius: 5px;
+}
+nav li:hover {
+    background-color: var(--pinkA); 
+}
+
+/* categorization custom style */
+.addtext {
+    color: white;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    top: 390px;
+    left: 340px;
+    position: absolute;
+}
+.listtext {
+    color: white;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    top: 390px;
+    left: 810px;
+    position: absolute;
+}
+.addicon {
+    top: 230px;
+    left: 660px;
+    position: absolute;
+}
+.listicon {
+    top: 230px;
+    left: 1125px;
+    position: absolute;
+}
+
+/* college category */
+.collegeaddrect {
+    width: 450px; 
+    height: 250px; 
+    background-color: var(--purpleA);
+    border-radius: 12px;
+    top: 200px;
+    left: 300px;
+    position: absolute;
+}
+.collegelistrect {
+    width: 450px; 
+    height: 250px; 
+    background-color: var(--pinkB);
+    border-radius: 12px;
+    top: 200px;
+    left: 770px;
+    position: absolute;
+}
+
+/* course category */
+.courseaddrect {
+    width: 450px; 
+    height: 250px; 
+    background-color: var(--pinkB);
+    border-radius: 12px;
+    top: 200px;
+    left: 300px;
+    position: absolute;
+}
+.courselistrect {
+    width: 450px; 
+    height: 250px; 
+    background-color: var(--cyanA);
+    border-radius: 12px;
+    top: 200px;
+    left: 770px;
+    position: absolute;
+}
+
+/* student category */
+.studentaddrect {
+    width: 450px; 
+    height: 250px; 
+    background-color: var(--pinkA);
+    border-radius: 12px;
+    top: 200px;
+    left: 300px;
+    position: absolute;
+}
+.studentlistrect {
+    width: 450px; 
+    height: 250px; 
+    background-color: var(--purpleA);
+    border-radius: 12px;
+    top: 200px;
+    left: 770px;
+    position: absolute;
+}
+
+.backicon {
+    top: 138px;
+    left: 250px;
+    position: absolute;
+}
+
+/* add styles */
+.addentity.bg {
+    width: 1100px; 
+    height: 500px; 
+    background-color: white;
+    box-shadow: 5px 5px 10px rgba(255, 132, 177, 0.5);
+    border-radius: 12px;
+    top: 110px;
+    left: 210px;
+    position: absolute;
+}
+.addentityheading {
+    top: 141px;
+    left: 300px;
+    position: absolute;
+}
+
+/* input box styles */
+.inputBox {
+    position: relative;
+    width: 450px;
+}
+.inputBox input {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid gainsboro;
+    border-radius: 5px;
+    outline-color: var(--pinkA);
+    color: #000;
+    font-size: 1em;
+    transition: 0.5s;
+}
+.inputBox span {
+    position: absolute;
+    left: 0;
+    padding: 10px;
+    pointer-events: none;
+    color: #bfbdbeab;
+    text-transform: uppercase;
+    transition: 0.5s;
+}
+.inputBox input:focus ~ span,
+.inputBox input:valid ~ span {
+    color: var(--pinkA);
+    transform: translateX(10px) translateY(-7px);
+    font-size: 0.65em;
+    padding: 0 10px;
+    background: #ffffff; 
+}
+.inputBox input:focus,
+.inputBox input:valid {
+    border: 1px solid var(--pinkA);
+} 
+
+/* add text box placement */
+.inputBox.code {
+    position: absolute;
+    top: 270px;
+    left: 315px;
+}
+.inputBox.name {
+    position: absolute;
+    top: 345px;
+    left: 315px;
+}
+.inputBox.id {
+    position: absolute;
+    top: 210px;
+    left: 315px;
+}
+.inputBox.fname {
+    position: absolute;
+    top: 270px;
+    left: 315px;
+}
+.inputBox.lname {
+    position: absolute;
+    top: 330px;
+    left: 315px;
+}
+.sideicon {
+    top: 185px;
+    left: 850px;
+    position: absolute;
+}
+.sideicon.student {
+    top: 160px;
+    left: 895px;
+    position: absolute;
+}
+.container {
+    position: absolute;
+    transform: translate(-50%, -50%);
+}
+.btn {
+    border: none;
+    padding: 8px 26px;
+    font-size: 15px;
+    border-radius: 5px;
+    background-image: linear-gradient(to left,var(--pinkB),var(--pinkB), var(--pinkA));
+    color: white;
+    position: relative;
+    transition:  0.7s;
+    background-size: 200%;
+}
+.btn.btn1 {
+    position: relative;
+    top: 440px;
+    left: 538px;
+}
+.btn.btn2 {
+    position: relative;
+    top: 550px;
+    left: 538px;
+}
+.btn:hover {
+    background-position: right;
+}
+.btn:active {
+    transform: scale(0.80);
+}
+
+
+/* dropdown */
+
+  
+
+
+/* list styles */

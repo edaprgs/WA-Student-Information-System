@@ -1,0 +1,19 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+flask-mysql = "*"
+flask-mysql-connector = "*"
+flask-bootstrap = "*"
+python-dotenv = "*"
+flask = "*"
+jinja2 = "*"
+flask-wtf = "==1.1.1"
+werkzeug = "==2.3.7"
+
+[dev-packages]
+
+[requires]
+python_version = "3.10"
