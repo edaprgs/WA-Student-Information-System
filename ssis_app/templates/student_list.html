@@ -1,12 +1,66 @@
 {% extends "base.html" %}
-
+{% block title %}SSIS | STUDENT{% endblock title %}
 {% block content %}
 <nav>
     <ul>
-        <li class="current tab"><a href="{{ url_for('college') }}">COLLEGE</a></li>
-        <li><a href="{{ url_for('course') }}">COURSE</a></li>
-        <li><a href="{{ url_for('student') }}">STUDENT</a></li>
+        <li><a href="{{ url_for('college') }}">COLLEGE</a></li>
+        <li> <a href="{{ url_for('course') }}">COURSE</a></li>
+        <li class="current tab"><a href="{{ url_for('student') }}">STUDENT</a></li>
     </ul>
 </nav>
+
+<h3 class="header">LIST OF STUDENTS</h3>
+
+<div class="table-container">
+    <table>
+        <tr>
+            <th>STUDENT ID</th>
+            <th>FIRST NAME</th>
+            <th>LAST NAME</th>
+            <th>COURSE</th>
+            <th>YEAR</th>
+            <th>GENDER</th>
+            <th>ACTION</th>
+        </tr>
+        <tr>
+            <td>2021-1574</td>
+            <td>EDA GRACE</td>
+            <td>PARAGOSO</td>
+            <td>CCS</td>
+            <td>3RD YEAR</td>
+            <td>FEMALE</td>
+            <td>
+
+                <a href="#" class="custom-edit-button" style="margin-right: 60px;">EDIT</a>
+                <a href="#" class="custom-delete-button">DELETE</a>
+            
+            </td>
+        </tr>
+        <tr>
+            <td>2021-2393</td>
+            <td>MARK FRANCIS</td>
+            <td>VENUS</td>
+            <td>CCS</td>
+            <td>3RD YEAR</td>
+            <td>MALE</td>
+            <td>
+                <a href="#" class="custom-edit-button" style="margin-right: 60px;">EDIT</a>
+                <a href="#" class="custom-delete-button">DELETE</a>
+            </td>
+        </tr>
+        <tr>
+            <td>2021-0622</td>
+            <td>NANCY</td>
+            <td>SAYSON</td>
+            <td>CCS</td>
+            <td>3RD YEAR</td>
+            <td>FEMALE</td>
+            <td>
+                <a href="#" class="custom-edit-button" style="margin-right: 60px;">EDIT</a>
+                <a href="#" class="custom-delete-button">DELETE</a>
+            </td>
+        </tr>
+    </table>
+</div>
 
 {% endblock %}  

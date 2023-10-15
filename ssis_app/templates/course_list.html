@@ -1,12 +1,54 @@
 {% extends "base.html" %}
-
+{% block title %}SSIS | COURSE{% endblock title %}
 {% block content %}
 <nav>
     <ul>
-        <li class="current tab"><a href="{{ url_for('college') }}">COLLEGE</a></li>
-        <li><a href="{{ url_for('course') }}">COURSE</a></li>
+        <li><a href="{{ url_for('college') }}">COLLEGE</a></li>
+        <li class="current tab"><a href="{{ url_for('course') }}">COURSE</a></li>
         <li><a href="{{ url_for('student') }}">STUDENT</a></li>
     </ul>
 </nav>
+
+<h3 class="header">LIST OF COURSES</h3>
+
+<div class="table-container">
+    <table>
+        <tr>
+            <th>CODE</th>
+            <th>COURSE</th>
+            <th>COLLEGE</th>
+            <th>ACTION</th>
+        </tr>
+        <tr>
+            <td>BSCS</td>
+            <td>BACHELOR OF SCIENCE IN COMPUTER SCIENCE</td>
+            <td>CCS</td>
+            <td>
+
+                <a href="#" class="custom-edit-button" style="margin-right: 60px;">EDIT</a>
+                <a href="#" class="custom-delete-button">DELETE</a>
+            
+            </td>
+        </tr>
+        <tr>
+            <td>BSCA</td>
+            <td>BACHELOR OF SCIENCE IN COMPUTER APPLICATIONS</td>
+            <td>CCS</td>
+            <td>
+                <a href="#" class="custom-edit-button" style="margin-right: 60px;">EDIT</a>
+                <a href="#" class="custom-delete-button">DELETE</a>
+            </td>
+        </tr>
+        <tr>
+            <td>BSIT</td>
+            <td>BACHELOR OF SCIENCE IN INFORMATION TECHNOLOGY</td>
+            <td>CCS</td>
+            <td>
+                <a href="#" class="custom-edit-button" style="margin-right: 60px;">EDIT</a>
+                <a href="#" class="custom-delete-button">DELETE</a>
+            </td>
+        </tr>
+    </table>
+</div>
 
 {% endblock %}  

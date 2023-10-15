@@ -1,11 +1,11 @@
 {% extends "base.html" %}
-
+{% block title %}SSIS | STUDENT{% endblock title %}
 {% block content %}
 <nav>
     <ul>
-        <li class="current tab"><a href="{{ url_for('college') }}">COLLEGE</a></li>
+        <li><a href="{{ url_for('college') }}">COLLEGE</a></li>
         <li><a href="{{ url_for('course') }}">COURSE</a></li>
-        <li><a href="{{ url_for('student') }}">STUDENT</a></li>
+        <li class="current tab"><a href="{{ url_for('student') }}">STUDENT</a></li>
     </ul>
 </nav>
 
@@ -30,10 +30,27 @@
 
 
 
+<div class="course-select-menu">
+    <div class="select-btn">
+        <span>COLLEGE</span>
+    </div>
+    <ul class="options">
+        <li class="option"> <span class="option-text">CCS</span> </li>
+        <li class="option"> <span class="option-text">CASS</span> </li>
+    </ul>
+</div>
+
+
+
+
+
+
+
 
 <div class="container">
     <button class="btn btn2">SUBMIT</button>
 </div>
 
 <div class="sideicon student"><img src="{{ url_for('static', filename='images/STUDENT ICON.png') }}" width="350"></div>
+
 {% endblock %}  
