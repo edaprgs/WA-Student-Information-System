@@ -477,6 +477,8 @@ th {
     background-color: var(--pinkA);
     color: white;
 }
+
+/* edit button in list */
 .custom-edit-button {
     border: none;
     padding: 8px 26px;
@@ -488,6 +490,8 @@ th {
     background-size: 200%;
     text-decoration: none;
 }
+
+/* delete button in list */
 .custom-delete-button {
     border: none;
     padding: 8px 26px;
@@ -498,4 +502,62 @@ th {
     position: relative;
     background-size: 200%;
     text-decoration: none;
+}
+
+/* add button in list */
+.custom-add-button {
+    border: none;
+    top: 125px;
+    left: 1365px;
+    padding: 8px 20px;
+    font-size: 15px;
+    border-radius: 5px;
+    background-color: #355E3B;
+    color: white;
+    position: relative;
+    background-size: 200%;
+    text-decoration: none;
+}
+
+/* search bar in list */
+/* Style for the search bar container */
+.search-bar {
+    display: flex;
+    width: 500px;
+    background-color: white;
+    border: 2px solid var(--pinkC);
+    border-radius: 4px;
+    overflow: hidden;
+    color: #bfbdbeab;
+    border-radius: 20px;
+}
+/* Style for the search input field */
+.search-bar input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    outline: none;
+    background: transparent;
+}
+/* Style for the search button */
+.search-bar button {
+    background: var(--pinkA);
+    color: #fff;
+    border: none;
+    border-radius: 0 2px 20px 0;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+/* Style for the search button icon (using Font Awesome for a search icon) */
+.search-bar button i {
+    font-size: 16px;
+}
+/* Hover effect for the search button */
+.search-bar button:hover {
+    background: var(--pinkB);
+}
+.search-bar{
+    top: 120px;
+    left: 500px;
+    position: absolute;
 }
