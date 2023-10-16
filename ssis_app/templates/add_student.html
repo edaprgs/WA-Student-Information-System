@@ -32,11 +32,11 @@
 
 <div class="course-select-menu">
     <div class="select-btn">
-        <span>COLLEGE</span>
+        <span class="sBtn-text">COLLEGE</span>
     </div>
     <ul class="options">
-        <li class="option"> <span class="option-text">CCS</span> </li>
-        <li class="option"> <span class="option-text">CASS</span> </li>
+        <li class="option"><span class="option-text">CCS</span></li>
+        <li class="option"><span class="option-text">CASS</span></li>
     </ul>
 </div>
 
@@ -52,5 +52,23 @@
 </div>
 
 <div class="sideicon student"><img src="{{ url_for('static', filename='images/STUDENT ICON.png') }}" width="350"></div>
+<script>
+    const optionMenu = document.querySelector(".course-select-menu");
+    const selectBtn = optionMenu.querySelector(".select-btn");
+    const options = optionMenu.querySelectorAll(".option");
+    const sBtn_text = optionMenu.querySelector(".sBtn-text");
 
+    selectBtn.addEventListener("click", () => {
+        optionMenu.classList.toggle("active");
+    });
+
+    options.forEach(option => {
+        option.addEventListener("click", () => {
+            let selectedOption = option.querySelector(".option-text").innerText;
+            sBtn_text.innerText = selectedOption;
+
+            optionMenu.classList.remove("active");
+        });
+    });
+</script>
 {% endblock %}  

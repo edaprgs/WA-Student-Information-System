@@ -135,24 +135,21 @@ nav ul {
     display: flex;
     align-items: center;
     position: absolute;
-    top: 20px;
+    top: 25px;
     right: 20px; 
-    gap: 40px;
     list-style: none;
 }
 nav li {
     background-color: var(--pinkB); 
     padding: 10px 30px;
-    border-radius: 5px;
 }
 nav a {
-text-decoration: none;
-color: #fff;
+    text-decoration: none;
+    color: #fff;
 }
 .current.tab {
     background-color: var(--pinkA); 
     padding: 10px 30px;
-    border-radius: 5px;
 }
 nav li:hover {
     background-color: var(--pinkA); 
@@ -310,15 +307,15 @@ nav li:hover {
     border: 1px solid var(--pinkA);
 } 
 
-/* add text box placement */
+/* add college, course, student */
 .inputBox.code {
     position: absolute;
-    top: 270px;
+    top: 250px;
     left: 315px;
 }
 .inputBox.name {
     position: absolute;
-    top: 345px;
+    top: 315px;
     left: 315px;
 }
 .inputBox.id {
@@ -336,6 +333,8 @@ nav li:hover {
     top: 330px;
     left: 315px;
 }
+
+/* icon in add forms */
 .sideicon {
     top: 185px;
     left: 850px;
@@ -346,6 +345,8 @@ nav li:hover {
     left: 895px;
     position: absolute;
 }
+
+/* button to submit */
 .container {
     position: absolute;
     transform: translate(-50%, -50%);
@@ -443,7 +444,7 @@ nav li:hover {
 }
 
 
-/* list styles */
+/* table styles */
 /* header */
 .header {
     top: 125px;
@@ -452,7 +453,6 @@ nav li:hover {
 }
 /* table */
 table {
-    font-family: Arial, sans-serif;
     border-collapse: collapse;
     width: 100%;
 }
@@ -464,12 +464,12 @@ table {
 }
 
 th, td {
-    border: 1px solid #ddd;
+    border: 1px solid white;
     text-align: center;
     padding: 20px;
 }
 
-tr:nth-child(even) {
+tr:nth-child(odd) {
     background-color: var(--pinkC);
 }
 
@@ -560,4 +560,24 @@ th {
     top: 120px;
     left: 500px;
     position: absolute;
+}
+
+/* message */
+/* Message Text */
+.message-text {
+    position: absolute;
+    top: 370px;
+    left: 315px;
+    font-style: italic; 
+    font-size: 14px;    
+}
+
+/* Success Message */
+.message-text.success {
+    color: blue;
+}
+
+/* Error Message */
+.message-text.error {
+    color: red;
 }

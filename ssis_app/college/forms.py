@@ -1,9 +1,8 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, validators, SubmitField
+from wtforms import StringField, SubmitField
+from wtforms.validators import DataRequired, Length
 
-
-class UserForm(FlaskForm):
-    username = StringField('Username', [validators.DataRequired(), validators.Length(min=3, max=20)])
-    email = StringField('Email Address', [validators.Length(min=10, max=50)])
-    password = PasswordField('Password', [validators.DataRequired()])
-    submit = SubmitField("Submit")
+class college_form(FlaskForm):
+    college_code = StringField('CODE', validators=[DataRequired()])
+    college_name = StringField('NAME', validators=[DataRequired(), Length(min=3, max=20)])
+    submit = SubmitField("SUBMIT")

@@ -13,19 +13,33 @@
 <div class="backicon"><a href="{{ url_for('college') }}"><img src="{{ url_for('static', filename='images/back-icon.png') }}"></a></div>
 <div class="addentityheading">ADD COLLEGE</div>
 
-<div class="inputBox code">
-    <input type="text" required="required">
-    <span>CODE</span>
-</div>
+<form action="/college/add_college" method="POST">
+    {{ college_form.csrf_token }}
+    <div class="inputBox code">
+        <input type="text" required="required" name="college_code">
+        <span>CODE</span>
+    </div>
 
-<div class="inputBox name">
-    <input type="text" required="required">
-    <span>NAME</span>
-</div>
+    <div class="inputBox name">
+        <input type="text" required="required" name="college_name">
+        <span>NAME</span>
+    </div>
+    <div class="container">
+        <button class="btn btn1" type="submit">SUBMIT</button>
+    </div>
+    <p class="message-text success" id="success_message">
+        {% if success_message %}
+            {{ success_message }}
+        {% endif %}
+    </p>
+    <p class="message-text error" id="error_message">
+        {% if error_message %}
+            {{ error_message }}
+        {% endif %}
+    </p>
+</form>
 
-<div class="container">
-    <button class="btn btn1">SUBMIT</button>
-</div>
 
 <div class="sideicon"><img src="{{ url_for('static', filename='images/COLLEGE ICON.png') }}" width="350"></div>
+
 {% endblock %}  
