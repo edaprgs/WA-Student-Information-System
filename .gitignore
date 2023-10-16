@@ -1,2 +1,3 @@
 .env
 .flaskenv
+__pycache__
