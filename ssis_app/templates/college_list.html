@@ -3,53 +3,46 @@
 {% block content %}
 <nav>
     <ul>
-        <li class="current tab"><a href="{{ url_for('college') }}">COLLEGE</a></li>
-        <li><a href="{{ url_for('course') }}">COURSE</a></li>
-        <li><a href="{{ url_for('student') }}">STUDENT</a></li>
+        <li class="current tab"><a href="{{ url_for('college.index') }}">COLLEGE</a></li>
+        <li><a href="{{ url_for('course.index') }}">COURSE</a></li>
+        <li><a href="{{ url_for('student.index') }}">STUDENT</a></li>
     </ul>
 </nav>
 
 <h3 class="header">LIST OF COLLEGES</h3>
-<div class="search-bar">
-    <input type="text" placeholder="SEARCH">
-    <button type="submit"><i class="fa fa-search"></i></button>
-</div>
-<a href="#" class="custom-add-button">+ ADD COLLEGE</a>
+
+    <form action="{{ url_for('college.college_list') }}" method="GET">
+        <div class="search-bar">
+            <input type="text" id="search" placeholder="SEARCH">
+            <button type="submit"><i class="fa fa-search"></i></button>
+        </div>
+    </form>
+
+<a href="{{ url_for('college.add_college') }}" class="custom-add-button">+ ADD COLLEGE</a>
 
 <div class="table-container">
     <table>
         <tr>
             <th>CODE</th>
-            <th>COLLEGE</th>
+            <th>NAME</th>
             <th>ACTION</th>
         </tr>
+        {% for college in colleges %}
         <tr>
-            <td>CCS</td>
-            <td>COLLEGE OF COMPUTER STUDIES</td>
+            <td>{{ college[0] }}</td>
+            <td>{{ college[1] }}</td>
             <td>
-
-                <a href="#" class="custom-edit-button" style="margin-right: 60px;">EDIT</a>
-                <a href="#" class="custom-delete-button">DELETE</a>
-            
-            </td>
-        </tr>
-        <tr>
-            <td>COET</td>
-            <td>COLLEGE OF ENGINEERING</td>
-            <td>
+                <!-- <button class="btn btn-warning btn-sm">Edit</button>
+                #<button class="btn btn-danger btn-sm">Delete</button>-->
                 <a href="#" class="custom-edit-button" style="margin-right: 60px;">EDIT</a>
                 <a href="#" class="custom-delete-button">DELETE</a>
             </td>
         </tr>
-        <tr>
-            <td>CON</td>
-            <td>COLLEGE OF NURSING</td>
-            <td>
-                <a href="#" class="custom-edit-button" style="margin-right: 60px;">EDIT</a>
-                <a href="#" class="custom-delete-button">DELETE</a>
-            </td>
-        </tr>
+        {% endfor %}
     </table>
 </div>
+
+
+
 
 {% endblock %}  

@@ -52,20 +52,17 @@ class college(object):
         
         return True
 
-
-    @classmethod
-    def list(cls):
+    @staticmethod
+    def get_colleges():
         cursor = mysql.connection.cursor()
-
-        sql = "SELECT * FROM college"
-        cursor.execute(sql)
-        result = cursor.fetchall()
-        return result
-
+        cursor.execute("SELECT * FROM college") 
+        colleges = cursor.fetchall()
+        cursor.close()
+        return colleges
+    
     @classmethod
     def search(cls, query):
         cursor = mysql.connection.cursor()
-
         sql = "SELECT * FROM college WHERE collegeCode LIKE %s OR collegeName LIKE %s"
         cursor.execute(sql, (f"%{query}%", f"%{query}%"))
         result = cursor.fetchall()

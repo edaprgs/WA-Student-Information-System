@@ -3,19 +3,19 @@
 {% block content %}
 <nav>
     <ul>
-        <li><a href="{{ url_for('college') }}">COLLEGE</a></li>
-        <li class="current tab"><a href="{{ url_for('course') }}">COURSE</a></li>
-        <li><a href="{{ url_for('student') }}">STUDENT</a></li>
+        <li><a href="{{ url_for('college.index') }}">COLLEGE</a></li>
+        <li class="current tab"><a href="{{ url_for('course.index') }}">COURSE</a></li>
+        <li><a href="{{ url_for('student.index') }}">STUDENT</a></li>
     </ul>
 </nav>
 
-<a href="{{ url_for('add_course') }}">
+<a href="{{ url_for('course.add_course') }}">
     <div class="courseaddrect"></div>
     <div class="addtext">ADD COURSE</div>
     <div class="addicon"><img src="{{ url_for('static', filename='images/add-icon.png') }}"></div>
 </a>
 
-<a href="{{ url_for('course_list') }}">
+<a href="{{ url_for('course.course_list') }}">
     <div class="courselistrect"></div>
     <div class="listtext">LIST</div>
     <div class="listicon"><img src="{{ url_for('static', filename='images/list-icon.png') }}"></div>

@@ -1,28 +1,19 @@
-from flask import render_template, redirect, request, jsonify
-from . import user_bp
-import app.models as models
-from app.user.forms import UserForm
+from flask import render_template, redirect, request
+#from ssis_app.course.forms import course_form
+import ssis_app.models as models
+from ssis_app.models.course import course
+from flask import Blueprint
 
-@user_bp.route('/user')
-@user_bp.route('/')
+course_bp = Blueprint('course', __name__)
+
+@course_bp.route("/")
 def index():
-    users = models.Users.all()
-    return render_template('index.html', data=users,title='Home',something='something')
+    return render_template("course.html")
 
-@user_bp.route('/user/register', methods=['POST','GET'])
-def register():
-    form = UserForm(request.form)
-    if request.method == 'POST' and form.validate():
-        user = models.Users(email=form.email.data, password=form.password.data,username=form.username.data)
-        user.add()
-        return redirect('/')
-    else:
-        return render_template('signup.html', form=form)
+@course_bp.route('/add/')
+def add_course():
+    return render_template('add_course.html')
 
-@user_bp.route("/user/delete", methods=["POST"])
-def delete():
-    id = request.form['id']
-    if models.Users.delete(id):
-        return jsonify(success=True,message="Successfully deleted")
-    else:
-        return jsonify(success=False,message="Failed")          
+@course_bp.route('/list/')
+def course_list():
+    return render_template('course_list.html')

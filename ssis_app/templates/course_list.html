@@ -3,9 +3,9 @@
 {% block content %}
 <nav>
     <ul>
-        <li><a href="{{ url_for('college') }}">COLLEGE</a></li>
-        <li class="current tab"><a href="{{ url_for('course') }}">COURSE</a></li>
-        <li><a href="{{ url_for('student') }}">STUDENT</a></li>
+        <li><a href="{{ url_for('college.index') }}">COLLEGE</a></li>
+        <li class="current tab"><a href="{{ url_for('course.index') }}">COURSE</a></li>
+        <li><a href="{{ url_for('student.index') }}">STUDENT</a></li>
     </ul>
 </nav>
 
@@ -14,7 +14,7 @@
     <input type="text" placeholder="SEARCH">
     <button type="submit"><i class="fa fa-search"></i></button>
 </div>
-<a href="#" class="custom-add-button">+ ADD COURSE</a>
+<a href="{{ url_for('course.add_course') }}" class="custom-add-button">+ ADD COURSE</a>
 
 <div class="table-container">
     <table>
@@ -38,6 +38,42 @@
         <tr>
             <td>BSCA</td>
             <td>BACHELOR OF SCIENCE IN COMPUTER APPLICATIONS</td>
+            <td>CCS</td>
+            <td>
+                <a href="#" class="custom-edit-button" style="margin-right: 60px;">EDIT</a>
+                <a href="#" class="custom-delete-button">DELETE</a>
+            </td>
+        </tr>
+        <tr>
+            <td>BSIT</td>
+            <td>BACHELOR OF SCIENCE IN INFORMATION TECHNOLOGY</td>
+            <td>CCS</td>
+            <td>
+                <a href="#" class="custom-edit-button" style="margin-right: 60px;">EDIT</a>
+                <a href="#" class="custom-delete-button">DELETE</a>
+            </td>
+        </tr>
+        <tr>
+            <td>BSIT</td>
+            <td>BACHELOR OF SCIENCE IN INFORMATION TECHNOLOGY</td>
+            <td>CCS</td>
+            <td>
+                <a href="#" class="custom-edit-button" style="margin-right: 60px;">EDIT</a>
+                <a href="#" class="custom-delete-button">DELETE</a>
+            </td>
+        </tr>
+        <tr>
+            <td>BSIT</td>
+            <td>BACHELOR OF SCIENCE IN INFORMATION TECHNOLOGY</td>
+            <td>CCS</td>
+            <td>
+                <a href="#" class="custom-edit-button" style="margin-right: 60px;">EDIT</a>
+                <a href="#" class="custom-delete-button">DELETE</a>
+            </td>
+        </tr>
+        <tr>
+            <td>BSIT</td>
+            <td>BACHELOR OF SCIENCE IN INFORMATION TECHNOLOGY</td>
             <td>CCS</td>
             <td>
                 <a href="#" class="custom-edit-button" style="margin-right: 60px;">EDIT</a>

@@ -458,9 +458,12 @@ table {
 }
 .table-container {
     position: relative; 
-    top: 165px; 
+    top: 175px; 
     margin-right: 20px; 
     margin-left: 20px;      
+    overflow-y: scroll; 
+    overflow-x: hidden;
+    max-height: 425px;
 }
 
 th, td {
@@ -524,9 +527,9 @@ th {
 .search-bar {
     display: flex;
     width: 500px;
+    height: 40px;
     background-color: white;
     border: 2px solid var(--pinkC);
-    border-radius: 4px;
     overflow: hidden;
     color: #bfbdbeab;
     border-radius: 20px;
@@ -544,9 +547,13 @@ th {
     background: var(--pinkA);
     color: #fff;
     border: none;
-    border-radius: 0 2px 20px 0;
+    border-radius: 20px 20px 20px 20px;
     padding: 10px 20px;
     cursor: pointer;
+    position: absolute;
+    top: 8px;
+    left: 435px;
+    width: 45px;
 }
 /* Style for the search button icon (using Font Awesome for a search icon) */
 .search-bar button i {
@@ -571,12 +578,10 @@ th {
     font-style: italic; 
     font-size: 14px;    
 }
-
 /* Success Message */
 .message-text.success {
     color: blue;
 }
-
 /* Error Message */
 .message-text.error {
     color: red;
