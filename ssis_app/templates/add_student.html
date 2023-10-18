@@ -28,47 +28,101 @@
     <span>LAST NAME</span>
 </div>
 
-
-
-<div class="course-select-menu">
-    <div class="select-btn">
-        <span class="sBtn-text">COLLEGE</span>
+<div class="custom-dropdown gender">
+    <div class="dropdown-select" id="gender-dropdown">GENDER</div>
+    <div class="dropdown-options" id="gender-options">
+        <div class="dropdown-option" data-value="FEMALE">FEMALE</div>
+        <div class="dropdown-option" data-value="MALE">MALE</div>
     </div>
-    <ul class="options">
-        <li class="option"><span class="option-text">CCS</span></li>
-        <li class="option"><span class="option-text">CASS</span></li>
-    </ul>
 </div>
 
+<div class="custom-dropdown yearlevel">
+    <div class="dropdown-select" id="ylevel-dropdown">YEAR LEVEL</div>
+    <div class="dropdown-options" id="ylevel-options">
+        <div class="dropdown-option" data-value="1ST YEAR">1ST YEAR</div>
+        <div class="dropdown-option" data-value="2ND YEAR">2ND YEAR</div>
+        <div class="dropdown-option" data-value="3RD YEAR">3RD YEAR</div>
+        <div class="dropdown-option" data-value="4TH YEAR">4TH YEAR</div>
+    </div>
+</div>
 
-
-
-
-
-
+<div class="custom-dropdown course">
+    <div class="dropdown-select course" id="course-dropdown">COURSE</div>
+    <div class="dropdown-options" id="course-options">
+        <div class="dropdown-option" data-value="BSCS">BSCS</div>
+        <div class="dropdown-option" data-value="BSIS">BSIS</div>
+    </div>
+</div>
 
 <div class="container">
     <button class="btn btn2">SUBMIT</button>
 </div>
 
 <div class="sideicon student"><img src="{{ url_for('static', filename='images/STUDENT ICON.png') }}" width="350"></div>
-<script>
-    const optionMenu = document.querySelector(".course-select-menu");
-    const selectBtn = optionMenu.querySelector(".select-btn");
-    const options = optionMenu.querySelectorAll(".option");
-    const sBtn_text = optionMenu.querySelector(".sBtn-text");
 
-    selectBtn.addEventListener("click", () => {
-        optionMenu.classList.toggle("active");
+<script>
+    /* GENDER DROPDOWN */
+    const dropdowngender = document.getElementById('gender-dropdown');
+    const optionsgender = document.getElementById('gender-options');
+    dropdowngender.addEventListener('click', function() {
+        optionsgender.classList.toggle('show');
     });
 
-    options.forEach(option => {
-        option.addEventListener("click", () => {
-            let selectedOption = option.querySelector(".option-text").innerText;
-            sBtn_text.innerText = selectedOption;
+    optionsgender.addEventListener('click', function(e) {
+        if (e.target.classList.contains('dropdown-option')) {
+            const selectedValue = e.target.getAttribute('data-value');
+            dropdowngender.textContent = selectedValue;
+            optionsgender.classList.remove('show');
+        }
+    });
+    // Close the dropdown if the user clicks outside of it
+    window.addEventListener('click', function(e) {
+        if (e.target !== dropdown) {
+            optionsgender.classList.remove('show');
+        }
+    });
 
-            optionMenu.classList.remove("active");
-        });
+    /* YEAR LEVEL DROPDOWN */
+    const dropdownylevel = document.getElementById('ylevel-dropdown');
+    const optionsylevel = document.getElementById('ylevel-options');
+    dropdownylevel.addEventListener('click', function() {
+        optionsylevel.classList.toggle('show');
+    });
+
+    optionsylevel.addEventListener('click', function(e) {
+        if (e.target.classList.contains('dropdown-option')) {
+            const selectedValue = e.target.getAttribute('data-value');
+            dropdownylevel.textContent = selectedValue;
+            optionsylevel.classList.remove('show');
+        }
+    });
+    // Close the dropdown if the user clicks outside of it
+    window.addEventListener('click', function(e) {
+        if (e.target !== dropdown) {
+            optionsylevel.classList.remove('show');
+        }
+    });
+
+    /* COURSE DROPDOWN */
+    const dropdowncourse = document.getElementById('course-dropdown');
+    const optionscourse = document.getElementById('course-options');
+    dropdowncourse.addEventListener('click', function() {
+        optionscourse.classList.toggle('show');
+    });
+
+    optionscourse.addEventListener('click', function(e) {
+        if (e.target.classList.contains('dropdown-option')) {
+            const selectedValue = e.target.getAttribute('data-value');
+            dropdowncourse.textContent = selectedValue;
+            optionscourse.classList.remove('show');
+        }
+    });
+    // Close the dropdown if the user clicks outside of it
+    window.addEventListener('click', function(e) {
+        if (e.target !== dropdown) {
+            optionscourse.classList.remove('show');
+        }
     });
 </script>
+
 {% endblock %}  

@@ -24,13 +24,44 @@
 </div>
 
 
+<div class="custom-dropdown college">
+    <div class="dropdown-select college" id="college-dropdown">COLLEGE</div>
+    <div class="dropdown-options" id="college-options">
+        <div class="dropdown-option" data-value="CCS">CCS</div>
+        <div class="dropdown-option" data-value="CON">CON</div>
+    </div>
+</div>
 
 
 
 
 <div class="container">
-    <button class="btn btn1">SUBMIT</button>
+    <button class="btn btn3">SUBMIT</button>
 </div>
 
 <div class="sideicon"><img src="{{ url_for('static', filename='images/COURSE ICON.png') }}" width="350"></div>
+
+<script>
+    /* COLLEGE DROPDOWN */
+    const dropdowncollege = document.getElementById('college-dropdown');
+    const optionscollege = document.getElementById('college-options');
+    dropdowncollege.addEventListener('click', function() {
+        optionscollege.classList.toggle('show');
+    });
+
+    optionscollege.addEventListener('click', function(e) {
+        if (e.target.classList.contains('dropdown-option')) {
+            const selectedValue = e.target.getAttribute('data-value');
+            dropdowncollege.textContent = selectedValue;
+            optionscollege.classList.remove('show');
+        }
+    });
+    // Close the dropdown if the user clicks outside of it
+    window.addEventListener('click', function(e) {
+        if (e.target !== dropdown) {
+            optionscollege.classList.remove('show');
+        }
+    });
+</script>
+
 {% endblock %}  

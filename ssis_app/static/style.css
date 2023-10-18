@@ -281,7 +281,7 @@ nav li:hover {
     border: 2px solid gainsboro;
     border-radius: 5px;
     outline-color: var(--pinkA);
-    color: #000;
+    color: black;
     font-size: 1em;
     transition: 0.5s;
 }
@@ -310,27 +310,27 @@ nav li:hover {
 /* add college, course, student */
 .inputBox.code {
     position: absolute;
-    top: 250px;
+    top: 240px;
     left: 315px;
 }
 .inputBox.name {
     position: absolute;
-    top: 315px;
+    top: 300px;
     left: 315px;
 }
 .inputBox.id {
     position: absolute;
-    top: 210px;
+    top: 200px;
     left: 315px;
 }
 .inputBox.fname {
     position: absolute;
-    top: 270px;
+    top: 255px;
     left: 315px;
 }
 .inputBox.lname {
     position: absolute;
-    top: 330px;
+    top: 310px;
     left: 315px;
 }
 
@@ -370,7 +370,12 @@ nav li:hover {
 }
 .btn.btn2 {
     position: relative;
-    top: 550px;
+    top: 540px;
+    left: 538px;
+}
+.btn.btn3 {
+    position: relative;
+    top: 480px;
     left: 538px;
 }
 .btn:hover {
@@ -379,70 +384,6 @@ nav li:hover {
 .btn:active {
     transform: scale(0.80);
 }
-
-
-/* dropdown */
-.course-select-menu {
-    width: 450px;
-    margin: 150px auto;
-    position: absolute;
-    top: 245px;
-    left: 315px;
-}
-.course-select-menu .select-btn {
-    border-radius: 5px;
-    display: flex;
-    height: 5px;
-    color: #bfbdbeab;
-    background: white;
-    padding: 20px;
-    font-size: 18px;
-    font-weight: 400;
-    border-radius: 8px;
-    align-items: center;
-    cursor: pointer;
-    justify-content: space-between;
-    border: 2px solid gainsboro;
-}
-.select-btn i{
-    font-size: 25px;
-    transition: 0.3s;
-}
-.course-select-menu.active .select-btn i {
-    transform: rotate(-180deg);
-}
-.course-select-menu.options {
-    position: 20px;
-    margin-top: 10px;
-    border-radius: 8px;
-    background: white;
-    box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
-    display: none;
-}
-.course-select-menu.active .options {
-    display: block;
-}
-.options .option{
-    display: flex;
-    height: 55px;
-    cursor: pointer;
-    padding: 0 16px;
-    border-radius: 8px;
-    align-items: center;
-    background: white;
-}
-.options .option:hover {
-    background: #f2f2f2;
-}
-.option i {
-    font-size: 25px;
-    margin-right: 12px;
-}
-.option .option-text {
-    font-size: 18px;
-    color: #333;
-}
-
 
 /* table styles */
 /* header */
@@ -585,4 +526,75 @@ th {
 /* Error Message */
 .message-text.error {
     color: red;
+}
+
+
+/* dropdown */
+.custom-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.custom-dropdown.college {
+    position: absolute;
+    top: 360px;
+    left: 315px;
+}
+
+.custom-dropdown.gender {
+    position: absolute;
+    top: 365px;
+    left: 315px;
+}
+
+.custom-dropdown.yearlevel {
+    position: absolute;
+    top: 365px;
+    left: 550px;
+}
+
+.custom-dropdown.course {
+    position: absolute;
+    top: 420px;
+    left: 315px;
+}
+
+.dropdown-select.college {
+    width: 450px;
+}
+
+.dropdown-select.course {
+    width: 450px;
+}
+
+.dropdown-select {
+    width: 215px;
+    padding: 10px;
+    background-color: var(--pinkA);
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+.dropdown-options {
+    display: none;
+    position: absolute;
+    background-color: white;
+    border-radius: 5px;
+    width: 100%;
+    z-index: 1000;
+}
+
+.dropdown-option:hover {
+    background-color: var(--pinkC); 
+    border-radius: 5px;
+}
+
+.dropdown-option {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.dropdown-options.show {
+    display: block;
 }
