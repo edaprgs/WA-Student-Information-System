@@ -2,17 +2,15 @@
 {% block title %}SSIS | COLLEGE{% endblock title %}
 {% block content %}
 
-<!-- NAVIGATION -->
-<nav>
-    <ul>
-        <li class="current tab"><a href="{{ url_for('college.index') }}">COLLEGE</a></li>
-        <li><a href="{{ url_for('course.index') }}">COURSE</a></li>
-        <li><a href="{{ url_for('student.index') }}">STUDENT</a></li>
-    </ul>
-</nav>
-
 <div class="delete-entity bg"></div>
-<div class="delete-entity heading">DELETE COLLEGE INFORMATION</div>
+<div class="delete-entity heading">WARNING</div>
+
+<div class="delete-text body">Are you sure you want to delete the college information?</div>
+
+<div class="container">
+    <a href="#" class="btn delete-yes">YES, PROCEED</a>
+    <a href="{{ url_for('college.college_list') }}" class="btn delete-no">NO</a>
+</div>
 
 
 {% endblock %}  
