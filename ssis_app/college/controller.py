@@ -32,6 +32,14 @@ def add_college():
 
     return render_template("add_college.html", college_form=form, success_message=success_message, error_message=error_message)
 
+@college_bp.route('/edit/')
+def college_edit():
+    return render_template('edit_college.html')
+
+@college_bp.route('/delete/')
+def college_delete():
+    return render_template('delete_college.html')
+
 @college_bp.route('/list/')
 def college_list():
     colleges_data = college.get_colleges()

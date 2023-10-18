@@ -14,6 +14,14 @@ def index():
 def add_student():
     return render_template('add_student.html')
 
+@student_bp.route('/edit/')
+def student_edit():
+    return render_template('edit_student.html')
+
+@student_bp.route('/delete/')
+def student_delete():
+    return render_template('delete_student.html')
+
 @student_bp.route('/list/')
 def student_list():
     return render_template('student_list.html')

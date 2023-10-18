@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}SSIS | STUDENT{% endblock title %}
+{% block content %}
+
+<!-- NAVIGATION -->
+<nav>
+    <ul>
+        <li><a href="{{ url_for('college.index') }}">COLLEGE</a></li>
+        <li><a href="{{ url_for('course.index') }}">COURSE</a></li>
+        <li class="current tab"><a href="{{ url_for('student.index') }}">STUDENT</a></li>
+    </ul>
+</nav>
+
+<div class="delete-entity bg"></div>
+<div class="delete-entity heading">DELETE STUDENT INFORMATION</div>
+
+
+{% endblock %}  

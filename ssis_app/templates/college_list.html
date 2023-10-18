@@ -34,8 +34,8 @@
             <td>
                 <!-- <button class="btn btn-warning btn-sm">Edit</button>
                 #<button class="btn btn-danger btn-sm">Delete</button>-->
-                <a href="#" class="custom-edit-button" style="margin-right: 60px;">EDIT</a>
-                <a href="#" class="custom-delete-button">DELETE</a>
+                <a href="{{ url_for('college.college_edit') }}" class="custom-edit-button" style="margin-right: 60px;">EDIT</a>
+                <a href="{{ url_for('college.college_delete') }}" class="custom-delete-button">DELETE</a>
             </td>
         </tr>
         {% endfor %}

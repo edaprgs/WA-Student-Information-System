@@ -13,11 +13,10 @@
 
 <div class="entity bg"></div>
 <div class="backicon"><a href="{{ url_for('college.college_list') }}"><img src="{{ url_for('static', filename='images/back-icon.png') }}"></a></div>
-<div class="entity heading">ADD COLLEGE</div>
+<div class="entity heading">EDIT COLLEGE INFORMATION</div>
 
-<!-- ADD COLLEGE FORM -->
+<!-- EDIT COLLEGE FORM -->
 <form action="/college/add" method="POST">
-    {{ college_form.csrf_token }}
     <div class="inputBox code">
         <input type="text" required="required" name="college_code">
         <span>CODE</span>
@@ -30,16 +29,6 @@
     <div class="container">
         <button class="btn btn1" type="submit">SUBMIT</button>
     </div>
-    <p class="message-text success" id="success_message">
-        {% if success_message %}
-            {{ success_message }}
-        {% endif %}
-    </p>
-    <p class="message-text error" id="error_message">
-        {% if error_message %}
-            {{ error_message }}
-        {% endif %}
-    </p>
 </form>
 
 <div class="sideicon"><img src="{{ url_for('static', filename='images/COLLEGE ICON.png') }}" width="350"></div>

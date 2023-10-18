@@ -14,6 +14,14 @@ def index():
 def add_course():
     return render_template('add_course.html')
 
+@course_bp.route('/edit/')
+def course_edit():
+    return render_template('edit_course.html')
+
+@course_bp.route('/delete/')
+def course_delete():
+    return render_template('delete_course.html')
+
 @course_bp.route('/list/')
 def course_list():
     return render_template('course_list.html')
