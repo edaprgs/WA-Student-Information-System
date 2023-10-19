@@ -52,17 +52,13 @@ class course(object):
     def delete(cls, courseCode):
         try:
             cursor = mysql.connection.cursor()
-
-            # Check if the course is referenced in any student
             check_students_sql = f"SELECT COUNT(*) FROM student WHERE course = '{courseCode}'"
             cursor.execute(check_students_sql)
             num_students = cursor.fetchone()[0]
 
             if num_students > 0:
-                # Course is referenced, show a prompt or message
                 return "The course cannot be deleted since it is associated with students."
 
-            # No students are associated, proceed with deletion
             delete_course_sql = f"DELETE FROM course WHERE courseCode = '{courseCode}'"
             cursor.execute(delete_course_sql)
             mysql.connection.commit()
@@ -75,7 +71,7 @@ class course(object):
     @classmethod
     def get_courses(cls):
         cursor = mysql.connection.cursor()
-        cursor.execute("SELECT * FROM course") 
+        cursor.execute("SELECT * FROM course ORDER BY courseName") 
         courses = cursor.fetchall()
         cursor.close()
         return courses

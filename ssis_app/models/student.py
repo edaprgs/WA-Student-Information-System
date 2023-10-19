@@ -45,7 +45,7 @@ class student(object):
     def get_student(cls):
         cursor = mysql.connection.cursor()
         cursor = mysql.connection.cursor()
-        cursor.execute("SELECT * FROM student") 
+        cursor.execute("SELECT * FROM student ORDER BY lastName") 
         students = cursor.fetchall()
         cursor.close()
         return students

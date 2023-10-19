@@ -39,8 +39,8 @@
                     <button type="submit" class="custom-edit-button">EDIT</button>
                 </form>
                 <form method="POST" action="/college/delete/">
-                    <input type="hidden" name="college_code" value="{{ college[0] }}">
-                    <input type="hidden" name="college_name" value="{{ college[1] }}">
+                    <input type="hidden" name="college_code" value="{{ college[0] }}" hidden>
+                    <input type="hidden" name="college_name" value="{{ college[1] }}" hidden>
                     <button type="submit" class="custom-delete-button">DELETE</button>
                 </form>
             </td>

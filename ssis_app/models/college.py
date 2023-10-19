@@ -49,7 +49,7 @@ class college(object):
     @staticmethod
     def get_colleges():
         cursor = mysql.connection.cursor()
-        cursor.execute("SELECT * FROM college") 
+        cursor.execute("SELECT * FROM college ORDER BY collegeName") 
         colleges = cursor.fetchall()
         cursor.close()
         return colleges

@@ -30,9 +30,9 @@ def add_course():
         result = new_course.add()
 
         if result:
-            success_message = "Course added successfully!"
+            success_message = "Course added successfully! Please check the list for updates"
         else:
-            error_message = "A course already exists."
+            error_message = "Course already exists."
 
     return render_template('add_course.html',course_form=form, college_codes=college_codes, success_message=success_message, error_message=error_message)
 
@@ -62,9 +62,9 @@ def course_edit():
         error_message = ""
 
         if updated:
-            success_message = "Course updated successfully!"
+            success_message = "Course updated successfully! Please check the list for updates"
         else:
-            error_message = "A course already exists."
+            error_message = "Course already exists."
         
         return render_template("edit_course.html", success_message=success_message, error_message=error_message)
 

@@ -26,9 +26,9 @@ def add_college():
         result = new_college.add()
 
         if result:
-            success_message = "College added successfully!"
+            success_message = "College added successfully! Please check the list for updates"
         else:
-            error_message = "A college already exists."
+            error_message = "College already exists."
 
     return render_template("add_college.html", college_form=form, success_message=success_message, error_message=error_message)
 
@@ -50,9 +50,9 @@ def college_edit():
         error_message = ""
 
         if updated:
-            success_message = "College updated successfully!"
+            success_message = "College updated successfully! Please check the list for updates"
         else:
-            error_message = "A college already exists."
+            error_message = "College already exists."
         
         return render_template("edit_college.html", success_message=success_message, error_message=error_message)
 

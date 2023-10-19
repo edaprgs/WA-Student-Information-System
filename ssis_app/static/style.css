@@ -446,12 +446,12 @@ table {
 }
 .table-container {
     position: relative; 
-    top: 175px; 
+    top: 185px; 
     margin-right: 20px; 
     margin-left: 20px;      
     overflow-y: scroll; 
     overflow-x: hidden;
-    max-height: 425px;
+    max-height: 400px;
 }
 
 th, td {

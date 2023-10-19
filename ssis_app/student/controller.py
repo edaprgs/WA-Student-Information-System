@@ -35,7 +35,7 @@ def add_student():
         result = new_student.add()
 
         if result:
-            success_message = "Student added successfully!"
+            success_message = "Student added successfully! Please check the list for updates"
         else:
             error_message = "A student already exists."
 
