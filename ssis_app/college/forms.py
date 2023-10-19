@@ -7,3 +7,4 @@ class college_form(FlaskForm):
     college_name = StringField('NAME', validators=[DataRequired(), Length(min=10, max=100)])
     # search_input = StringField('SEARCH', render_kw={'placeholder': 'SEARCH'})
     submit = SubmitField("SUBMIT")
+    #submit = SubmitField('Update')

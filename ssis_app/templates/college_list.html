@@ -33,12 +33,20 @@
             <td>{{ college[0] }}</td>
             <td>{{ college[1] }}</td>
             <td>
-                <a href="{{ url_for('college.college_edit') }}" class="custom-edit-button" style="margin-right: 60px;">EDIT</a>
-                <a href="{{ url_for('college.college_delete') }}" class="custom-delete-button">DELETE</a>
+                <form method="GET" action="/college/edit">
+                    <input id="college_code" name="college_code" value="{{ college[0] }}" hidden>
+                    <input id="college_name" name="college_name" value="{{ college[1] }}" hidden>
+                    <button type="submit" class="custom-edit-button">EDIT</button>
+                </form>
+                <form method="POST" action="/college/delete/">
+                    <input type="hidden" name="college_code" value="{{ college[0] }}">
+                    <input type="hidden" name="college_name" value="{{ college[1] }}">
+                    <button type="submit" class="custom-delete-button">DELETE</button>
+                </form>
             </td>
         </tr>
         {% endfor %}
     </table>
-</div>
+</div>   
 
 {% endblock %}  

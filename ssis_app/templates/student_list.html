@@ -37,9 +37,31 @@
             <td>{{ student[4] }}</td>
             <td>{{ student[5] }}</td>
             <td>
-                <a href="{{ url_for('student.student_edit') }}" class="custom-edit-button" style="margin-right: 60px;">EDIT</a>
-                <a href="{{ url_for('student.student_delete') }}" class="custom-delete-button">DELETE</a>
+                <!-- EDIT -->
+                <form method="GET" action="/student/edit">
+                    <input id="studentID" name="studentID" value="{{ student[0] }}" hidden>
+                    <input id="first_name" name="first_name" value="{{ student[1] }}" hidden>
+                    <input id="last_name" name="last_name" value="{{ student[2] }}" hidden>
+                    <input id="course_code" name="course_code" value="{{ student[3] }}" hidden>
+                    <input id="year_level" name="year_level" value="{{ student[4] }}" hidden>
+                    <input id="gender" name="gender" value="{{ student[5] }}" hidden>
+
+                    <button type="submit" class="custom-edit-button">EDIT</button>
+                </form>
+
+                <!-- DELETE -->
+                <form method="POST" action="/student/delete/">
+                    <input id="studentID" name="studentID" value="{{ student[0] }}" hidden>
+                    <input id="first_name" name="first_name" value="{{ student[1] }}" hidden>
+                    <input id="last_name" name="last_name" value="{{ student[2] }}" hidden>
+                    <input id="course_code" name="course_code" value="{{ student[3] }}" hidden>
+                    <input id="year_level" name="year_level" value="{{ student[4] }}" hidden>
+                    <input id="gender" name="gender" value="{{ student[5] }}" hidden>
+
+                    <button type="submit" class="custom-delete-button">DELETE</button>
+                </form>
             </td>
+
         </tr>
         {% endfor %}
     </table>

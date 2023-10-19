@@ -36,15 +36,38 @@ def add_course():
 
     return render_template('add_course.html',course_form=form, college_codes=college_codes, success_message=success_message, error_message=error_message)
 
-# @course_bp.route('/api/colleges', methods=['GET'])
-# def get_college_codes():
-#     code = course()
-#     college_codes = code.get_code()
-#     return jsonify(college_codes)
+# @course_bp.route('/edit/')
+# def course_edit():
+#     return render_template('edit_course.html')
 
-@course_bp.route('/edit/')
+@course_bp.route('/edit/', methods=['GET', 'POST'])
 def course_edit():
-    return render_template('edit_course.html')
+    update_course = course()
+    college_codes = update_course.get_college_codes()
+    success_message = None
+    error_message = None
+    if request.method == 'GET':
+        course_code = request.args.get('course_code')
+        course_name = request.args.get('course_name')   
+        college_code = request.args.get('college_code') 
+        return render_template('edit_course.html', college_codes=college_codes,code=course_code, name=course_name, college=college_code)
+    elif request.method == 'POST':
+        _course_code = request.form.get('course_code')
+        new_course_name = request.form.get('course_name').upper()
+        new_college = request.form.get('college_code')
+
+        updated = course.update(courseCode=_course_code, courseName=new_course_name, collegeCode=new_college)  
+        
+        success_message = ""
+        error_message = ""
+
+        if updated:
+            success_message = "Course updated successfully!"
+        else:
+            error_message = "A course already exists."
+        
+        return render_template("edit_course.html", success_message=success_message, error_message=error_message)
+
 
 @course_bp.route('/delete/')
 def course_delete():
@@ -54,25 +77,3 @@ def course_delete():
 def course_list():
     courses_data = course.get_courses()
     return render_template('course_list.html', courses=courses_data)
-
-# @course_bp.route('/add/')
-# def add_course():
-#     form = course_form()
-#     success_message = None
-#     error_message = None
-
-#     if request.method == "POST":
-#         code = request.form.get("course_code").upper()
-#         name = request.form.get("course_name").upper()
-
-#         new_college = course()
-#         new_college.courseCode = code
-#         new_college.courseName = name
-#         result = new_college.add()
-
-#         if result:
-#             success_message = "College added successfully!"
-#         else:
-#             error_message = "A college already exists."
-
-#     return render_template("add_course.html", course_form=form, success_message=success_message, error_message=error_message)

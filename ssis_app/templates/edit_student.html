@@ -16,50 +16,88 @@
 <div class="entity heading">EDIT STUDENT INFORMATION</div>
 
 <!-- ADD STUDENT FORM -->
-<div class="inputBox id">
-    <input type="text" required="required">
-    <span>ID NUMBER</span>
-</div>
+<form action="{{ url_for('student.student_edit') }}" method="POST">
+    <input name="csrf_token" value="{{ csrf_token() }}" hidden />
 
-<div class="inputBox fname">
-    <input type="text" required="required">
-    <span>FIRST NAME</span>
-</div>
-
-<div class="inputBox lname">
-    <input type="text" required="required">
-    <span>LAST NAME</span>
-</div>
-
-<div class="custom-dropdown gender">
-    <div class="dropdown-select" id="gender-dropdown">GENDER</div>
-    <div class="dropdown-options" id="gender-options">
-        <div class="dropdown-option" data-value="FEMALE">FEMALE</div>
-        <div class="dropdown-option" data-value="MALE">MALE</div>
+    <!-- STUDENT ID -->
+    <div class="inputBox id">
+        <input disabled name="studentID" value="{{ id }}">
+        <input hidden name="studentID" value="{{ id }}" >
     </div>
-</div>
 
-<div class="custom-dropdown yearlevel">
-    <div class="dropdown-select" id="ylevel-dropdown">YEAR LEVEL</div>
-    <div class="dropdown-options" id="ylevel-options">
-        <div class="dropdown-option" data-value="1ST YEAR">1ST YEAR</div>
-        <div class="dropdown-option" data-value="2ND YEAR">2ND YEAR</div>
-        <div class="dropdown-option" data-value="3RD YEAR">3RD YEAR</div>
-        <div class="dropdown-option" data-value="4TH YEAR">4TH YEAR</div>
+    <!-- FIRST NAME -->
+    <div class="inputBox fname">
+        <input type="text" required="required" name="first_name" value="{{ fname }}">
+        <span>FIRST NAME</span>
     </div>
-</div>
 
-<div class="custom-dropdown course">
-    <div class="dropdown-select course" id="course-dropdown">COURSE</div>
-    <div class="dropdown-options" id="course-options">
-        <div class="dropdown-option" data-value="BSCS">BSCS</div>
-        <div class="dropdown-option" data-value="BSIS">BSIS</div>
+    <!-- LAST NAME -->
+    <div class="inputBox lname">
+        <input type="text" required="required" name="last_name" value="{{ lname }}">
+        <span>LAST NAME</span>
     </div>
-</div>
 
-<div class="container">
-    <button class="btn btn2">SUBMIT</button>
-</div>
+    <!-- COURSE -->
+    <div class="custom-select course">
+        <select name="course_code" id="course_code" required style="
+        width: 450px;
+        height: 40px;
+        border-radius: 5px;
+        background-color: #FF84B1;
+        border: 2px solid #FF84B1;
+        color: #FFFFFF;
+        font-size: 16px;
+        padding: 5px;
+        outline: none;
+        cursor: pointer;">
+            <option value="{{ course }}" selected style="color: gainsboro; background-color: white;">{{ course }}</option>
+            {% for course_code in course_codes %}
+                <option value="{{course_code}}" data-value="{{course_code}}" style="
+                color: black; 
+                background-color: white;
+                height: 40px;
+                ">{{course_code}}</option>
+            {% endfor %}
+        </select>
+    </div>    
+
+    <!-- YEAR LEVEL -->
+    <input type="hidden" name="year_level" id="selectedYLevel" value="{{ ylevel }}">
+    <div class="custom-dropdown yearlevel">
+        <div class="dropdown-select" id="ylevel-dropdown">{{ ylevel }}</div>
+        <div class="dropdown-options" id="ylevel-options">
+            <div class="dropdown-option" data-value="1ST YEAR">1ST YEAR</div>
+            <div class="dropdown-option" data-value="2ND YEAR">2ND YEAR</div>
+            <div class="dropdown-option" data-value="3RD YEAR">3RD YEAR</div>
+            <div class="dropdown-option" data-value="4TH YEAR">4TH YEAR</div>
+        </div>
+    </div>
+
+    <!-- GENDER -->
+    <input type="hidden" name="gender" id="selectedGender" value="{{ sex }}">
+    <div class="custom-dropdown gender">
+        <div class="dropdown-select" id="gender-dropdown">{{ sex }}</div>
+        <div class="dropdown-options" id="gender-options">
+            <div class="dropdown-option" data-value="FEMALE">FEMALE</div>
+            <div class="dropdown-option" data-value="MALE">MALE</div>
+        </div>
+    </div>
+
+    <div class="container">
+        <button class="btn btn2">UPDATE</button>
+    </div>
+
+    <p class="message-text success student" id="success_message">
+        {% if success_message %}
+            {{ success_message }}
+        {% endif %}
+    </p>
+    <p class="message-text error student" id="error_message">
+        {% if error_message %}
+            {{ error_message }}
+        {% endif %}
+    </p>
+</form>
 
 <div class="sideicon student"><img src="{{ url_for('static', filename='images/STUDENT ICON.png') }}" width="350"></div>
 
@@ -67,20 +105,24 @@
     /* GENDER DROPDOWN */
     const dropdowngender = document.getElementById('gender-dropdown');
     const optionsgender = document.getElementById('gender-options');
+    let selectedGender = null; // Variable to store the selected gender
+
     dropdowngender.addEventListener('click', function() {
         optionsgender.classList.toggle('show');
     });
 
     optionsgender.addEventListener('click', function(e) {
         if (e.target.classList.contains('dropdown-option')) {
-            const selectedValue = e.target.getAttribute('data-value');
-            dropdowngender.textContent = selectedValue;
+            selectedGender = e.target.getAttribute('data-value'); // Update the selected value
+            dropdowngender.textContent = selectedGender;
             optionsgender.classList.remove('show');
+            document.getElementById('selectedGender').value = selectedGender;
         }
     });
-    // Close the dropdown 
-    window.addEventListener('click', function(e) {
-        if (e.target !== dropdown) {
+
+    // Close the dropdown when clicking outside the dropdown or select
+    document.addEventListener('click', function(e) {
+        if (e.target !== dropdowngender && e.target !== optionsgender) {
             optionsgender.classList.remove('show');
         }
     });
@@ -88,42 +130,25 @@
     /* YEAR LEVEL DROPDOWN */
     const dropdownylevel = document.getElementById('ylevel-dropdown');
     const optionsylevel = document.getElementById('ylevel-options');
+    let selectedYLevel = null; // Variable to store the selected year level
+
     dropdownylevel.addEventListener('click', function() {
         optionsylevel.classList.toggle('show');
     });
 
     optionsylevel.addEventListener('click', function(e) {
         if (e.target.classList.contains('dropdown-option')) {
-            const selectedValue = e.target.getAttribute('data-value');
-            dropdownylevel.textContent = selectedValue;
+            selectedYLevel = e.target.getAttribute('data-value'); // Update the selected value
+            dropdownylevel.textContent = selectedYLevel;
             optionsylevel.classList.remove('show');
-        }
-    });
-    // Close the dropdown 
-    window.addEventListener('click', function(e) {
-        if (e.target !== dropdown) {
-            optionsylevel.classList.remove('show');
+            document.getElementById('selectedYLevel').value = selectedYLevel;
         }
     });
 
-    /* COURSE DROPDOWN */
-    const dropdowncourse = document.getElementById('course-dropdown');
-    const optionscourse = document.getElementById('course-options');
-    dropdowncourse.addEventListener('click', function() {
-        optionscourse.classList.toggle('show');
-    });
-
-    optionscourse.addEventListener('click', function(e) {
-        if (e.target.classList.contains('dropdown-option')) {
-            const selectedValue = e.target.getAttribute('data-value');
-            dropdowncourse.textContent = selectedValue;
-            optionscourse.classList.remove('show');
-        }
-    });
-    // Close the dropdown 
-    window.addEventListener('click', function(e) {
-        if (e.target !== dropdown) {
-            optionscourse.classList.remove('show');
+    // Close the dropdown when clicking outside the dropdown or select
+    document.addEventListener('click', function(e) {
+        if (e.target !== dropdownylevel && e.target !== optionsylevel) {
+            optionsylevel.classList.remove('show');
         }
     });
 </script>

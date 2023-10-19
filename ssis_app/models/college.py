@@ -19,18 +19,12 @@ class college(object):
         return True
 
     @classmethod
-    def update(cls, collegeCode, newCollegeName):
+    def update(cls, collegeCode, collegeName):
         cursor = mysql.connection.cursor()
 
-        check_similarity_sql = "SELECT collegeCode FROM college WHERE collegeName = %s"
-        cursor.execute(check_similarity_sql, (newCollegeName,))
-        similar_college = cursor.fetchone()
-
-        if similar_college:
-            return False
-
         sql = "UPDATE college SET collegeName = %s WHERE collegeCode = %s"
-        cursor.execute(sql, (newCollegeName, collegeCode))
+        cursor.execute(sql, (collegeName, collegeCode))
+        print(sql, collegeName, collegeCode)
         mysql.connection.commit()
         
         return True
@@ -67,3 +61,10 @@ class college(object):
         cursor.execute(sql, (f"%{query}%", f"%{query}%"))
         result = cursor.fetchall()
         return result
+    
+    @classmethod
+    def get_college_data(college_code):
+        cursor = mysql.connection.cursor()
+        cursor.execute("SELECT collegeCode, collegeName FROM college WHERE collegeCode = ?", (college_code,))
+        college_data = cursor.fetchone()
+        return college_data

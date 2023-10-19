@@ -4,16 +4,13 @@ class course(object):
     def add(self):
         cursor = mysql.connection.cursor()
 
-        # Check if a course with the same courseCode already exists
         check_duplicate_sql = "SELECT courseCode FROM course WHERE courseCode = %s"
         cursor.execute(check_duplicate_sql, (self.courseCode,))
         existing_course = cursor.fetchone()
 
-        # A course with the same courseCode already exists, do not proceed with the addition
         if existing_course:
-            return "A course with the same courseCode already exists."
+            return False
 
-        # If no duplicate courseCode is found, proceed with the addition
         sql = "INSERT INTO course(courseCode, courseName, collegeCode) VALUES(%s, %s, %s)"
         cursor.execute(sql, (self.courseCode, self.courseName, self.collegeCode))
         mysql.connection.commit()
@@ -21,24 +18,35 @@ class course(object):
         return True
     
     @classmethod
-    def update(cls, courseCode, newCourseName, newCollegeCode):
+    def update(cls, courseCode, courseName, collegeCode):
         cursor = mysql.connection.cursor()
 
-        # Check if the new name is similar to any existing course names
-        check_similarity_sql = "SELECT courseCode FROM course WHERE courseName = %s"
-        cursor.execute(check_similarity_sql, (newCourseName,))
-        similar_course = cursor.fetchone()
-
-        if similar_course:
-            # A similar course name exists, do not proceed with the update
-            return "The new course name is too similar to an existing course."
-
-        # If no similar course names are found, proceed with the update
         sql = "UPDATE course SET courseName = %s, collegeCode = %s WHERE courseCode = %s"
-        cursor.execute(sql, (newCourseName, newCollegeCode, courseCode))
+        cursor.execute(sql, (courseName, collegeCode, courseCode))
+        print(sql, courseName, collegeCode, courseCode)
         mysql.connection.commit()
 
         return True
+    
+    # @classmethod
+    # def update(cls, courseCode, courseName, collegeCode):
+    #     cursor = mysql.connection.cursor()
+
+    #     # Check if the new name is similar to any existing course names
+    #     check_similarity_sql = "SELECT courseCode FROM course WHERE courseName = %s"
+    #     cursor.execute(check_similarity_sql, (newCourseName,))
+    #     similar_course = cursor.fetchone()
+
+    #     if similar_course:
+    #         # A similar course name exists, do not proceed with the update
+    #         return "The new course name is too similar to an existing course."
+
+    #     # If no similar course names are found, proceed with the update
+    #     sql = "UPDATE course SET courseName = %s, collegeCode = %s WHERE courseCode = %s"
+    #     cursor.execute(sql, (newCourseName, newCollegeCode, courseCode))
+    #     mysql.connection.commit()
+
+    #     return True
 
     @classmethod
     def delete(cls, courseCode):

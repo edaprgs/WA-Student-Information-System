@@ -18,37 +18,25 @@
 <!-- ADD STUDENT FORM -->
 <form action="/student/add/" method="POST">
     {{ student_form.csrf_token }}
+    <!-- STUDENT ID -->
     <div class="inputBox id">
         <input type="text" required="required" name="student_ID">
         <span>ID NUMBER</span>
     </div>
+
+    <!-- FIRST NAME -->
     <div class="inputBox fname">
         <input type="text" required="required" name="first_name">
         <span>FIRST NAME</span>
     </div>
+
+    <!-- LAST NAME -->
     <div class="inputBox lname">
         <input type="text" required="required" name="last_name">
         <span>LAST NAME</span>
     </div>
-    <input type="hidden" name="selectedGender" id="selectedGender">
-    <div class="custom-dropdown gender">
-        <div class="dropdown-select" id="gender-dropdown">GENDER</div>
-        <div class="dropdown-options" id="gender-options">
-            <div class="dropdown-option" data-value="FEMALE">FEMALE</div>
-            <div class="dropdown-option" data-value="MALE">MALE</div>
-        </div>
-    </div>
-    <input type="hidden" name="selectedYLevel" id="selectedYLevel">
-    <div class="custom-dropdown yearlevel">
-        <div class="dropdown-select" id="ylevel-dropdown">YEAR LEVEL</div>
-        <div class="dropdown-options" id="ylevel-options">
-            <div class="dropdown-option" data-value="1ST YEAR">1ST YEAR</div>
-            <div class="dropdown-option" data-value="2ND YEAR">2ND YEAR</div>
-            <div class="dropdown-option" data-value="3RD YEAR">3RD YEAR</div>
-            <div class="dropdown-option" data-value="4TH YEAR">4TH YEAR</div>
-        </div>
-    </div>
 
+    <!-- COURSE -->
     <div class="custom-select course">
         <select name="course_code" id="college-options" required style="
         width: 450px;
@@ -72,23 +60,32 @@
         </select>
     </div>    
 
-
-
-    <!-- <input type="hidden" name="selectedCourse" id="selectedCourse">
-    <div class="custom-dropdown course">
-        <div class="dropdown-select course" id="course-dropdown">COURSE</div>
-        <div class="dropdown-options" id="course-options">
-            <div class="dropdown-option" data-value="BSCS">BSCS</div>
-            <div class="dropdown-option" data-value="BSIS">BSIS</div>
+    <!-- YEAR LEVEL -->
+    <input type="hidden" name="selectedYLevel" id="selectedYLevel">
+    <div class="custom-dropdown yearlevel">
+        <div class="dropdown-select" id="ylevel-dropdown">YEAR LEVEL</div>
+        <div class="dropdown-options" id="ylevel-options">
+            <div class="dropdown-option" data-value="1ST YEAR">1ST YEAR</div>
+            <div class="dropdown-option" data-value="2ND YEAR">2ND YEAR</div>
+            <div class="dropdown-option" data-value="3RD YEAR">3RD YEAR</div>
+            <div class="dropdown-option" data-value="4TH YEAR">4TH YEAR</div>
         </div>
-    </div> -->
+    </div>
 
-
-
+    <!-- GENDER -->
+    <input type="hidden" name="selectedGender" id="selectedGender">
+    <div class="custom-dropdown gender">
+        <div class="dropdown-select" id="gender-dropdown">GENDER</div>
+        <div class="dropdown-options" id="gender-options">
+            <div class="dropdown-option" data-value="FEMALE">FEMALE</div>
+            <div class="dropdown-option" data-value="MALE">MALE</div>
+        </div>
+    </div>
 
     <div class="container">
         <button class="btn btn2" type="submit">SUBMIT</button>
     </div>
+    
     <p class="message-text success student" id="success_message">
         {% if success_message %}
             {{ success_message }}
@@ -129,7 +126,6 @@
         }
     });
 
-
     /* YEAR LEVEL DROPDOWN */
     const dropdownylevel = document.getElementById('ylevel-dropdown');
     const optionsylevel = document.getElementById('ylevel-options');
@@ -155,30 +151,30 @@
         }
     });
 
-    /* COURSE DROPDOWN */
-    const dropdowncourse = document.getElementById('course-dropdown');
-    const optionscourse = document.getElementById('course-options');
-    let selectedCourse = null; // Variable to store the selected course
+    // /* COURSE DROPDOWN */
+    // const dropdowncourse = document.getElementById('course-dropdown');
+    // const optionscourse = document.getElementById('course-options');
+    // let selectedCourse = null; // Variable to store the selected course
 
-    dropdowncourse.addEventListener('click', function() {
-        optionscourse.classList.toggle('show');
-    });
+    // dropdowncourse.addEventListener('click', function() {
+    //     optionscourse.classList.toggle('show');
+    // });
 
-    optionscourse.addEventListener('click', function(e) {
-        if (e.target.classList.contains('dropdown-option')) {
-            selectedCourse = e.target.getAttribute('data-value'); // Update the selected value
-            dropdowncourse.textContent = selectedCourse;
-            optionscourse.classList.remove('show');
-            document.getElementById('selectedCourse').value = selectedCourse;
-        }
-    });
+    // optionscourse.addEventListener('click', function(e) {
+    //     if (e.target.classList.contains('dropdown-option')) {
+    //         selectedCourse = e.target.getAttribute('data-value'); // Update the selected value
+    //         dropdowncourse.textContent = selectedCourse;
+    //         optionscourse.classList.remove('show');
+    //         document.getElementById('selectedCourse').value = selectedCourse;
+    //     }
+    // });
 
-    // Close the dropdown when clicking outside the dropdown or select
-    document.addEventListener('click', function(e) {
-        if (e.target !== dropdowncourse && e.target !== optionscourse) {
-            optionscourse.classList.remove('show');
-        }
-    });
+    // // Close the dropdown when clicking outside the dropdown or select
+    // document.addEventListener('click', function(e) {
+    //     if (e.target !== dropdowncourse && e.target !== optionscourse) {
+    //         optionscourse.classList.remove('show');
+    //     }
+    // });
 </script>
 
 {% endblock %}  

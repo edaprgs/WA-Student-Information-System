@@ -318,6 +318,10 @@ nav li:hover {
     position: relative;
     width: 450px;
 }
+.disabled-inputbox {
+    position: relative;
+    width: 450px;
+}
 .inputBox input {
     width: 100%;
     padding: 10px;
@@ -413,7 +417,7 @@ nav li:hover {
 }
 .btn.btn2 {
     position: relative;
-    top: 540px;
+    top: 530px;
     left: 538px;
 }
 .btn.btn3 {
@@ -453,7 +457,7 @@ table {
 th, td {
     border: 1px solid white;
     text-align: center;
-    padding: 20px;
+    padding: 10px;
 }
 
 tr:nth-child(odd) {
@@ -468,7 +472,7 @@ th {
 /* edit button in list */
 .custom-edit-button {
     border: none;
-    padding: 8px 26px;
+    padding: 8px 30px;
     font-size: 15px;
     border-radius: 5px;
     background-color: #FFBF00;
@@ -476,6 +480,8 @@ th {
     position: relative;
     background-size: 200%;
     text-decoration: none;
+    top: 10px;
+    right: 55px;
 }
 
 /* delete button in list */
@@ -489,6 +495,8 @@ th {
     position: relative;
     background-size: 200%;
     text-decoration: none;
+    bottom: 25px;
+    left: 50px;
 }
 
 /* add button in list */

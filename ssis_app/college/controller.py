@@ -1,4 +1,4 @@
-from flask import render_template, redirect, request, jsonify
+from flask import render_template, redirect, request, jsonify, url_for
 from ssis_app.college.forms import *
 import ssis_app.models as models
 from ssis_app.models.college import *
@@ -32,9 +32,30 @@ def add_college():
 
     return render_template("add_college.html", college_form=form, success_message=success_message, error_message=error_message)
 
-@college_bp.route('/edit/')
+@college_bp.route('/edit/', methods=['GET', 'POST'])
 def college_edit():
-    return render_template('edit_college.html')
+    success_message = None
+    error_message = None
+    if request.method == 'GET':
+        college_code = request.args.get('college_code')
+        college_name = request.args.get('college_name')    
+        return render_template('edit_college.html', code = college_code, name=college_name)
+    elif request.method == 'POST':
+        _college_code = request.form.get('college_code')
+        new_college_name = request.form.get('college_name').upper()
+
+        updated = college.update(collegeCode=_college_code, collegeName=new_college_name)  
+        
+        success_message = ""
+        error_message = ""
+
+        if updated:
+            success_message = "College updated successfully!"
+        else:
+            error_message = "A college already exists."
+        
+        return render_template("edit_college.html", success_message=success_message, error_message=error_message)
+
 
 @college_bp.route('/delete/')
 def college_delete():

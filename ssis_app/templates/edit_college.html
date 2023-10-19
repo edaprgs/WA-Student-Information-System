@@ -16,20 +16,31 @@
 <div class="entity heading">EDIT COLLEGE INFORMATION</div>
 
 <!-- EDIT COLLEGE FORM -->
-<form action="/college/add" method="POST">
+<form action="{{ url_for('college.college_edit') }}" method="POST">
+    <input name="csrf_token" value="{{ csrf_token() }}" hidden />
     <div class="inputBox code">
-        <input type="text" required="required" name="college_code">
-        <span>CODE</span>
+        <input disabled name="college_code" value="{{ code }}">
+        <input hidden name="college_code" value="{{ code }}" >
     </div>
-
     <div class="inputBox name">
-        <input type="text" required="required" name="college_name">
+        <input type="text" required="required" name="college_name" value="{{ name }}">
         <span>NAME</span>
     </div>
     <div class="container">
-        <button class="btn btn1" type="submit">SUBMIT</button>
+        <button class="btn btn1" type="submit">UPDATE</button>
     </div>
+    <p class="message-text success" id="success_message">
+        {% if success_message %}
+            {{ success_message }}
+        {% endif %}
+    </p>
+    <p class="message-text error" id="error_message">
+        {% if error_message %}
+            {{ error_message }}
+        {% endif %}
+    </p>
 </form>
+
 
 <div class="sideicon"><img src="{{ url_for('static', filename='images/COLLEGE ICON.png') }}" width="350"></div>
 

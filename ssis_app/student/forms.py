@@ -10,3 +10,4 @@ class student_form(FlaskForm):
     yearlevel = StringField('Year Level', validators=[DataRequired(), Length(max=10)])
     gender = StringField('Gender', validators=[DataRequired(), Length(max=10)])
     submit = SubmitField("Submit")
+    submit = SubmitField("Update")

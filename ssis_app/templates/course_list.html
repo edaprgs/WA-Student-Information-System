@@ -31,8 +31,44 @@
             <td>{{ course[1] }}</td>
             <td>{{ course[2] }}</td>
             <td>
-                <a href="{{ url_for('course.course_edit') }}" class="custom-edit-button" style="margin-right: 60px;">EDIT</a>
-                <a href="{{ url_for('course.course_delete') }}" class="custom-delete-button">DELETE</a>
+                <!-- EDIT -->
+                <form method="GET" action="/course/edit">
+                    <input id="course_code" name="course_code" value="{{ course[0] }}" hidden>
+                    <input id="course_name" name="course_name" value="{{ course[1] }}" hidden>
+
+                    <div class="custom-select college">
+                        <select name="college_code" id="college_code" required style="
+                        width: 450px;
+                        height: 40px;
+                        border-radius: 5px;
+                        background-color: #FF84B1;
+                        border: 2px solid #FF84B1;
+                        color: #FFFFFF;
+                        font-size: 16px;
+                        padding: 5px;
+                        outline: none;
+                        cursor: pointer;">
+                            <option value="{{ course[2] }}" selected style="color: gainsboro; background-color: white;">{{ course[2] }}</option>
+                            {% for college_code in college_codes %}
+                                <option value="{{college_code}}" data-value="{{college_code}}" style="
+                                color: black; 
+                                background-color: white;
+                                height: 40px;
+                                ">{{college_code}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>    
+
+                    <button type="submit" class="custom-edit-button">EDIT</button>
+                </form>
+
+                <!-- DELETE -->
+                <form method="POST" action="/course/delete/">
+                    <input type="hidden" name="course_code" value="{{ course[0] }}">
+                    <input type="hidden" name="course_name" value="{{ course[1] }}">
+                    <input type="hidden" name="college_code" value="{{ course[2] }}">
+                    <button type="submit" class="custom-delete-button">DELETE</button>
+                </form>
             </td>
         </tr>
         {% endfor %}

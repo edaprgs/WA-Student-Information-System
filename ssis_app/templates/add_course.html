@@ -27,13 +27,6 @@
         <span>NAME</span>
     </div>
 
-    <!-- <div class="custom-dropdown college">
-        <div class="dropdown-select college" id="college-dropdown">COLLEGE</div>
-        <input type="hidden" name="college_code" id="college-code-input" value="">
-        <div class="dropdown-options" id="college-options">
-        </div>
-    </div> -->
-
     <div class="custom-select college">
         <select name="college_code" id="college-options" required style="
         width: 450px;
@@ -72,57 +65,5 @@
 </form>
 
 <div class="sideicon"><img src="{{ url_for('static', filename='images/COURSE ICON.png') }}" width="350"></div>
-
-<!-- <script>
-    // Function to populate the college dropdown with data from the server
-    function populateCollegeDropdown() {
-        fetch('/api/colleges')
-            .then(response => response.json())
-            .then(data => {
-                const optionscollege = document.getElementById('college-options');
-                optionscollege.innerHTML = ''; // Clear existing options
-
-                data.forEach(collegeCode => {
-                    const option = document.createElement('div');
-                    option.className = 'dropdown-option';
-                    option.setAttribute('data-value', collegeCode);
-                    option.textContent = collegeCode;
-                    optionscollege.appendChild(option);
-                });
-            })
-            .catch(error => {
-                console.error('Error fetching college data:', error);
-            });
-    }
-    // Call the populateCollegeDropdown function when the page loads to populate the dropdown initially
-    window.addEventListener('load', populateCollegeDropdown);
-
-    const dropdowncollege = document.getElementById('college-dropdown');
-    const collegeCodeInput = document.getElementById('college-code-input');
-    const optionscollege = document.getElementById('college-options'); 
-
-    dropdowncollege.addEventListener('click', function() {
-        populateCollegeDropdown();
-        optionscollege.classList.toggle('show');
-    });
-
-    optionscollege.addEventListener('click', function(e) {
-        if (e.target.classList.contains('dropdown-option')) {
-            const selectedValue = e.target.getAttribute('data-value');
-            dropdowncollege.textContent = selectedValue;
-            collegeCodeInput.value = selectedValue; // Set the selected college code in the hidden input
-            optionscollege.classList.remove('show');
-        }
-    });
-
-    // Close the dropdown
-    window.addEventListener('click', function(e) {
-        if (e.target !== dropdowncollege) {
-            optionscollege.classList.remove('show');
-        }
-    });
-
-</script> -->
-
 
 {% endblock %}  

@@ -5,31 +5,30 @@ class student(object):
     def add(self):
         cursor = mysql.connection.cursor()
 
-        # Check if a student with the same studentID already exists
         check_duplicate_sql = "SELECT studentID FROM student WHERE studentID = %s"
         cursor.execute(check_duplicate_sql, (self.studentID,))
         existing_student = cursor.fetchone()
 
         if existing_student:
-            # A student with the same studentID already exists, do not proceed with the addition
-            return "A student with the same studentID already exists."
+            return False
 
-        # If no duplicate studentID is found, proceed with the addition
         sql = "INSERT INTO student(studentID, firstName, lastName, course, yearlevel, gender) VALUES(%s, %s, %s, %s, %s, %s)"
         cursor.execute(sql, (self.studentID, self.firstName, self.lastName, self.course, self.yearlevel, self.gender))
         mysql.connection.commit()
 
         return True
     
-    def update(self):
+    @classmethod
+    def update(cls, studentID, firstName, lastName, course, yearlevel, gender):
         cursor = mysql.connection.cursor()
 
-        sql = f"UPDATE student SET firstName = '{self.firstName}', lastName = '{self.lastName}', \
-                course = '{self.course}', yearlevel = '{self.yearlevel}', gender = '{self.gender}' \
-                WHERE studentID = '{self.studentID}'"
-
-        cursor.execute(sql)
+        sql = "UPDATE student SET firstName = %s, lastName = %s, course = %s, yearlevel = %s, gender = %s WHERE studentID = %s"
+        cursor.execute(sql, (firstName, lastName, course, yearlevel, gender, studentID))
+        print(sql, firstName, lastName, course, yearlevel, gender, studentID)
         mysql.connection.commit()
+
+        return True
+
     
     @classmethod
     def delete(cls,studentID):

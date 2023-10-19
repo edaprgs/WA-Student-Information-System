@@ -16,27 +16,67 @@
 <div class="entity heading">EDIT COURSE INFORMATION</div>
 
 <!-- EDIT COURSE FORM -->
-<div class="inputBox code">
-    <input type="text" required="required">
-    <span>CODE</span>
-</div>
+<form action="{{ url_for('course.course_edit') }}" method="POST">
+    <input name="csrf_token" value="{{ csrf_token() }}" hidden />
 
-<div class="inputBox name">
-    <input type="text" required="required">
-    <span>NAME</span>
-</div>
-
-<div class="custom-dropdown college">
-    <div class="dropdown-select college" id="college-dropdown">COLLEGE</div>
-    <div class="dropdown-options" id="college-options">
-        <div class="dropdown-option" data-value="CCS">CCS</div>
-        <div class="dropdown-option" data-value="CON">CON</div>
+    <!-- COURSE CODE -->
+    <div class="inputBox code">
+        <input disabled name="course_code" value="{{ code }}">
+        <input hidden name="course_code" value="{{ code }}" >
     </div>
-</div>
 
-<div class="container">
-    <button class="btn btn3">SUBMIT</button>
-</div>
+    <!-- COURSE NAME -->
+    <div class="inputBox name">
+        <input type="text" required="required" name="course_name" value="{{ name }}">
+        <span>NAME</span>
+    </div>
+
+    <!-- COLLEGE CODE -->
+    <div class="custom-select college">
+        <select name="college_code" id="college_code" required style="
+        width: 450px;
+        height: 40px;
+        border-radius: 5px;
+        background-color: #FF84B1;
+        border: 2px solid #FF84B1;
+        color: #FFFFFF;
+        font-size: 16px;
+        padding: 5px;
+        outline: none;
+        cursor: pointer;">
+            <option value="{{ college }}" selected style="color: gainsboro; background-color: white;">{{ college }}</option>
+            {% for college_code in college_codes %}
+                <option value="{{college_code}}" data-value="{{college_code}}" style="
+                color: black; 
+                background-color: white;
+                height: 40px;
+                ">{{college_code}}</option>
+            {% endfor %}
+        </select>
+    </div>    
+    
+    <div class="container">
+        <button class="btn btn3">UPDATE</button>
+    </div>
+    
+    <p class="message-text success course" id="success_message">
+        {% if success_message %}
+            {{ success_message }}
+        {% endif %}
+    </p>
+    <p class="message-text error course" id="error_message">
+        {% if error_message %}
+            {{ error_message }}
+        {% endif %}
+    </p>
+</form>
+
+
+
+
+
+
+
 
 <div class="sideicon"><img src="{{ url_for('static', filename='images/COURSE ICON.png') }}" width="350"></div>
 
