@@ -1,4 +1,4 @@
-from flask import render_template, redirect, request, jsonify, url_for
+from flask import render_template, redirect, request, url_for
 from ssis_app.college.forms import *
 import ssis_app.models as models
 from ssis_app.models.college import *
@@ -56,10 +56,30 @@ def college_edit():
         
         return render_template("edit_college.html", success_message=success_message, error_message=error_message)
 
-
-@college_bp.route('/delete/')
+@college_bp.route('/delete/', methods=['GET', 'POST'])
 def college_delete():
-    return render_template('delete_college.html')
+    form = college_form()
+
+    if request.method == "POST":
+        code = request.form.get("college_code")
+        name = request.form.get("college_name")
+
+        result = college.delete(code, name)
+
+        if result:
+            return redirect(url_for('college.college_confirmation'))
+        else:
+            return redirect(url_for('college.college_error'))
+            
+    return render_template("college_list.html", college_form=form)
+
+@college_bp.route('/college_confirmation/')
+def college_confirmation():
+    return render_template('confirmation.html', context="college")
+
+@college_bp.route('/college_error/')
+def college_error():
+    return render_template('error.html', context="college")
 
 @college_bp.route('/list/')
 def college_list():

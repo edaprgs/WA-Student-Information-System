@@ -1,4 +1,4 @@
-from flask import render_template, redirect, request
+from flask import render_template, redirect, request, url_for
 from ssis_app.student.forms import *
 import ssis_app.models as models
 from ssis_app.models.student import *
@@ -76,9 +76,36 @@ def student_edit():
         
         return render_template("edit_student.html", success_message=success_message, error_message=error_message)
 
-@student_bp.route('/delete/')
+@student_bp.route('/delete/', methods=['POST'])
 def student_delete():
-    return render_template('delete_student.html')
+    form = student_form()
+    delete_student = student()
+
+    if request.method == "POST":
+        student_ID = request.form.get('studentID')
+        fname = request.form.get('first_name')
+        lname = request.form.get('last_name')
+        student_course = request.form.get('course_code')
+        ylevel = request.form.get('year_level')
+        gender = request.form.get('gender')
+
+        result = delete_student.delete(student_ID, fname, lname, student_course, ylevel, gender)
+        print(result, student_ID, fname, lname, student_course, ylevel, gender)
+
+        if result:
+            return redirect(url_for('student.student_confirmation'))
+        else:
+            return redirect(url_for('student.student_error'))
+            
+    return render_template("student_list.html", student_form=form)
+
+@student_bp.route('/student_confirmation/')
+def student_confirmation():
+    return render_template('confirmation.html', context="student")
+
+@student_bp.route('/student_error/')
+def student_error():
+    return render_template('error.html', context="student")
 
 @student_bp.route('/list/')
 def student_list():

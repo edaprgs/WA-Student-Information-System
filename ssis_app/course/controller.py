@@ -1,4 +1,4 @@
-from flask import render_template, redirect, request, jsonify
+from flask import render_template, redirect, request, url_for
 from ssis_app.course.forms import *
 import ssis_app.models as models
 from ssis_app.models.course import course
@@ -36,10 +36,6 @@ def add_course():
 
     return render_template('add_course.html',course_form=form, college_codes=college_codes, success_message=success_message, error_message=error_message)
 
-# @course_bp.route('/edit/')
-# def course_edit():
-#     return render_template('edit_course.html')
-
 @course_bp.route('/edit/', methods=['GET', 'POST'])
 def course_edit():
     update_course = course()
@@ -68,10 +64,32 @@ def course_edit():
         
         return render_template("edit_course.html", success_message=success_message, error_message=error_message)
 
-
-@course_bp.route('/delete/')
+@course_bp.route('/delete/', methods=['GET', 'POST'])
 def course_delete():
-    return render_template('delete_course.html')
+    form = course_form()
+
+    if request.method == "POST":
+        code = request.form.get("course_code")
+        name = request.form.get("course_name")
+        college = request.form.get("college_code")
+
+        result = course.delete(code, name, college)
+        print(result, code, name, college)
+
+        if result:
+            return redirect(url_for('course.course_confirmation'))
+        else:
+            return redirect(url_for('course.course_error'))
+            
+    return render_template("course_list.html", college_form=form)
+
+@course_bp.route('/course_confirmation/')
+def course_confirmation():
+    return render_template('confirmation.html', context="course")
+
+@course_bp.route('/course_error/')
+def course_error():
+    return render_template('error.html', context="course")
 
 @course_bp.route('/list/')
 def course_list():

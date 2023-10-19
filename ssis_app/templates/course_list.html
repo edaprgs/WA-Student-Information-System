@@ -64,6 +64,7 @@
 
                 <!-- DELETE -->
                 <form method="POST" action="/course/delete/">
+                    <input name="csrf_token" value="{{ csrf_token() }}" hidden />
                     <input type="hidden" name="course_code" value="{{ course[0] }}">
                     <input type="hidden" name="course_name" value="{{ course[1] }}">
                     <input type="hidden" name="college_code" value="{{ course[2] }}">

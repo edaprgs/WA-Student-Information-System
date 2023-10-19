@@ -276,7 +276,18 @@ nav li:hover {
     width: 500px; 
     height: 300px; 
     background-color: white;
-    box-shadow: 5px 5px 10px rgba(255, 132, 177, 0.5);
+    box-shadow: 5px 15px 20px rgba(255, 132, 177, 0.5);
+    border-radius: 12px;
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -60%); 
+    position: absolute;
+}
+.delete-redirect.bg {
+    width: 630px; 
+    height: 250px; 
+    background-color: white;
+    box-shadow: 5px 15px 20px rgba(255, 132, 177, 0.5);
     border-radius: 12px;
     top: 50%; 
     left: 50%; 
@@ -289,8 +300,9 @@ nav li:hover {
     left: 50%; 
     transform: translate(-50%, -50%); 
     position: absolute;
-    font-size: 18px;
+    font-size: 22px;
     font-weight: 900;
+    text-align: center;
 }
 
 .delete-text.body {
@@ -304,13 +316,20 @@ nav li:hover {
 .btn.delete-yes {
     position: relative;
     top: 390px;
-    left: 740px;
+    left: 690px;
 }
 
 .btn.delete-no {
     position: relative;
-    top: 390px;
-    left: 795px;
+    top: 363px;
+    left: 950px;
+    background: var(--pinkC);
+    color: var(--pinkA);
+}
+.btn.redirect {
+    position: absolute;
+    top: 355px;
+    left: 710px;
 }
 
 /* input box styles */

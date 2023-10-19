@@ -30,21 +30,22 @@ class college(object):
         return True
     
     @classmethod
-    def delete(cls, collegeCode):
+    def delete(cls, collegeCode, collegeName):
         cursor = mysql.connection.cursor()
 
-        check_courses_sql = f"SELECT COUNT(*) FROM course WHERE collegeCode = '{collegeCode}'"
-        cursor.execute(check_courses_sql)
-        num_courses = cursor.fetchone()[0]
+        check_association_sql = "SELECT courseCode FROM course WHERE collegeCode = %s"
+        cursor.execute(check_association_sql, (collegeCode,))
+        associated_course = cursor.fetchone()
 
-        if num_courses > 0:
+        if associated_course:
             return False
 
-        delete_college_sql = f"DELETE FROM college WHERE collegeCode = '{collegeCode}'"
-        cursor.execute(delete_college_sql)
+        delete_sql = "DELETE FROM college WHERE collegeCode = %s AND collegeName = %s"
+        cursor.execute(delete_sql, (collegeCode, collegeName))
         mysql.connection.commit()
         
         return True
+
 
     @staticmethod
     def get_colleges():

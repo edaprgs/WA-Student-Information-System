@@ -49,24 +49,21 @@ class course(object):
     #     return True
 
     @classmethod
-    def delete(cls, courseCode):
-        try:
-            cursor = mysql.connection.cursor()
-            check_students_sql = f"SELECT COUNT(*) FROM student WHERE course = '{courseCode}'"
-            cursor.execute(check_students_sql)
-            num_students = cursor.fetchone()[0]
+    def delete(cls, courseCode, courseName, collegeCode):
+        cursor = mysql.connection.cursor()
 
-            if num_students > 0:
-                return "The course cannot be deleted since it is associated with students."
+        check_association_sql = "SELECT studentID FROM student WHERE course = %s"
+        cursor.execute(check_association_sql, (courseCode,))
+        associated_student = cursor.fetchone()
 
-            delete_course_sql = f"DELETE FROM course WHERE courseCode = '{courseCode}'"
-            cursor.execute(delete_course_sql)
-            mysql.connection.commit()
-            
-            return True
-
-        except:
+        if associated_student:
             return False
+
+        delete_sql = "DELETE FROM course WHERE courseCode = %s AND courseName = %s AND collegeCode = %s"
+        cursor.execute(delete_sql, (courseCode, courseName, collegeCode))
+        mysql.connection.commit()
+        
+        return True
 
     @classmethod
     def get_courses(cls):

@@ -33,12 +33,16 @@
             <td>{{ college[0] }}</td>
             <td>{{ college[1] }}</td>
             <td>
+                <!-- EDIT -->
                 <form method="GET" action="/college/edit">
                     <input id="college_code" name="college_code" value="{{ college[0] }}" hidden>
                     <input id="college_name" name="college_name" value="{{ college[1] }}" hidden>
                     <button type="submit" class="custom-edit-button">EDIT</button>
                 </form>
+
+                <!-- DELETE -->
                 <form method="POST" action="/college/delete/">
+                    <input name="csrf_token" value="{{ csrf_token() }}" hidden />
                     <input type="hidden" name="college_code" value="{{ college[0] }}" hidden>
                     <input type="hidden" name="college_name" value="{{ college[1] }}" hidden>
                     <button type="submit" class="custom-delete-button">DELETE</button>
