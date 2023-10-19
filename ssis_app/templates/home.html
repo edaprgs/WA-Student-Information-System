@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block title %}SSIS | HOME{% endblock title %}
 {% block content %}
+
 <a href="{{ url_for('student.index') }}">
         <div class="left rectangle"></div>
         <div class="s title text">STUDENT</div>
@@ -19,4 +20,5 @@
     <div class="course title text">COURSE</div>
     <div class="course icon"><img src="{{ url_for('static', filename='images/COURSE ICON.png') }}" width="230"></div>
 </a>
+
 {% endblock %}  

@@ -16,35 +16,93 @@
 <div class="entity heading">ADD COURSE</div>
 
 <!-- ADD COURSE FORM -->
-<div class="inputBox code">
-    <input type="text" required="required">
-    <span>CODE</span>
-</div>
-
-<div class="inputBox name">
-    <input type="text" required="required">
-    <span>NAME</span>
-</div>
-
-<div class="custom-dropdown college">
-    <div class="dropdown-select college" id="college-dropdown">COLLEGE</div>
-    <div class="dropdown-options" id="college-options">
-        <div class="dropdown-option" data-value="CCS">CCS</div>
-        <div class="dropdown-option" data-value="CON">CON</div>
+<form action="/course/add/" method="POST">
+    {{ course_form.csrf_token }}
+    <div class="inputBox code">
+        <input type="text" required="required" name="course_code">
+        <span>CODE</span>
     </div>
-</div>
+    <div class="inputBox name">
+        <input type="text" required="required" name="course_name">
+        <span>NAME</span>
+    </div>
 
-<div class="container">
-    <button class="btn btn3">SUBMIT</button>
-</div>
+    <!-- <div class="custom-dropdown college">
+        <div class="dropdown-select college" id="college-dropdown">COLLEGE</div>
+        <input type="hidden" name="college_code" id="college-code-input" value="">
+        <div class="dropdown-options" id="college-options">
+        </div>
+    </div> -->
+
+    <div class="custom-select college">
+        <select name="college_code" id="college-options" required style="
+        width: 450px;
+        height: 40px;
+        border-radius: 5px;
+        background-color: #FF84B1;
+        border: 2px solid #FF84B1;
+        color: #FFFFFF;
+        font-size: 16px;
+        padding: 5px;
+        outline: none;
+        cursor: pointer;">
+            <option value="" selected disabled style="color: gainsboro; background-color: white;">COLLEGE</option>
+            {% for college_code in college_codes %}
+                <option value="{{college_code}}" data-value="{{college_code}}" style="
+                color: black; 
+                background-color: white;
+                height: 40px;
+                ">{{college_code}}</option>
+            {% endfor %}
+        </select>
+    </div>    
+    <div class="container">
+        <button class="btn btn3" id="submit-button" type="submit">SUBMIT</button>
+    </div>
+    <p class="message-text success course" id="success_message">
+        {% if success_message %}
+            {{ success_message }}
+        {% endif %}
+    </p>
+    <p class="message-text error course" id="error_message">
+        {% if error_message %}
+            {{ error_message }}
+        {% endif %}
+    </p>
+</form>
 
 <div class="sideicon"><img src="{{ url_for('static', filename='images/COURSE ICON.png') }}" width="350"></div>
 
-<script>
-    /* COLLEGE DROPDOWN */
+<!-- <script>
+    // Function to populate the college dropdown with data from the server
+    function populateCollegeDropdown() {
+        fetch('/api/colleges')
+            .then(response => response.json())
+            .then(data => {
+                const optionscollege = document.getElementById('college-options');
+                optionscollege.innerHTML = ''; // Clear existing options
+
+                data.forEach(collegeCode => {
+                    const option = document.createElement('div');
+                    option.className = 'dropdown-option';
+                    option.setAttribute('data-value', collegeCode);
+                    option.textContent = collegeCode;
+                    optionscollege.appendChild(option);
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching college data:', error);
+            });
+    }
+    // Call the populateCollegeDropdown function when the page loads to populate the dropdown initially
+    window.addEventListener('load', populateCollegeDropdown);
+
     const dropdowncollege = document.getElementById('college-dropdown');
-    const optionscollege = document.getElementById('college-options');
+    const collegeCodeInput = document.getElementById('college-code-input');
+    const optionscollege = document.getElementById('college-options'); 
+
     dropdowncollege.addEventListener('click', function() {
+        populateCollegeDropdown();
         optionscollege.classList.toggle('show');
     });
 
@@ -52,15 +110,19 @@
         if (e.target.classList.contains('dropdown-option')) {
             const selectedValue = e.target.getAttribute('data-value');
             dropdowncollege.textContent = selectedValue;
+            collegeCodeInput.value = selectedValue; // Set the selected college code in the hidden input
             optionscollege.classList.remove('show');
         }
     });
-    // Close the dropdown 
+
+    // Close the dropdown
     window.addEventListener('click', function(e) {
-        if (e.target !== dropdown) {
+        if (e.target !== dropdowncollege) {
             optionscollege.classList.remove('show');
         }
     });
-</script>
+
+</script> -->
+
 
 {% endblock %}  

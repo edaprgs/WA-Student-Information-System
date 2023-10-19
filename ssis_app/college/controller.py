@@ -1,7 +1,7 @@
 from flask import render_template, redirect, request, jsonify
-from ssis_app.college.forms import college_form
+from ssis_app.college.forms import *
 import ssis_app.models as models
-from ssis_app.models.college import college
+from ssis_app.models.college import *
 from flask import Blueprint
 
 college_bp = Blueprint('college', __name__)

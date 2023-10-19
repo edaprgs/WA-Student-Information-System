@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block title %}SSIS | COLLEGE{% endblock title %}
 {% block content %}
+
 <nav>
     <ul>
         <li class="current tab"><a href="{{ url_for('college.index') }}">COLLEGE</a></li>
@@ -20,4 +21,5 @@
     <div class="listtext">LIST</div>
     <div class="listicon"><img src="{{ url_for('static', filename='images/list-icon.png') }}"></div>
 </a>
+
 {% endblock %}  

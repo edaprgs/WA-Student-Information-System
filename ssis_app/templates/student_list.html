@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block title %}SSIS | STUDENT{% endblock title %}
 {% block content %}
+
 <nav>
     <ul>
         <li><a href="{{ url_for('college.index') }}">COLLEGE</a></li>
@@ -27,20 +28,20 @@
             <th>GENDER</th>
             <th>ACTION</th>
         </tr>
+        {% for student in students %}
         <tr>
-            <td>2021-1574</td>
-            <td>EDA GRACE</td>
-            <td>PARAGOSO</td>
-            <td>CS</td>
-            <td>3RD YEAR</td>
-            <td>FEMALE</td>
+            <td>{{ student[0] }}</td>
+            <td>{{ student[1] }}</td>
+            <td>{{ student[2] }}</td>
+            <td>{{ student[3] }}</td>
+            <td>{{ student[4] }}</td>
+            <td>{{ student[5] }}</td>
             <td>
-
                 <a href="{{ url_for('student.student_edit') }}" class="custom-edit-button" style="margin-right: 60px;">EDIT</a>
                 <a href="{{ url_for('student.student_delete') }}" class="custom-delete-button">DELETE</a>
-            
             </td>
         </tr>
+        {% endfor %}
     </table>
 </div>
 

@@ -566,9 +566,26 @@ th {
 .message-text.success {
     color: blue;
 }
+.message-text.success.course {
+    color: blue;
+    top: 415px;
+}
+.message-text.success.student {
+    color: blue;
+    top: 475px;
+}
+
 /* Error Message */
 .message-text.error {
     color: red;
+}
+.message-text.error.course {
+    color: red;
+    top: 415px;
+}
+.message-text.error.student {
+    color: red;
+    top: 475px;
 }
 
 
@@ -578,9 +595,23 @@ th {
     display: inline-block;
 }
 
-.custom-dropdown.college {
+/* .custom-dropdown.college {
     position: absolute;
     top: 360px;
+    left: 315px;
+} */
+
+.custom-select {
+    position: absolute;
+}
+
+.custom-select.college {
+    top: 360px;
+    left: 315px;
+}
+
+.custom-select.course {
+    top: 420px;
     left: 315px;
 }
 
@@ -596,15 +627,15 @@ th {
     left: 550px;
 }
 
-.custom-dropdown.course {
+/* .custom-dropdown.course {
     position: absolute;
     top: 420px;
     left: 315px;
-}
+} */
 
-.dropdown-select.college {
+/* .dropdown-select.college {
     width: 450px;
-}
+} */
 
 .dropdown-select.course {
     width: 450px;
@@ -626,6 +657,8 @@ th {
     border-radius: 5px;
     width: 100%;
     z-index: 1000;
+    max-height: 200px;
+    overflow: auto;
 }
 
 .dropdown-option:hover {

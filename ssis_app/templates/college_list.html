@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block title %}SSIS | COLLEGE{% endblock title %}
 {% block content %}
+
 <nav>
     <ul>
         <li class="current tab"><a href="{{ url_for('college.index') }}">COLLEGE</a></li>
@@ -32,8 +33,6 @@
             <td>{{ college[0] }}</td>
             <td>{{ college[1] }}</td>
             <td>
-                <!-- <button class="btn btn-warning btn-sm">Edit</button>
-                #<button class="btn btn-danger btn-sm">Delete</button>-->
                 <a href="{{ url_for('college.college_edit') }}" class="custom-edit-button" style="margin-right: 60px;">EDIT</a>
                 <a href="{{ url_for('college.college_delete') }}" class="custom-delete-button">DELETE</a>
             </td>
@@ -41,8 +40,5 @@
         {% endfor %}
     </table>
 </div>
-
-
-
 
 {% endblock %}  

@@ -1,7 +1,6 @@
 from ssis_app import mysql
 
 class course(object):
-
     def add(self):
         cursor = mysql.connection.cursor()
 
@@ -15,8 +14,8 @@ class course(object):
             return "A course with the same courseCode already exists."
 
         # If no duplicate courseCode is found, proceed with the addition
-        sql = "INSERT INTO course(courseCode, collegeName, collegeCode) VALUES(%s, %s, %s)"
-        cursor.execute(sql, (self.courseCode, self.collegeName, self.collegeCode))
+        sql = "INSERT INTO course(courseCode, courseName, collegeCode) VALUES(%s, %s, %s)"
+        cursor.execute(sql, (self.courseCode, self.courseName, self.collegeCode))
         mysql.connection.commit()
 
         return True
@@ -66,13 +65,12 @@ class course(object):
             return False
 
     @classmethod
-    def list(cls):
+    def get_courses(cls):
         cursor = mysql.connection.cursor()
-
-        sql = "SELECT * FROM course"
-        cursor.execute(sql)
-        result = cursor.fetchall()
-        return result
+        cursor.execute("SELECT * FROM course") 
+        courses = cursor.fetchall()
+        cursor.close()
+        return courses
 
     @classmethod
     def search(cls, query):
@@ -82,3 +80,19 @@ class course(object):
         cursor.execute(sql, (f"%{query}%", f"%{query}%", f"%{query}%"))
         result = cursor.fetchall()
         return result
+    
+    # # get the college code from the college table for the college dropdown
+    # @classmethod
+    # def get_code(cls):
+    #     cursor = mysql.connection.cursor()
+
+    #     cursor.execute("SELECT collegeCode FROM college")
+    #     college_codes = [row[0] for row in cursor.fetchall()]
+    #     return college_codes
+
+    def get_college_codes(cls):
+        cursor = mysql.connection.cursor()
+
+        cursor.execute("SELECT collegeCode FROM college")
+        college_codes = [row[0] for row in cursor.fetchall()]
+        return college_codes

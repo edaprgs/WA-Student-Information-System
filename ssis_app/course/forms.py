@@ -1,8 +1,9 @@
-# from flask_wtf import FlaskForm
-# from wtforms import StringField, SubmitField
-# from wtforms.validators import DataRequired, Length
+from flask_wtf import FlaskForm
+from wtforms import StringField, SubmitField
+from wtforms.validators import DataRequired, Length
 
-# class college_form(FlaskForm):
-#     college_code = StringField('CODE', validators=[DataRequired()])
-#     college_name = StringField('NAME', validators=[DataRequired(), Length(min=3, max=20)])
-#     submit = SubmitField("SUBMIT")
+class course_form(FlaskForm):
+    courseCode = StringField('Course Code', validators=[DataRequired(), Length(min=4, max=20)])
+    courseName = StringField('Course Name', validators=[DataRequired(), Length(min=10, max=100)])
+    collegeCode = StringField('College Code', validators=[Length(max=50)])
+    submit = SubmitField("Submit")

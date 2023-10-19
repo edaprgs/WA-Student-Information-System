@@ -43,13 +43,13 @@ class student(object):
             return False
 
     @classmethod
-    def list(cls):
+    def get_student(cls):
         cursor = mysql.connection.cursor()
-
-        sql = "SELECT * FROM student"
-        cursor.execute(sql)
-        result = cursor.fetchall()
-        return result
+        cursor = mysql.connection.cursor()
+        cursor.execute("SELECT * FROM student") 
+        students = cursor.fetchall()
+        cursor.close()
+        return students
     
     @classmethod
     def search(cls, query):
@@ -62,3 +62,11 @@ class student(object):
         cursor.execute(sql, (f"%{query}%", f"%{query}%", f"%{query}%", f"%{query}%", f"%{query}%", f"%{query}%"))
         result = cursor.fetchall()
         return result
+    
+    # get the college code from the college table for the college dropdown
+    def get_course_codes(cls):
+        cursor = mysql.connection.cursor()
+
+        cursor.execute("SELECT courseCode FROM course")
+        course_codes = [row[0] for row in cursor.fetchall()]
+        return course_codes
