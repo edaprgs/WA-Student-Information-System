@@ -95,3 +95,14 @@ def course_error():
 def course_list():
     courses_data = course.get_courses()
     return render_template('course_list.html', courses=courses_data)
+
+@course_bp.route('/search/', methods=['GET', 'POST'])
+def search_courses():
+
+    query = request.form.get('query')
+    results = course.search(query)
+
+    if not results:
+        return "NO RECORDS FOUND"
+
+    return render_template('search_results.html', results=results, context="course")

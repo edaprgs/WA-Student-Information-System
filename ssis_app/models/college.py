@@ -46,7 +46,6 @@ class college(object):
         
         return True
 
-
     @staticmethod
     def get_colleges():
         cursor = mysql.connection.cursor()

@@ -52,9 +52,7 @@ class student(object):
     def search(cls, query):
         cursor = mysql.connection.cursor()
 
-        sql = "SELECT studentID, firstName, lastName, course, yearlevel, gender FROM student \
-                WHERE studentID LIKE %s OR firstName LIKE %s OR lastName LIKE %s \
-                OR course LIKE %s OR yearlevel LIKE %s OR gender LIKE %s"
+        sql = "SELECT * FROM student WHERE studentID LIKE %s OR firstName LIKE %s OR lastName LIKE %s OR course LIKE %s OR yearlevel LIKE %s OR gender LIKE %s"
         
         cursor.execute(sql, (f"%{query}%", f"%{query}%", f"%{query}%", f"%{query}%", f"%{query}%", f"%{query}%"))
         result = cursor.fetchall()

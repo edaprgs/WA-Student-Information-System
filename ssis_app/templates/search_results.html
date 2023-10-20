@@ -1,0 +1,172 @@
+{% extends "base.html" %}
+{% block title %}SSIS | SEARCH RESULTS{% endblock title %}
+{% block content %}
+
+<h3 style="text-align: center; top: 145px; position: relative;">SEARCH RESULTS</h3>
+
+<!-- COLLEGE -->
+{% if context == "college" %}
+    <form action="/college/list/">
+        <button type="submit" class="custom-return-button">GO BACK</button>
+    </form>
+
+    <div class="table-container" id="results-container">
+        <table>
+            <tr>
+                <th>CODE</th>
+                <th>NAME</th>
+                <th>ACTION</th>
+            </tr>
+            {% for result in results %}
+            <tr>
+                <td>{{ result[0] }}</td>
+                <td>{{ result[1] }}</td>
+                <td>
+                    <!-- EDIT -->
+                    <form method="GET" action="/college/edit">
+                        <input id="college_code" name="college_code" value="{{ result[0] }}" hidden>
+                        <input id="college_name" name="college_name" value="{{ result[1] }}" hidden>
+                        <button type="submit" class="custom-edit-button">EDIT</button>
+                    </form>
+
+                    <!-- DELETE -->
+                    <form method="POST" action="/college/delete/">
+                        <input name="csrf_token" value="{{ csrf_token() }}" hidden />
+                        <input type="hidden" name="college_code" value="{{ result[0] }}" hidden>
+                        <input type="hidden" name="college_name" value="{{ result[1] }}" hidden>
+                        <button type="submit" class="custom-delete-button">DELETE</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>   
+
+<!-- COURSE -->
+{% elif context == "course" %}
+    <form action="/course/list/">
+        <button type="submit" class="custom-return-button">GO BACK</button>
+    </form>
+
+    <div class="table-container">
+        <table>
+            <tr>
+                <th>CODE</th>
+                <th>NAME</th>
+                <th>COLLEGE</th>
+                <th>ACTION</th>
+            </tr>
+            {% for result in results %}
+            <tr>
+                <td>{{ result[0] }}</td>
+                <td>{{ result[1] }}</td>
+                <td>{{ result[2] }}</td>
+                <td>
+                    <!-- EDIT -->
+                    <form method="GET" action="/course/edit">
+                        <input id="course_code" name="course_code" value="{{ result[0] }}" hidden>
+                        <input id="course_name" name="course_name" value="{{ result[1] }}" hidden>
+
+                        <div class="custom-select college">
+                            <select hidden name="college_code" id="college_code" required style="
+                            width: 450px;
+                            height: 40px;
+                            border-radius: 5px;
+                            background-color: #FF84B1;
+                            border: 2px solid #FF84B1;
+                            color: #FFFFFF;
+                            font-size: 16px;
+                            padding: 5px;
+                            outline: none;
+                            cursor: pointer;">
+                                <option value="{{ result[2] }}" selected style="color: gainsboro; background-color: white;">{{ result[2] }}</option>
+                                {% for college_code in college_codes %}
+                                    <option value="{{college_code}}" data-value="{{college_code}}" style="
+                                    color: black; 
+                                    background-color: white;
+                                    height: 40px;
+                                    ">{{college_code}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>    
+
+                        <button type="submit" class="custom-edit-button">EDIT</button>
+                    </form>
+
+                    <!-- DELETE -->
+                    <form method="POST" action="/course/delete/">
+                        <input name="csrf_token" value="{{ csrf_token() }}" hidden />
+                        <input type="hidden" name="course_code" value="{{ result[0] }}">
+                        <input type="hidden" name="course_name" value="{{ result[1] }}">
+                        <input type="hidden" name="college_code" value="{{ result[2] }}">
+                        <button type="submit" class="custom-delete-button">DELETE</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+<!-- STUDENT -->
+{% elif context == "student" %}
+    <form action="/student/list/">
+        <button type="submit" class="custom-return-button">GO BACK</button>
+    </form>
+    
+    <div class="table-container">
+        <table>
+            <tr>
+                <th>STUDENT ID</th>
+                <th>FIRST NAME</th>
+                <th>LAST NAME</th>
+                <th>COURSE</th>
+                <th>YEAR</th>
+                <th>GENDER</th>
+                <th>ACTION</th>
+            </tr>
+            {% for result in results %}
+            <tr>
+                <td>{{ result[0] }}</td>
+                <td>{{ result[1] }}</td>
+                <td>{{ result[2] }}</td>
+                <td>{{ result[3] }}</td>
+                <td>{{ result[4] }}</td>
+                <td>{{ result[5] }}</td>
+                <td>
+                    <!-- EDIT -->
+                    <form method="GET" action="/student/edit">
+                        <input id="studentID" name="studentID" value="{{ result[0] }}" hidden>
+                        <input id="first_name" name="first_name" value="{{ result[1] }}" hidden>
+                        <input id="last_name" name="last_name" value="{{ result[2] }}" hidden>
+                        <input id="course_code" name="course_code" value="{{ result[3] }}" hidden>
+                        <input id="year_level" name="year_level" value="{{ result[4] }}" hidden>
+                        <input id="gender" name="gender" value="{{ result[5] }}" hidden>
+    
+                        <button type="submit" class="custom-edit-button">EDIT</button>
+                    </form>
+    
+                    <!-- DELETE -->
+                    <form method="POST" action="/student/delete/">
+                        <input name="csrf_token" value="{{ csrf_token() }}" hidden />
+                        <input id="studentID" name="studentID" value="{{ result[0] }}" hidden>
+                        <input id="first_name" name="first_name" value="{{ result[1] }}" hidden>
+                        <input id="last_name" name="last_name" value="{{ result[2] }}" hidden>
+                        <input id="course_code" name="course_code" value="{{ result[3] }}" hidden>
+                        <input id="year_level" name="year_level" value="{{ result[4] }}" hidden>
+                        <input id="gender" name="gender" value="{{ result[5] }}" hidden>
+    
+                        <button type="submit" class="custom-delete-button">DELETE</button>
+                    </form>
+                </td>
+    
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+{% else %}
+    <a href="{{ url_for('base.html') }}" class="btn redirect">GO BACK</a>
+
+{% endif %}
+
+{% endblock %}  

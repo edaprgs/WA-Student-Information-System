@@ -4,16 +4,22 @@
 
 <div class="delete-redirect bg"></div> 
 <h2 style="text-align: center; top: 240px; position: relative;">ERROR</h2> 
-<h4 style="text-align: center; top: 270px; position: relative;">The data cannot be deleted as it is associated with another record.</h4>
 
 {% if context == "college" %}
+    <h4 style="text-align: center; top: 270px; position: relative;">College cannot be deleted as it is associated with another record.</h4>
     <a href="{{ url_for('college.college_list') }}" class="btn redirect">RETURN</a>
+
 {% elif context == "course" %}
+    <h4 style="text-align: center; top: 270px; position: relative;">Course cannot be deleted as it is associated with another record.</h4>
     <a href="{{ url_for('course.course_list') }}" class="btn redirect">RETURN</a>
+
 {% elif context == "student" %}
+    <h4 style="text-align: center; top: 270px; position: relative;">Student information cannot be deleted as it is associated with another record.</h4>
     <a href="{{ url_for('student.student_list') }}" class="btn redirect">RETURN</a>
+
 {% else %}
 <a href="{{ url_for('base.html') }}" class="btn redirect">GO BACK</a>
+
 {% endif %}
 
 {% endblock %}  

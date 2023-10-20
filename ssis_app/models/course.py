@@ -27,26 +27,6 @@ class course(object):
         mysql.connection.commit()
 
         return True
-    
-    # @classmethod
-    # def update(cls, courseCode, courseName, collegeCode):
-    #     cursor = mysql.connection.cursor()
-
-    #     # Check if the new name is similar to any existing course names
-    #     check_similarity_sql = "SELECT courseCode FROM course WHERE courseName = %s"
-    #     cursor.execute(check_similarity_sql, (newCourseName,))
-    #     similar_course = cursor.fetchone()
-
-    #     if similar_course:
-    #         # A similar course name exists, do not proceed with the update
-    #         return "The new course name is too similar to an existing course."
-
-    #     # If no similar course names are found, proceed with the update
-    #     sql = "UPDATE course SET courseName = %s, collegeCode = %s WHERE courseCode = %s"
-    #     cursor.execute(sql, (newCourseName, newCollegeCode, courseCode))
-    #     mysql.connection.commit()
-
-    #     return True
 
     @classmethod
     def delete(cls, courseCode, courseName, collegeCode):
@@ -77,19 +57,10 @@ class course(object):
     def search(cls, query):
         cursor = mysql.connection.cursor()
 
-        sql = "SELECT * FROM course WHERE courseCode LIKE %s OR collegeName LIKE %s OR collegeCode LIKE %s"
+        sql = "SELECT * FROM course WHERE courseCode LIKE %s OR courseName LIKE %s OR collegeCode LIKE %s"
         cursor.execute(sql, (f"%{query}%", f"%{query}%", f"%{query}%"))
         result = cursor.fetchall()
         return result
-    
-    # # get the college code from the college table for the college dropdown
-    # @classmethod
-    # def get_code(cls):
-    #     cursor = mysql.connection.cursor()
-
-    #     cursor.execute("SELECT collegeCode FROM college")
-    #     college_codes = [row[0] for row in cursor.fetchall()]
-    #     return college_codes
 
     def get_college_codes(cls):
         cursor = mysql.connection.cursor()

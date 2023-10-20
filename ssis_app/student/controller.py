@@ -111,3 +111,14 @@ def student_error():
 def student_list():
     students_data = student.get_student()
     return render_template('student_list.html', students=students_data)
+
+@student_bp.route('/search/', methods=['GET', 'POST'])
+def search_students():
+
+    query = request.form.get('query')
+    results = student.search(query)
+
+    if not results:
+        return "NO RECORDS FOUND"
+
+    return render_template('search_results.html', results=results, context="student")

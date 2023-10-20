@@ -1,4 +1,4 @@
-from flask import render_template, redirect, request, url_for
+from flask import render_template, redirect, request, url_for, flash
 from ssis_app.college.forms import *
 import ssis_app.models as models
 from ssis_app.models.college import *
@@ -86,8 +86,13 @@ def college_list():
     colleges_data = college.get_colleges()
     return render_template('college_list.html', colleges=colleges_data)
 
-@college_bp.route('/search/', methods=['POST'])
-def college_search():
-    query = request.form.get('search-input')
-    colleges_data = college.search(query)
-    return render_template('college_list.html', colleges=colleges_data)
+@college_bp.route('/search/', methods=['GET', 'POST'])
+def search_colleges():
+
+    query = request.form.get('query')
+    results = college.search(query)
+
+    if not results:
+        return "NO RECORDS FOUND"
+
+    return render_template('search_results.html', results=results, context="college")

@@ -474,18 +474,20 @@ table {
 }
 
 th, td {
-    border: 1px solid white;
+    border: 2px solid white;
     text-align: center;
     padding: 10px;
 }
 
 tr:nth-child(odd) {
-    background-color: var(--pinkC);
+    background-color: whitesmoke;
 }
 
 th {
-    background-color: var(--pinkA);
-    color: white;
+    background-color: var(--pinkC);
+    color: var(--pinkA);
+    font-weight: 900;
+    font-size: 16px;
 }
 
 /* edit button in list */
@@ -494,8 +496,9 @@ th {
     padding: 8px 30px;
     font-size: 15px;
     border-radius: 5px;
-    background-color: #FFBF00;
-    color: white;
+    background-color: #ffffba;
+    font-weight: 900;
+    color: #8B8000;
     position: relative;
     background-size: 200%;
     text-decoration: none;
@@ -509,14 +512,16 @@ th {
     padding: 8px 26px;
     font-size: 15px;
     border-radius: 5px;
-    background-color: orangered;
-    color: white;
+    background-color: #ffb3ba;
+    font-weight: 900;
+    color: #6E260E;
     position: relative;
     background-size: 200%;
     text-decoration: none;
     bottom: 25px;
     left: 50px;
 }
+
 
 /* add button in list */
 .custom-add-button {
@@ -526,8 +531,9 @@ th {
     padding: 8px 20px;
     font-size: 15px;
     border-radius: 5px;
-    background-color: #355E3B;
-    color: white;
+    background-color: #baffc9;
+    font-weight: 900;
+    color: #355E3B;
     position: relative;
     background-size: 200%;
     text-decoration: none;
@@ -566,18 +572,36 @@ th {
     left: 435px;
     width: 45px;
 }
+
 /* Style for the search button icon (using Font Awesome for a search icon) */
 .search-bar button i {
     font-size: 16px;
 }
+
 /* Hover effect for the search button */
 .search-bar button:hover {
     background: var(--pinkB);
 }
+
 .search-bar{
     top: 120px;
     left: 500px;
     position: absolute;
+}
+
+.custom-return-button {
+    position: relative;
+    top: 110px;
+    left: 20px;
+    border: none;
+    padding: 8px 30px;
+    font-size: 15px;
+    border-radius: 5px;
+    background-color: var(--pinkC);
+    font-weight: 900;
+    color: var(--pinkA);
+    background-size: 200%;
+    text-decoration: none;
 }
 
 /* message */

@@ -12,16 +12,19 @@
 
 <h3 class="header">LIST OF COLLEGES</h3>
 
-    <form action="{{ url_for('college.college_list') }}" method="GET">
+<div class="search-container">
+    <form method="POST" action="/college/search/" id="search-form">
+        <input name="csrf_token" value="{{ csrf_token() }}" hidden />
         <div class="search-bar">
-            <input type="text" id="search" placeholder="SEARCH">
+            <input type="text" name="query" id="search" placeholder="SEARCH">
             <button type="submit"><i class="fa fa-search"></i></button>
         </div>
     </form>
+</div>
 
 <a href="{{ url_for('college.add_college') }}" class="custom-add-button">+ ADD COLLEGE</a>
 
-<div class="table-container">
+<div class="table-container" id="results-container">
     <table>
         <tr>
             <th>CODE</th>
@@ -52,5 +55,27 @@
         {% endfor %}
     </table>
 </div>   
+
+<!-- <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const searchForm = document.getElementById('search-form');
+        const resultsContainer = document.getElementById('results-container');
+
+        searchForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const formData = new FormData(searchForm);
+
+            fetch(searchForm.action, {
+                method: 'POST',
+                body: formData,
+            })
+            .then(response => response.text())
+            .then(data => {
+                resultsContainer.innerHTML = data;
+            });
+        });
+    });
+</script> -->
 
 {% endblock %}  
