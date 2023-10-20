@@ -9,9 +9,6 @@
     --pinkB: #FBB7D0;
     --pinkC: #FEE5EB;
     --cream: #FCFBF7;
-    --red-orange: #FF4C4C;
-    --orange: #FF9090;
-    --light-yellow: #FFFDC3;
     --shadow-gray: #5E6678;
 }
 
@@ -33,6 +30,7 @@
     left: 20px;
     position: absolute;
 }
+
 .main.logo {
     color: #000;
     font-size: 24px;
@@ -54,11 +52,13 @@
     left: 410px;
     position: absolute;
 }
+
 .s.icon {
     top: 110px;
     left: 380px;
     position: absolute;
 }
+
 .s.title.text {
     color: #FFF;
     font-size: 20px;
@@ -69,6 +69,7 @@
     left: 500px;
     position: absolute;
 }
+
 .right.rectangle {
     width: 440px; 
     height: 180px; 
@@ -76,15 +77,18 @@
     position: absolute;
     left: 695px;
 }
+
 .right.rectangle.college {
     background-color: var(--purpleA);
     top: 140px;
 }
+
 .college.icon {
     top: 80px;
     left: 865px;
     position: absolute;
 }
+
 .college.title.text {
     color: #FFF;
     font-size: 20px;
@@ -95,15 +99,18 @@
     left: 740px;
     position: absolute;
 }
+
 .right.rectangle.course {
     background-color: var(--cyanA);
     top: 340px;
 }
+
 .course.icon {
     bottom: 150px;
     left: 730px;
     position: absolute;
 }
+
 .course.title.text {
     color: #FFF;
     font-size: 20px;
@@ -139,18 +146,22 @@ nav ul {
     right: 20px; 
     list-style: none;
 }
+
 nav li {
     background-color: var(--pinkB); 
     padding: 10px 30px;
 }
+
 nav a {
     text-decoration: none;
     color: #fff;
 }
+
 .current.tab {
     background-color: var(--pinkA); 
     padding: 10px 30px;
 }
+
 nav li:hover {
     background-color: var(--pinkA); 
 }
@@ -166,6 +177,7 @@ nav li:hover {
     left: 340px;
     position: absolute;
 }
+
 .listtext {
     color: white;
     font-size: 20px;
@@ -176,11 +188,13 @@ nav li:hover {
     left: 810px;
     position: absolute;
 }
+
 .addicon {
     top: 230px;
     left: 660px;
     position: absolute;
 }
+
 .listicon {
     top: 230px;
     left: 1125px;
@@ -197,6 +211,7 @@ nav li:hover {
     left: 300px;
     position: absolute;
 }
+
 .collegelistrect {
     width: 450px; 
     height: 250px; 
@@ -217,6 +232,7 @@ nav li:hover {
     left: 300px;
     position: absolute;
 }
+
 .courselistrect {
     width: 450px; 
     height: 250px; 
@@ -237,6 +253,7 @@ nav li:hover {
     left: 300px;
     position: absolute;
 }
+
 .studentlistrect {
     width: 450px; 
     height: 250px; 
@@ -283,6 +300,7 @@ nav li:hover {
     transform: translate(-50%, -60%); 
     position: absolute;
 }
+
 .delete-redirect.bg {
     width: 630px; 
     height: 250px; 
@@ -326,6 +344,7 @@ nav li:hover {
     background: var(--pinkC);
     color: var(--pinkA);
 }
+
 .btn.redirect {
     position: absolute;
     top: 355px;
@@ -337,10 +356,12 @@ nav li:hover {
     position: relative;
     width: 450px;
 }
+
 .disabled-inputbox {
     position: relative;
     width: 450px;
 }
+
 .inputBox input {
     width: 100%;
     padding: 10px;
@@ -351,6 +372,7 @@ nav li:hover {
     font-size: 1em;
     transition: 0.5s;
 }
+
 .inputBox span {
     position: absolute;
     left: 0;
@@ -360,6 +382,7 @@ nav li:hover {
     text-transform: uppercase;
     transition: 0.5s;
 }
+
 .inputBox input:focus ~ span,
 .inputBox input:valid ~ span {
     color: var(--pinkA);
@@ -368,6 +391,7 @@ nav li:hover {
     padding: 0 10px;
     background: #ffffff; 
 }
+
 .inputBox input:focus,
 .inputBox input:valid {
     border: 1px solid var(--pinkA);
@@ -379,21 +403,25 @@ nav li:hover {
     top: 240px;
     left: 315px;
 }
+
 .inputBox.name {
     position: absolute;
     top: 300px;
     left: 315px;
 }
+
 .inputBox.id {
     position: absolute;
     top: 200px;
     left: 315px;
 }
+
 .inputBox.fname {
     position: absolute;
     top: 255px;
     left: 315px;
 }
+
 .inputBox.lname {
     position: absolute;
     top: 310px;
@@ -406,6 +434,7 @@ nav li:hover {
     left: 860px;
     position: absolute;
 }
+
 .sideicon.student {
     top: 160px;
     left: 900px;
@@ -417,6 +446,7 @@ nav li:hover {
     position: absolute;
     transform: translate(-50%, -50%);
 }
+
 .btn {
     border: none;
     padding: 8px 26px;
@@ -429,24 +459,29 @@ nav li:hover {
     background-size: 200%;
     text-decoration: none;
 }
+
 .btn.btn1 {
     position: relative;
     top: 440px;
     left: 538px;
 }
+
 .btn.btn2 {
     position: relative;
     top: 530px;
     left: 538px;
 }
+
 .btn.btn3 {
     position: relative;
     top: 480px;
     left: 538px;
 }
+
 .btn:hover {
     background-position: right;
 }
+
 .btn:active {
     transform: scale(0.80);
 }
@@ -458,11 +493,13 @@ nav li:hover {
     left: 20px;
     position: absolute;
 }
+
 /* table */
 table {
     border-collapse: collapse;
     width: 100%;
 }
+
 .table-container {
     position: relative; 
     top: 185px; 
@@ -502,7 +539,7 @@ th {
     position: relative;
     background-size: 200%;
     text-decoration: none;
-    top: 10px;
+    top: 15px;
     right: 55px;
 }
 
@@ -518,7 +555,7 @@ th {
     position: relative;
     background-size: 200%;
     text-decoration: none;
-    bottom: 25px;
+    bottom: 20px;
     left: 50px;
 }
 
@@ -551,6 +588,7 @@ th {
     color: #bfbdbeab;
     border-radius: 20px;
 }
+
 /* Style for the search input field */
 .search-bar input[type="text"] {
     width: 100%;
@@ -559,6 +597,7 @@ th {
     outline: none;
     background: transparent;
 }
+
 /* Style for the search button */
 .search-bar button {
     background: var(--pinkA);
@@ -573,7 +612,7 @@ th {
     width: 45px;
 }
 
-/* Style for the search button icon (using Font Awesome for a search icon) */
+/* Style for the search button icon */
 .search-bar button i {
     font-size: 16px;
 }
@@ -613,14 +652,17 @@ th {
     font-style: italic; 
     font-size: 14px;    
 }
+
 /* Success Message */
 .message-text.success {
     color: blue;
 }
+
 .message-text.success.course {
     color: blue;
     top: 415px;
 }
+
 .message-text.success.student {
     color: blue;
     top: 475px;
@@ -630,10 +672,12 @@ th {
 .message-text.error {
     color: red;
 }
+
 .message-text.error.course {
     color: red;
     top: 415px;
 }
+
 .message-text.error.student {
     color: red;
     top: 475px;
@@ -645,12 +689,6 @@ th {
     position: relative;
     display: inline-block;
 }
-
-/* .custom-dropdown.college {
-    position: absolute;
-    top: 360px;
-    left: 315px;
-} */
 
 .custom-select {
     position: absolute;
@@ -677,16 +715,6 @@ th {
     top: 365px;
     left: 550px;
 }
-
-/* .custom-dropdown.course {
-    position: absolute;
-    top: 420px;
-    left: 315px;
-} */
-
-/* .dropdown-select.college {
-    width: 450px;
-} */
 
 .dropdown-select.course {
     width: 450px;
