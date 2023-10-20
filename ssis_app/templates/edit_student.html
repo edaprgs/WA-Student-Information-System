@@ -105,7 +105,7 @@
     /* GENDER DROPDOWN */
     const dropdowngender = document.getElementById('gender-dropdown');
     const optionsgender = document.getElementById('gender-options');
-    let selectedGender = null; // Variable to store the selected gender
+    let selectedGender = null; 
 
     dropdowngender.addEventListener('click', function() {
         optionsgender.classList.toggle('show');
@@ -113,14 +113,13 @@
 
     optionsgender.addEventListener('click', function(e) {
         if (e.target.classList.contains('dropdown-option')) {
-            selectedGender = e.target.getAttribute('data-value'); // Update the selected value
+            selectedGender = e.target.getAttribute('data-value'); 
             dropdowngender.textContent = selectedGender;
             optionsgender.classList.remove('show');
             document.getElementById('selectedGender').value = selectedGender;
         }
     });
 
-    // Close the dropdown when clicking outside the dropdown or select
     document.addEventListener('click', function(e) {
         if (e.target !== dropdowngender && e.target !== optionsgender) {
             optionsgender.classList.remove('show');
@@ -130,7 +129,7 @@
     /* YEAR LEVEL DROPDOWN */
     const dropdownylevel = document.getElementById('ylevel-dropdown');
     const optionsylevel = document.getElementById('ylevel-options');
-    let selectedYLevel = null; // Variable to store the selected year level
+    let selectedYLevel = null; 
 
     dropdownylevel.addEventListener('click', function() {
         optionsylevel.classList.toggle('show');
@@ -138,14 +137,13 @@
 
     optionsylevel.addEventListener('click', function(e) {
         if (e.target.classList.contains('dropdown-option')) {
-            selectedYLevel = e.target.getAttribute('data-value'); // Update the selected value
+            selectedYLevel = e.target.getAttribute('data-value'); 
             dropdownylevel.textContent = selectedYLevel;
             optionsylevel.classList.remove('show');
             document.getElementById('selectedYLevel').value = selectedYLevel;
         }
     });
 
-    // Close the dropdown when clicking outside the dropdown or select
     document.addEventListener('click', function(e) {
         if (e.target !== dropdownylevel && e.target !== optionsylevel) {
             optionsylevel.classList.remove('show');

@@ -1,4 +1,4 @@
-from flask import render_template, redirect, request, url_for, flash
+from flask import render_template, redirect, request, url_for
 from ssis_app.college.forms import *
 import ssis_app.models as models
 from ssis_app.models.college import *

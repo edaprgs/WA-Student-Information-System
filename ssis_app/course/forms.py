@@ -7,3 +7,4 @@ class course_form(FlaskForm):
     courseName = StringField('Course Name', validators=[DataRequired(), Length(min=10, max=100)])
     collegeCode = StringField('College Code', validators=[Length(max=50)])
     submit = SubmitField("Submit")
+    submit = SubmitField('Update')

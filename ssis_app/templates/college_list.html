@@ -56,26 +56,4 @@
     </table>
 </div>   
 
-<!-- <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const searchForm = document.getElementById('search-form');
-        const resultsContainer = document.getElementById('results-container');
-
-        searchForm.addEventListener('submit', function(event) {
-            event.preventDefault();
-
-            const formData = new FormData(searchForm);
-
-            fetch(searchForm.action, {
-                method: 'POST',
-                body: formData,
-            })
-            .then(response => response.text())
-            .then(data => {
-                resultsContainer.innerHTML = data;
-            });
-        });
-    });
-</script> -->
-
 {% endblock %}  

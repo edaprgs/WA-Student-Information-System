@@ -71,36 +71,6 @@
     </p>
 </form>
 
-
-
-
-
-
-
-
 <div class="sideicon"><img src="{{ url_for('static', filename='images/COURSE ICON.png') }}" width="350"></div>
-
-<script>
-    /* COLLEGE DROPDOWN */
-    const dropdowncollege = document.getElementById('college-dropdown');
-    const optionscollege = document.getElementById('college-options');
-    dropdowncollege.addEventListener('click', function() {
-        optionscollege.classList.toggle('show');
-    });
-
-    optionscollege.addEventListener('click', function(e) {
-        if (e.target.classList.contains('dropdown-option')) {
-            const selectedValue = e.target.getAttribute('data-value');
-            dropdowncollege.textContent = selectedValue;
-            optionscollege.classList.remove('show');
-        }
-    });
-    // Close the dropdown 
-    window.addEventListener('click', function(e) {
-        if (e.target !== dropdown) {
-            optionscollege.classList.remove('show');
-        }
-    });
-</script>
 
 {% endblock %}  
