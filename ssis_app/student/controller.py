@@ -11,9 +11,6 @@ def add_student():
     form = student_form()
     new_student = student()
     course_codes = new_student.get_course_codes()
-    success_message = None
-    error_message = None
-
     if request.method == "POST":
         student_ID = request.form.get("student_ID").upper()
         first_name = request.form.get("first_name").upper()
@@ -31,18 +28,16 @@ def add_student():
         result = new_student.add()
 
         if result:
-            success_message = "Student added successfully! Please check the list for updates"
+            return redirect(url_for('student.add_success_message'))
         else:
-            error_message = "A student already exists."
+            return redirect(url_for('student.add_error_message'))
 
-    return render_template('add_student.html', course_codes=course_codes,student_form=form, success_message=success_message, error_message=error_message)
+    return render_template('add_student.html', course_codes=course_codes,student_form=form)
 
 @student_bp.route('/edit/', methods=['GET', 'POST'])
 def student_edit():
     update_student = student()
     course_codes = update_student.get_course_codes()
-    success_message = None
-    error_message = None
     if request.method == 'GET':
         studentID = request.args.get('studentID')
         first_name = request.args.get('first_name')   
@@ -61,16 +56,13 @@ def student_edit():
         new_gender = request.form.get('gender')
 
         updated = student.update(studentID=_studentID, firstName=new_fname, lastName=new_lname, course=new_course, yearlevel=new_ylevel, gender=new_gender)  
-        
-        success_message = ""
-        error_message = ""
 
         if updated:
-            success_message = "Student information updated successfully! Please check the list for updates"
+            return redirect(url_for('student.edit_success_message'))
         else:
-            error_message = "Student already exists."
+            return redirect(url_for('student.edit_error_message'))
         
-        return render_template("edit_student.html", success_message=success_message, error_message=error_message)
+    return render_template("edit_student.html")
 
 @student_bp.route('/delete/', methods=['POST'])
 def student_delete():
@@ -102,6 +94,22 @@ def student_confirmation():
 @student_bp.route('/student_error/')
 def student_error():
     return render_template('error.html', context="student")
+
+@student_bp.route('/success/')
+def add_success_message():
+    return render_template('success_message.html', context="student_add")
+
+@student_bp.route('/error/')
+def add_error_message():
+    return render_template('error_message.html', context="student_add")
+
+@student_bp.route('/success/')
+def edit_success_message():
+    return render_template('success_message.html', context="student_edit")
+
+@student_bp.route('/error/')
+def edit_error_message():
+    return render_template('error_message.html', context="student_edit")
 
 @student_bp.route('/list/')
 def student_list():

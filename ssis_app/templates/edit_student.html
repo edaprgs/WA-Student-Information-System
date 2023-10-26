@@ -5,9 +5,9 @@
 <!-- NAVIGATION -->
 <nav>
     <ul>
-        <li><a href="{{ url_for('college.index') }}">COLLEGE</a></li>
-        <li><a href="{{ url_for('course.index') }}">COURSE</a></li>
-        <li class="current tab"><a href="{{ url_for('student.index') }}">STUDENT</a></li>
+        <li><a href="{{ url_for('college.college_list') }}">COLLEGE</a></li>
+        <li><a href="{{ url_for('course.course_list') }}">COURSE</a></li>
+        <li class="current tab"><a href="{{ url_for('student.student_list') }}">STUDENT</a></li>
     </ul>
 </nav>
 
@@ -86,17 +86,6 @@
     <div class="container">
         <button class="btn btn2">UPDATE</button>
     </div>
-
-    <p class="message-text success student" id="success_message">
-        {% if success_message %}
-            {{ success_message }}
-        {% endif %}
-    </p>
-    <p class="message-text error student" id="error_message">
-        {% if error_message %}
-            {{ error_message }}
-        {% endif %}
-    </p>
 </form>
 
 <div class="sideicon student"><img src="{{ url_for('static', filename='images/STUDENT ICON.png') }}" width="350"></div>

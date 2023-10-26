@@ -9,9 +9,6 @@ college_bp = Blueprint('college', __name__)
 @college_bp.route('/add/', methods=["GET", "POST"])
 def add_college():
     form = college_form()
-    success_message = None
-    error_message = None
-
     if request.method == "POST":
         code = request.form.get("college_code").upper()
         name = request.form.get("college_name").upper()
@@ -22,16 +19,14 @@ def add_college():
         result = new_college.add()
 
         if result:
-            success_message = "College added successfully! Please check the list for updates"
+            return redirect(url_for('college.add_success_message'))
         else:
-            error_message = "College already exists."
+            return redirect(url_for('college.add_error_message'))
 
-    return render_template("add_college.html", college_form=form, success_message=success_message, error_message=error_message)
+    return render_template("add_college.html", college_form=form)
 
 @college_bp.route('/edit/', methods=['GET', 'POST'])
 def college_edit():
-    success_message = None
-    error_message = None
     if request.method == 'GET':
         college_code = request.args.get('college_code')
         college_name = request.args.get('college_name')    
@@ -43,15 +38,12 @@ def college_edit():
 
         updated = college.update(collegeCode=_college_code, collegeName=new_college_name)  
         
-        success_message = ""
-        error_message = ""
-
         if updated:
-            success_message = "College updated successfully! Please check the list for updates"
+            return redirect(url_for('college.edit_success_message'))
         else:
-            error_message = "College already exists."
+            return redirect(url_for('college.edit_error_message'))
         
-        return render_template("edit_college.html", success_message=success_message, error_message=error_message)
+    return render_template("edit_college.html")
 
 @college_bp.route('/delete/', methods=['GET', 'POST'])
 def college_delete():
@@ -77,6 +69,22 @@ def college_confirmation():
 @college_bp.route('/college_error/')
 def college_error():
     return render_template('error.html', context="college")
+
+@college_bp.route('/success/')
+def add_success_message():
+    return render_template('success_message.html', context="college_add")
+
+@college_bp.route('/error/')
+def add_error_message():
+    return render_template('error_message.html', context="college_add")
+
+@college_bp.route('/success/')
+def edit_success_message():
+    return render_template('success_message.html', context="college_edit")
+
+@college_bp.route('/error/')
+def edit_error_message():
+    return render_template('error_message.html', context="college_edit")
 
 @college_bp.route('/list/')
 def college_list():

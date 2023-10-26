@@ -29,16 +29,6 @@
     <div class="container">
         <button class="btn btn1" type="submit">SUBMIT</button>
     </div>
-    <p class="message-text success" id="success_message">
-        {% if success_message %}
-            {{ success_message }}
-        {% endif %}
-    </p>
-    <p class="message-text error" id="error_message">
-        {% if error_message %}
-            {{ error_message }}
-        {% endif %}
-    </p>
 </form>
 
 <div class="sideicon"><img src="{{ url_for('static', filename='images/COLLEGE ICON.png') }}" width="350"></div>

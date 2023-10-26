@@ -42,7 +42,7 @@ class student(object):
     @classmethod
     def get_student(cls):
         cursor = mysql.connection.cursor()
-        cursor.execute("SELECT student.*, course.collegeCode FROM student JOIN course ON student.course = course.courseCode") 
+        cursor.execute("SELECT student.*, course.collegeCode FROM student JOIN course ON student.course = course.courseCode ORDER BY student.lastName ASC") 
         students = cursor.fetchall()
         cursor.close()
         return students
@@ -80,6 +80,10 @@ class student(object):
             else:
                 sql = "SELECT * FROM student"
 
+            cursor.execute(sql, (f"%{query}%",))
+        
+        elif selected_field == "COLLEGE":
+            sql = "SELECT course.collegeCode FROM student JOIN course ON student.course = course.courseCode WHERE course.collegeCode LIKE %s"
             cursor.execute(sql, (f"%{query}%",))
 
         else:

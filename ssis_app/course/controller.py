@@ -11,9 +11,6 @@ def add_course():
     form = course_form()
     new_course = course()
     college_codes = new_course.get_college_codes()
-    success_message = None
-    error_message = None
-
     if request.method == "POST":
         course_code = request.form.get("course_code").upper()
         course_name = request.form.get("course_name").upper()
@@ -26,18 +23,16 @@ def add_course():
         result = new_course.add()
 
         if result:
-            success_message = "Course added successfully! Please check the list for updates"
+            return redirect(url_for('course.add_success_message'))
         else:
-            error_message = "Course already exists."
+            return redirect(url_for('course.add_error_message'))
 
-    return render_template('add_course.html',course_form=form, college_codes=college_codes, success_message=success_message, error_message=error_message)
+    return render_template('add_course.html',course_form=form, college_codes=college_codes)
 
 @course_bp.route('/edit/', methods=['GET', 'POST'])
 def course_edit():
     update_course = course()
     college_codes = update_course.get_college_codes()
-    success_message = None
-    error_message = None
     if request.method == 'GET':
         course_code = request.args.get('course_code')
         course_name = request.args.get('course_name')   
@@ -50,15 +45,13 @@ def course_edit():
 
         updated = course.update(courseCode=_course_code, courseName=new_course_name, collegeCode=new_college)  
         
-        success_message = ""
-        error_message = ""
 
         if updated:
-            success_message = "Course updated successfully! Please check the list for updates"
+            return redirect(url_for('college.edit_success_message'))
         else:
-            error_message = "Course already exists."
+            return redirect(url_for('college.edit_error_message'))
         
-        return render_template("edit_course.html", success_message=success_message, error_message=error_message)
+    return render_template("edit_course.html")
 
 @course_bp.route('/delete/', methods=['GET', 'POST'])
 def course_delete():
@@ -86,6 +79,22 @@ def course_confirmation():
 @course_bp.route('/course_error/')
 def course_error():
     return render_template('error.html', context="course")
+
+@course_bp.route('/success/')
+def add_success_message():
+    return render_template('success_message.html', context="course_add")
+
+@course_bp.route('/error/')
+def add_error_message():
+    return render_template('error_message.html', context="course_add")
+
+@course_bp.route('/success/')
+def edit_success_message():
+    return render_template('success_message.html', context="course_edit")
+
+@course_bp.route('/error/')
+def edit_error_message():
+    return render_template('error_message.html', context="course_edit")
 
 @course_bp.route('/list/')
 def course_list():

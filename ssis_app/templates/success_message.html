@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}SSIS{% endblock title %}
+{% block content %}
+
+<div class="delete-redirect bg"></div>
+<h2 style="text-align: center; top: 240px; position: relative;">SUCCESS</h2>  
+
+<!-- ADD SUCCESS MESSAGE -->
+{% if context == "college_add" %}
+    <h4 style="text-align: center; top: 270px; position: relative;">College added successfully! Please check the list for updates</h4>
+    <a href="{{ url_for('college.college_list') }}" class="btn redirect">RETURN</a>
+
+{% elif context == "course_add" %}
+    <h4 style="text-align: center; top: 270px; position: relative;">Course added successfully! Please check the list for updates</h4>
+    <a href="{{ url_for('course.course_list') }}" class="btn redirect">RETURN</a>
+
+{% elif context == "student_add" %}
+    <h4 style="text-align: center; top: 270px; position: relative;">Student added successfully! Please check the list for updates</h4>
+    <a href="{{ url_for('student.student_list') }}" class="btn redirect">RETURN</a>
+
+{% elif context == "college_edit" %}
+    <h4 style="text-align: center; top: 270px; position: relative;">College updated successfully! Please check the list for updates</h4>
+    <a href="{{ url_for('college.college_list') }}" class="btn redirect">RETURN</a>
+
+{% elif context == "course_edit" %}
+    <h4 style="text-align: center; top: 270px; position: relative;">Course updated successfully! Please check the list for updates</h4>
+    <a href="{{ url_for('course.course_list') }}" class="btn redirect">RETURN</a>
+
+{% elif context == "student_edit" %}
+    <h4 style="text-align: center; top: 270px; position: relative;">Student information updated successfully! Please check the list for updates</h4>
+    <a href="{{ url_for('student.student_list') }}" class="btn redirect">RETURN</a>
+
+{% endif %}
+
+{% endblock %}  
