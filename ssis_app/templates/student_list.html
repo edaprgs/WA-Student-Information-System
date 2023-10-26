@@ -5,9 +5,9 @@
 <!-- NAVIGATION -->
 <nav>
     <ul>
-        <li><a href="{{ url_for('college.index') }}">COLLEGE</a></li>
-        <li> <a href="{{ url_for('course.index') }}">COURSE</a></li>
-        <li class="current tab"><a href="{{ url_for('student.index') }}">STUDENT</a></li>
+        <li><a href="{{ url_for('college.college_list') }}">COLLEGE</a></li>
+        <li> <a href="{{ url_for('course.course_list') }}">COURSE</a></li>
+        <li class="current tab"><a href="{{ url_for('student.student_list') }}">STUDENT</a></li>
     </ul>
 </nav>
 
@@ -43,7 +43,6 @@
     <table>
         <thead>
             <tr>
-                <th>#</th>
                 <th>STUDENT ID</th>
                 <th>FIRST NAME</th>
                 <th>LAST NAME</th>
@@ -94,20 +93,6 @@
 </div>
 
 <script>
-    // ROW NUMBERING
-    function addRowNumbers() {
-        const tableBody = document.querySelector('table tbody');
-        const rows = tableBody.querySelectorAll('tr');
-
-        rows.forEach((row, index) => {
-            const cell = document.createElement('td');
-            cell.textContent = index + 1;
-            row.insertBefore(cell, row.firstElementChild);
-        });
-    }
-
-    window.addEventListener('load', addRowNumbers);
-    
     // SEARCH
     const dropdownsearch = document.getElementById('search-dropdown');
     const optionsearch = document.getElementById('search-options');
