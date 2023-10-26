@@ -40,6 +40,7 @@ def college_edit():
         college_code = request.args.get('college_code')
         college_name = request.args.get('college_name')    
         return render_template('edit_college.html', code = college_code, name=college_name)
+    
     elif request.method == 'POST':
         _college_code = request.form.get('college_code')
         new_college_name = request.form.get('college_name').upper()
@@ -88,11 +89,8 @@ def college_list():
 
 @college_bp.route('/search/', methods=['GET', 'POST'])
 def search_colleges():
-
     query = request.form.get('query')
-    results = college.search(query)
-
-    if not results:
-        return "NO RECORDS FOUND"
+    selected_field = request.form.get('selectedField')
+    results = college.search(query, selected_field)
 
     return render_template('search_results.html', results=results, context="college")

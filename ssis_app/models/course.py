@@ -54,13 +54,27 @@ class course(object):
         return courses
 
     @classmethod
-    def search(cls, query):
+    def search(cls, query, selected_field):
         cursor = mysql.connection.cursor()
+        if selected_field == "CODE":
+            sql = "SELECT * FROM course WHERE courseCode LIKE %s"
+            cursor.execute(sql, (f"%{query}%",))
 
-        sql = "SELECT * FROM course WHERE courseCode LIKE %s OR courseName LIKE %s OR collegeCode LIKE %s"
-        cursor.execute(sql, (f"%{query}%", f"%{query}%", f"%{query}%"))
-        result = cursor.fetchall()
-        return result
+        elif selected_field == "NAME":
+            sql = "SELECT * FROM course WHERE courseName LIKE %s"
+            cursor.execute(sql, (f"%{query}%",))
+
+        elif selected_field == "COLLEGE":
+            sql = "SELECT * FROM course WHERE collegeCode LIKE %s"
+            cursor.execute(sql, (f"%{query}%",))
+
+        else:
+            sql = "SELECT * FROM course WHERE courseCode LIKE %s OR courseName LIKE %s OR collegeCode LIKE %s"
+            cursor.execute(sql, (f"%{query}%", f"%{query}%", f"%{query}%"))
+
+        results = cursor.fetchall()
+
+        return results
 
     def get_college_codes(cls):
         cursor = mysql.connection.cursor()

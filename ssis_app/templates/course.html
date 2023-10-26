@@ -11,15 +11,15 @@
 </nav>
 
 <a href="{{ url_for('course.add_course') }}">
-    <div class="courseaddrect"></div>
-    <div class="addtext">ADD COURSE</div>
-    <div class="addicon"><img src="{{ url_for('static', filename='images/add-icon.png') }}"></div>
+    <div class="course-add-rect"></div>
+    <div class="add-text">ADD COURSE</div>
+    <div class="add-icon"><img src="{{ url_for('static', filename='images/add-icon.png') }}"></div>
 </a>
 
 <a href="{{ url_for('course.course_list') }}">
-    <div class="courselistrect"></div>
-    <div class="listtext">LIST</div>
-    <div class="listicon"><img src="{{ url_for('static', filename='images/list-icon.png') }}"></div>
+    <div class="course-list-rect"></div>
+    <div class="list-text">LIST</div>
+    <div class="list-icon"><img src="{{ url_for('static', filename='images/list-icon.png') }}"></div>
 </a>
 
 {% endblock %}  

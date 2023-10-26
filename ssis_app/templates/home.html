@@ -3,21 +3,21 @@
 {% block content %}
 
 <a href="{{ url_for('student.index') }}">
-        <div class="left rectangle"></div>
-        <div class="s title text">STUDENT</div>
-        <div class="s icon"><img src="{{ url_for('static', filename='images/STUDENT ICON.png') }}" width="300"></div>
+    <div class="left-rectangle"></div>
+    <div class="student-title-text">STUDENT</div>
+    <div class="student-icon"><img src="{{ url_for('static', filename='images/STUDENT ICON.png') }}" width="300"></div>
 </a>
 
 <a href="{{ url_for('college.index') }}">
-    <div class="right rectangle college"></div>
-    <div class="college title text">COLLEGE</div>
-    <div class="college icon"><img src="{{ url_for('static', filename='images/COLLEGE ICON.png') }}" width="230"></div>
+    <div class="right-rectangle college"></div>
+    <div class="college-title-text">COLLEGE</div>
+    <div class="college-icon"><img src="{{ url_for('static', filename='images/COLLEGE ICON.png') }}" width="230"></div>
 </a>
 
 <a href="{{ url_for('course.index') }}">
-    <div class="right rectangle course"></div>
-    <div class="course title text">COURSE</div>
-    <div class="course icon"><img src="{{ url_for('static', filename='images/COURSE ICON.png') }}" width="230"></div>
+    <div class="right-rectangle course"></div>
+    <div class="course-title-text">COURSE</div>
+    <div class="course-icon"><img src="{{ url_for('static', filename='images/COURSE ICON.png') }}" width="230"></div>
 </a>
 
 {% endblock %}  

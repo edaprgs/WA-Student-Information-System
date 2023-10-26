@@ -114,11 +114,8 @@ def student_list():
 
 @student_bp.route('/search/', methods=['GET', 'POST'])
 def search_students():
-
     query = request.form.get('query')
-    results = student.search(query)
-
-    if not results:
-        return "NO RECORDS FOUND"
+    selected_field = request.form.get('selectedField')
+    results = student.search(query, selected_field)
 
     return render_template('search_results.html', results=results, context="student")

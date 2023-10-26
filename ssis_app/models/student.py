@@ -49,14 +49,47 @@ class student(object):
         return students
     
     @classmethod
-    def search(cls, query):
+    def search(cls, query, selected_field):
         cursor = mysql.connection.cursor()
+        if selected_field == "STUDENT ID":
+            sql = "SELECT * FROM student WHERE studentID LIKE %s"
+            cursor.execute(sql, (f"%{query}%",))
 
-        sql = "SELECT * FROM student WHERE studentID LIKE %s OR firstName LIKE %s OR lastName LIKE %s OR course LIKE %s OR yearlevel LIKE %s OR gender LIKE %s"
+        elif selected_field == "FIRST NAME":
+            sql = "SELECT * FROM student WHERE firstName LIKE %s"
+            cursor.execute(sql, (f"%{query}%",))
+
+        elif selected_field == "LAST NAME":
+            sql = "SELECT * FROM student WHERE lastName LIKE %s"
+            cursor.execute(sql, (f"%{query}%",))
         
-        cursor.execute(sql, (f"%{query}%", f"%{query}%", f"%{query}%", f"%{query}%", f"%{query}%", f"%{query}%"))
-        result = cursor.fetchall()
-        return result
+        elif selected_field == "COURSE":
+            sql = "SELECT * FROM student WHERE course LIKE %s"
+            cursor.execute(sql, (f"%{query}%",))
+        
+        elif selected_field == "YEAR LEVEL":
+            sql = "SELECT * FROM student WHERE yearlevel LIKE %s"
+            cursor.execute(sql, (f"%{query}%",))
+        
+        elif selected_field == "GENDER":
+            if query.upper() == "FEMALE":
+                sql = "SELECT * FROM student WHERE gender = 'FEMALE'"
+
+            elif query.upper() == "MALE":
+                sql = "SELECT * FROM student WHERE gender = 'MALE'"
+
+            else:
+                sql = "SELECT * FROM student"
+
+            cursor.execute(sql, (f"%{query}%",))
+
+        else:
+            sql = "SELECT * FROM student WHERE studentID LIKE %s OR firstName LIKE %s OR lastName LIKE %s OR course LIKE %s OR yearlevel LIKE %s OR gender LIKE %s"
+            cursor.execute(sql, (f"%{query}%", f"%{query}%", f"%{query}%", f"%{query}%", f"%{query}%", f"%{query}%"))
+
+        results = cursor.fetchall()
+
+        return results
     
     # get the college code from the college table for the college dropdown
     def get_course_codes(cls):

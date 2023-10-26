@@ -1,15 +1,9 @@
 :root {
     --purpleA: #9979C2;
-    --purpleB: #DCCBED;
-    --purpleC: #F3EEF6;
     --cyanA: #7ADFF1;
-    --cyanB: #B1F7EF;
-    --cyanC: #E8FFFC;
     --pinkA: #FF84B1;
     --pinkB: #FBB7D0;
     --pinkC: #FEE5EB;
-    --cream: #FCFBF7;
-    --shadow-gray: #5E6678;
 }
 
 *,
@@ -22,7 +16,7 @@
 }
 
 /* logo */
-.logo.style {
+.logo-style {
     width: 15px;
     height: 60px;
     background-color: var(--pinkA);
@@ -31,7 +25,7 @@
     position: absolute;
 }
 
-.main.logo {
+.main-logo {
     color: #000;
     font-size: 24px;
     font-style: normal;
@@ -43,7 +37,7 @@
 }
 
 /* home page nav */
-.left.rectangle {
+.left-rectangle {
     width: 260px; 
     height: 380px; 
     background-color: var(--pinkA);
@@ -53,13 +47,13 @@
     position: absolute;
 }
 
-.s.icon {
+.student-icon {
     top: 110px;
     left: 380px;
     position: absolute;
 }
 
-.s.title.text {
+.student-title-text {
     color: #FFF;
     font-size: 20px;
     font-style: normal;
@@ -70,7 +64,7 @@
     position: absolute;
 }
 
-.right.rectangle {
+.right-rectangle {
     width: 440px; 
     height: 180px; 
     border-radius: 12px;
@@ -78,18 +72,18 @@
     left: 695px;
 }
 
-.right.rectangle.college {
+.right-rectangle.college {
     background-color: var(--purpleA);
     top: 140px;
 }
 
-.college.icon {
+.college-icon {
     top: 80px;
     left: 865px;
     position: absolute;
 }
 
-.college.title.text {
+.college-title-text {
     color: #FFF;
     font-size: 20px;
     font-style: normal;
@@ -100,18 +94,18 @@
     position: absolute;
 }
 
-.right.rectangle.course {
+.right-rectangle.course {
     background-color: var(--cyanA);
     top: 340px;
 }
 
-.course.icon {
+.course-icon {
     bottom: 150px;
     left: 730px;
     position: absolute;
 }
 
-.course.title.text {
+.course-title-text {
     color: #FFF;
     font-size: 20px;
     font-style: normal;
@@ -122,8 +116,16 @@
     position: absolute;
 }
 
+.right-rectangle, .left-rectangle {
+    transition: box-shadow 0.5s; 
+}
+
+.right-rectangle:hover, .left-rectangle:hover {
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4); 
+}
+
 /* footer styles */
-.footer.rect {
+.footer-rect {
     font-size: small;
     width: 100%; 
     height: 50px;
@@ -167,7 +169,7 @@ nav li:hover {
 }
 
 /* categorization custom style */
-.addtext {
+.add-text {
     color: white;
     font-size: 20px;
     font-style: normal;
@@ -178,7 +180,7 @@ nav li:hover {
     position: absolute;
 }
 
-.listtext {
+.list-text {
     color: white;
     font-size: 20px;
     font-style: normal;
@@ -189,20 +191,20 @@ nav li:hover {
     position: absolute;
 }
 
-.addicon {
+.add-icon {
     top: 230px;
     left: 660px;
     position: absolute;
 }
 
-.listicon {
+.list-icon {
     top: 230px;
     left: 1125px;
     position: absolute;
 }
 
 /* college category */
-.collegeaddrect {
+.college-add-rect {
     width: 450px; 
     height: 250px; 
     background-color: var(--purpleA);
@@ -212,7 +214,7 @@ nav li:hover {
     position: absolute;
 }
 
-.collegelistrect {
+.college-list-rect {
     width: 450px; 
     height: 250px; 
     background-color: var(--pinkB);
@@ -223,7 +225,7 @@ nav li:hover {
 }
 
 /* course category */
-.courseaddrect {
+.course-add-rect {
     width: 450px; 
     height: 250px; 
     background-color: var(--pinkB);
@@ -233,7 +235,7 @@ nav li:hover {
     position: absolute;
 }
 
-.courselistrect {
+.course-list-rect {
     width: 450px; 
     height: 250px; 
     background-color: var(--cyanA);
@@ -244,7 +246,7 @@ nav li:hover {
 }
 
 /* student category */
-.studentaddrect {
+.student-add-rect {
     width: 450px; 
     height: 250px; 
     background-color: var(--pinkA);
@@ -254,7 +256,7 @@ nav li:hover {
     position: absolute;
 }
 
-.studentlistrect {
+.student-list-rect {
     width: 450px; 
     height: 250px; 
     background-color: var(--purpleA);
@@ -264,13 +266,31 @@ nav li:hover {
     position: absolute;
 }
 
-.backicon {
+.college-add-rect, 
+.college-list-rect, 
+.course-add-rect, 
+.course-list-rect, 
+.student-add-rect, 
+.student-list-rect {
+    transition: box-shadow 0.5s; 
+}
+
+.college-add-rect:hover, 
+.college-list-rect:hover, 
+.course-add-rect:hover, 
+.course-list-rect:hover, 
+.student-add-rect:hover, 
+.student-list-rect:hover {
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4); 
+}
+
+.back-icon {
     top: 138px;
     left: 250px;
     position: absolute;
 }
 
-/* add styles */
+/* add and edit styles */
 .entity.bg {
     width: 1100px; 
     height: 500px; 
@@ -500,14 +520,19 @@ table {
     width: 100%;
 }
 
+thead {
+    position: sticky;
+    top: 0;
+}
+
 .table-container {
     position: relative; 
-    top: 185px; 
+    top: 175px; 
     margin-right: 20px; 
     margin-left: 20px;      
     overflow-y: scroll; 
     overflow-x: hidden;
-    max-height: 400px;
+    max-height: 435px;
 }
 
 th, td {
@@ -516,7 +541,7 @@ th, td {
     padding: 10px;
 }
 
-tr:nth-child(odd) {
+tr:nth-child(even) {
     background-color: whitesmoke;
 }
 
@@ -536,11 +561,10 @@ th {
     background-color: #ffffba;
     font-weight: 900;
     color: #8B8000;
-    position: relative;
     background-size: 200%;
     text-decoration: none;
-    top: 15px;
-    right: 55px;
+    display: inline-block;
+    cursor: pointer;
 }
 
 /* delete button in list */
@@ -552,13 +576,11 @@ th {
     background-color: #ffb3ba;
     font-weight: 900;
     color: #6E260E;
-    position: relative;
     background-size: 200%;
     text-decoration: none;
-    bottom: 20px;
-    left: 50px;
+    display: inline-block;
+    cursor: pointer;
 }
-
 
 /* add button in list */
 .custom-add-button {
@@ -580,13 +602,16 @@ th {
 /* Style for the search bar container */
 .search-bar {
     display: flex;
-    width: 500px;
+    width: 445px;
     height: 40px;
     background-color: white;
     border: 2px solid var(--pinkC);
     overflow: hidden;
     color: #bfbdbeab;
     border-radius: 20px;
+    top: 120px;
+    left: 190px;
+    position: absolute;
 }
 
 /* Style for the search input field */
@@ -608,7 +633,7 @@ th {
     cursor: pointer;
     position: absolute;
     top: 8px;
-    left: 435px;
+    left: 380px;
     width: 45px;
 }
 
@@ -622,15 +647,9 @@ th {
     background: var(--pinkB);
 }
 
-.search-bar{
-    top: 120px;
-    left: 500px;
-    position: absolute;
-}
-
 .custom-return-button {
     position: relative;
-    top: 110px;
+    top: 123px;
     left: 20px;
     border: none;
     padding: 8px 30px;
@@ -683,7 +702,6 @@ th {
     top: 475px;
 }
 
-
 /* dropdown */
 .custom-dropdown {
     position: relative;
@@ -716,8 +734,19 @@ th {
     left: 550px;
 }
 
+.custom-dropdown.search {
+    position: absolute;
+    top: 120px;
+    left: 20px;
+}
+
 .dropdown-select.course {
     width: 450px;
+}
+
+.dropdown-select.search {
+    width: 150px;
+    text-align: center;
 }
 
 .dropdown-select {

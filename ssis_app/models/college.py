@@ -55,12 +55,22 @@ class college(object):
         return colleges
     
     @classmethod
-    def search(cls, query):
+    def search(cls, query, selected_field):
         cursor = mysql.connection.cursor()
-        sql = "SELECT * FROM college WHERE collegeCode LIKE %s OR collegeName LIKE %s"
-        cursor.execute(sql, (f"%{query}%", f"%{query}%"))
-        result = cursor.fetchall()
-        return result
+        if selected_field == "CODE":
+            sql = "SELECT * FROM college WHERE collegeCode LIKE %s"
+            cursor.execute(sql, (f"%{query}%",))
+
+        elif selected_field == "NAME":
+            cursor.execute(sql, (f"%{query}%",))
+            
+        else:
+            sql = "SELECT * FROM college WHERE collegeCode LIKE %s OR collegeName LIKE %s"
+            cursor.execute(sql, (f"%{query}%", f"%{query}%"))
+
+        results = cursor.fetchall()
+
+        return results
     
     @classmethod
     def get_college_data(college_code):

@@ -98,11 +98,8 @@ def course_list():
 
 @course_bp.route('/search/', methods=['GET', 'POST'])
 def search_courses():
-
     query = request.form.get('query')
-    results = course.search(query)
-
-    if not results:
-        return "NO RECORDS FOUND"
+    selected_field = request.form.get('selectedField')
+    results = course.search(query, selected_field)
 
     return render_template('search_results.html', results=results, context="course")

@@ -2,6 +2,7 @@
 {% block title %}SSIS | COLLEGE{% endblock title %}
 {% block content %}
 
+<!-- NAVIGATION -->
 <nav>
     <ul>
         <li class="current tab"><a href="{{ url_for('college.index') }}">COLLEGE</a></li>
@@ -10,8 +11,7 @@
     </ul>
 </nav>
 
-<h3 class="header">LIST OF COLLEGES</h3>
-
+<!-- SEARCH -->
 <div class="search-container">
     <form method="POST" action="/college/search/" id="search-form">
         <input name="csrf_token" value="{{ csrf_token() }}" hidden />
@@ -19,41 +19,118 @@
             <input type="text" name="query" id="search" placeholder="SEARCH">
             <button type="submit"><i class="fa fa-search"></i></button>
         </div>
+        
+        <input type="hidden" name="selectedField" id="selectedField">
+        <div class="custom-dropdown search">
+            <div class="dropdown-select search" id="search-dropdown">FILTER</div>
+            <div class="dropdown-options" id="search-options">
+                <div class="dropdown-option" data-value="CODE">CODE</div>
+                <div class="dropdown-option" data-value="NAME">NAME</div>
+            </div>
+        </div>
     </form>
 </div>
 
+<!-- ADD -->
 <a href="{{ url_for('college.add_college') }}" class="custom-add-button">+ ADD COLLEGE</a>
 
-<div class="table-container" id="results-container">
+<!-- COLLEGE LIST --> 
+<!--  id="results-container" -->
+<div class="table-container">
     <table>
-        <tr>
-            <th>CODE</th>
-            <th>NAME</th>
-            <th>ACTION</th>
-        </tr>
-        {% for college in colleges %}
-        <tr>
-            <td>{{ college[0] }}</td>
-            <td>{{ college[1] }}</td>
-            <td>
-                <!-- EDIT -->
-                <form method="GET" action="/college/edit">
-                    <input id="college_code" name="college_code" value="{{ college[0] }}" hidden>
-                    <input id="college_name" name="college_name" value="{{ college[1] }}" hidden>
-                    <button type="submit" class="custom-edit-button">EDIT</button>
-                </form>
-
-                <!-- DELETE -->
-                <form method="POST" action="/college/delete/">
-                    <input name="csrf_token" value="{{ csrf_token() }}" hidden />
-                    <input type="hidden" name="college_code" value="{{ college[0] }}" hidden>
-                    <input type="hidden" name="college_name" value="{{ college[1] }}" hidden>
-                    <button type="submit" class="custom-delete-button">DELETE</button>
-                </form>
-            </td>
-        </tr>
-        {% endfor %}
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>CODE</th>
+                <th>NAME</th>
+                <th colspan="2">ACTION</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for college in colleges %}
+            <tr>
+                <td>{{ college[0] }}</td>
+                <td>{{ college[1] }}</td>
+                <td>
+                    <!-- EDIT -->
+                    <form method="GET" action="/college/edit">
+                        <input id="college_code" name="college_code" value="{{ college[0] }}" hidden>
+                        <input id="college_name" name="college_name" value="{{ college[1] }}" hidden>
+                        <button type="submit" class="custom-edit-button">EDIT</button>
+                    </form>
+                </td>
+                <td>
+                    <!-- DELETE -->
+                    <form method="POST" action="/college/delete/">
+                        <input name="csrf_token" value="{{ csrf_token() }}" hidden />
+                        <input type="hidden" name="college_code" value="{{ college[0] }}" hidden>
+                        <input type="hidden" name="college_name" value="{{ college[1] }}" hidden>
+                        <button type="submit" class="custom-delete-button" data-confirm="By clicking delete, you acknowledge that the information will be removed.">DELETE</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
     </table>
 </div>   
+
+<script>
+    // ROW NUMBERING
+    function addRowNumbers() {
+        const tableBody = document.querySelector('table tbody');
+        const rows = tableBody.querySelectorAll('tr');
+
+        rows.forEach((row, index) => {
+            const cell = document.createElement('td');
+            cell.textContent = index + 1;
+            row.insertBefore(cell, row.firstElementChild);
+        });
+    }
+
+    window.addEventListener('load', addRowNumbers);
+
+    // SEARCH
+    const dropdownsearch = document.getElementById('search-dropdown');
+    const optionsearch = document.getElementById('search-options');
+    let selectedField = null; 
+
+    dropdownsearch.addEventListener('click', function() {
+        optionsearch.classList.toggle('show');
+    });
+
+    optionsearch.addEventListener('click', function(e) {
+        if (e.target.classList.contains('dropdown-option')) {
+            selectedField = e.target.getAttribute('data-value'); 
+            dropdownsearch.textContent = selectedField;
+            optionsearch.classList.remove('show');
+            document.getElementById('selectedField').value = selectedField;
+        }
+    });
+
+    document.addEventListener('click', function(e) {
+        if (e.target !== dropdownsearch && e.target !== optionsearch) {
+            optionsearch.classList.remove('show');
+        }
+    });
+
+    // DELETE
+    const deleteButtons = document.querySelectorAll('.custom-delete-button');
+
+    deleteButtons.forEach((button) => {
+        button.addEventListener('click', function (event) {
+
+            event.preventDefault();
+
+            const confirmationMessage = this.getAttribute('data-confirm');
+
+            if (window.confirm(confirmationMessage)) {
+
+                this.closest('form').submit();
+            } else {
+                
+            }
+        });
+    });
+</script>
 
 {% endblock %}  
