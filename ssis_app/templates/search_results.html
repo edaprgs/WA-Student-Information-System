@@ -5,9 +5,9 @@
 <!-- NAVIGATION -->
 <nav>
     <ul>
-        <li><a href="{{ url_for('college.index') }}">COLLEGE</a></li>
-        <li><a href="{{ url_for('course.index') }}">COURSE</a></li>
-        <li><a href="{{ url_for('student.index') }}">STUDENT</a></li>
+        <li><a href="{{ url_for('college.college_list') }}">COLLEGE</a></li>
+        <li><a href="{{ url_for('course.course_list') }}">COURSE</a></li>
+        <li><a href="{{ url_for('student.student_list') }}">STUDENT</a></li>
     </ul>
 </nav>
 
@@ -150,6 +150,7 @@
                     <th>COURSE</th>
                     <th>YEAR</th>
                     <th>GENDER</th>
+                    <th>COLLEGE</th>
                     <th colspan="2">ACTION</th>
                 </tr>
             </thead>
@@ -162,6 +163,7 @@
                 <td>{{ result[3] }}</td>
                 <td>{{ result[4] }}</td>
                 <td>{{ result[5] }}</td>
+                <td>{{ result[7] }}</td>
                 <td>
                     <!-- EDIT -->
                     <form method="GET" action="/student/edit">

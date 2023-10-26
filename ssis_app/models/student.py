@@ -42,8 +42,7 @@ class student(object):
     @classmethod
     def get_student(cls):
         cursor = mysql.connection.cursor()
-        cursor = mysql.connection.cursor()
-        cursor.execute("SELECT * FROM student ORDER BY lastName") 
+        cursor.execute("SELECT student.*, course.collegeCode FROM student JOIN course ON student.course = course.courseCode") 
         students = cursor.fetchall()
         cursor.close()
         return students
@@ -84,8 +83,20 @@ class student(object):
             cursor.execute(sql, (f"%{query}%",))
 
         else:
-            sql = "SELECT * FROM student WHERE studentID LIKE %s OR firstName LIKE %s OR lastName LIKE %s OR course LIKE %s OR yearlevel LIKE %s OR gender LIKE %s"
-            cursor.execute(sql, (f"%{query}%", f"%{query}%", f"%{query}%", f"%{query}%", f"%{query}%", f"%{query}%"))
+           sql = """
+                SELECT student.*, course.collegeCode 
+                FROM student 
+                JOIN course ON student.course = course.courseCode 
+                WHERE student.studentID LIKE %s 
+                OR student.firstName LIKE %s 
+                OR student.lastName LIKE %s 
+                OR student.course LIKE %s 
+                OR student.yearlevel LIKE %s 
+                OR student.gender LIKE %s
+                OR course.collegeCode LIKE %s
+            """
+        search_query = f"%{query}%"
+        cursor.execute(sql, (search_query, search_query, search_query, search_query, search_query, search_query, search_query))
 
         results = cursor.fetchall()
 

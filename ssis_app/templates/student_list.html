@@ -49,45 +49,50 @@
                 <th>COURSE</th>
                 <th>YEAR</th>
                 <th>GENDER</th>
+                <th>COLLEGE</th>
                 <th colspan="2">ACTION</th>
             </tr>
         </thead>
         <tbody>
             {% for student in students %}
-        <tr>
-            <td>{{ student[0] }}</td>
-            <td>{{ student[1] }}</td>
-            <td>{{ student[2] }}</td>
-            <td>{{ student[3] }}</td>
-            <td>{{ student[4] }}</td>
-            <td>{{ student[5] }}</td>
-            <td>
-                <!-- EDIT -->
-                <form method="GET" action="/student/edit">
-                    <input id="studentID" name="studentID" value="{{ student[0] }}" hidden>
-                    <input id="first_name" name="first_name" value="{{ student[1] }}" hidden>
-                    <input id="last_name" name="last_name" value="{{ student[2] }}" hidden>
-                    <input id="course_code" name="course_code" value="{{ student[3] }}" hidden>
-                    <input id="year_level" name="year_level" value="{{ student[4] }}" hidden>
-                    <input id="gender" name="gender" value="{{ student[5] }}" hidden>
-                    <button type="submit" class="custom-edit-button">EDIT</button>
-                </form>
-            </td>
-            <td>
-                <!-- DELETE -->
-                <form method="POST" action="/student/delete/">
-                    <input name="csrf_token" value="{{ csrf_token() }}" hidden />
-                    <input id="studentID" name="studentID" value="{{ student[0] }}" hidden>
-                    <input id="first_name" name="first_name" value="{{ student[1] }}" hidden>
-                    <input id="last_name" name="last_name" value="{{ student[2] }}" hidden>
-                    <input id="course_code" name="course_code" value="{{ student[3] }}" hidden>
-                    <input id="year_level" name="year_level" value="{{ student[4] }}" hidden>
-                    <input id="gender" name="gender" value="{{ student[5] }}" hidden>
-                    <button type="submit" class="custom-delete-button" data-confirm="By clicking delete, you acknowledge that the information will be deleted.">DELETE</button>
-                </form>
-            </td>
-        </tr>
-        {% endfor %}
+            <tr>
+                <td>{{ student[0] }}</td>
+                <td>{{ student[1] }}</td>
+                <td>{{ student[2] }}</td>
+                <td>{{ student[3] }}</td>
+                <td>{{ student[4] }}</td>
+                <td>{{ student[5] }}</td>
+                <td>{{ student[7] }}</td>
+
+                <td>
+                    <!-- EDIT -->
+                    <form method="GET" action="/student/edit">
+                        <input id="studentID" name="studentID" value="{{ student[0] }}" hidden>
+                        <input id="first_name" name="first_name" value="{{ student[1] }}" hidden>
+                        <input id="last_name" name="last_name" value="{{ student[2] }}" hidden>
+                        <input id="course_code" name="course_code" value="{{ student[3] }}" hidden>
+                        <input id="year_level" name="year_level" value="{{ student[4] }}" hidden>
+                        <input id="gender" name="gender" value="{{ student[5] }}" hidden>
+                        <button type="submit" class="custom-edit-button">EDIT</button>
+                    </form>
+                </td>
+
+                <td>
+                    <!-- DELETE -->
+                    <form method="POST" action="/student/delete/">
+                        <input name="csrf_token" value="{{ csrf_token() }}" hidden />
+                        <input id="studentID" name="studentID" value="{{ student[0] }}" hidden>
+                        <input id="first_name" name="first_name" value="{{ student[1] }}" hidden>
+                        <input id="last_name" name="last_name" value="{{ student[2] }}" hidden>
+                        <input id="course_code" name="course_code" value="{{ student[3] }}" hidden>
+                        <input id="year_level" name="year_level" value="{{ student[4] }}" hidden>
+                        <input id="gender" name="gender" value="{{ student[5] }}" hidden>
+                        <button type="submit" class="custom-delete-button" data-confirm="By clicking delete, you acknowledge that the information will be deleted.">DELETE</button>
+                    </form>
+                </td>
+
+            </tr>
+            {% endfor %}
         </tbody>
     </table>
 </div>

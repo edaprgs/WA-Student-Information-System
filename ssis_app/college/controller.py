@@ -6,10 +6,6 @@ from flask import Blueprint
 
 college_bp = Blueprint('college', __name__)
 
-@college_bp.route("/")
-def index():
-    return render_template("college.html")
-
 @college_bp.route('/add/', methods=["GET", "POST"])
 def add_college():
     form = college_form()
