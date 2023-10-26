@@ -95,21 +95,21 @@ def student_confirmation():
 def student_error():
     return render_template('error.html', context="student")
 
-@student_bp.route('/success/')
+@student_bp.route('/added_successfully/')
 def add_success_message():
-    return render_template('success_message.html', context="student_add")
+    return render_template('add_success_message.html', context="student")
 
 @student_bp.route('/error/')
 def add_error_message():
-    return render_template('error_message.html', context="student_add")
+    return render_template('add_error_message.html', context="student")
 
-@student_bp.route('/success/')
+@student_bp.route('/updated/')
 def edit_success_message():
-    return render_template('success_message.html', context="student_edit")
+    return render_template('edit_success_message.html', context="student")
 
-@student_bp.route('/error/')
+@student_bp.route('/error_update/')
 def edit_error_message():
-    return render_template('error_message.html', context="student_edit")
+    return render_template('edit_error_message.html', context="student")
 
 @student_bp.route('/list/')
 def student_list():

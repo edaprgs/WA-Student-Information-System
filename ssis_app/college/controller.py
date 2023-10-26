@@ -70,21 +70,21 @@ def college_confirmation():
 def college_error():
     return render_template('error.html', context="college")
 
-@college_bp.route('/success/')
+@college_bp.route('/added_successfully/')
 def add_success_message():
-    return render_template('success_message.html', context="college_add")
+    return render_template('add_success_message.html', context="college")
 
 @college_bp.route('/error/')
 def add_error_message():
-    return render_template('error_message.html', context="college_add")
+    return render_template('add_error_message.html', context="college")
 
-@college_bp.route('/success/')
+@college_bp.route('/updated/')
 def edit_success_message():
-    return render_template('success_message.html', context="college_edit")
+    return render_template('edit_success_message.html', context="college")
 
-@college_bp.route('/error/')
+@college_bp.route('/error_update/')
 def edit_error_message():
-    return render_template('error_message.html', context="college_edit")
+    return render_template('editerror_message.html', context="college")
 
 @college_bp.route('/list/')
 def college_list():

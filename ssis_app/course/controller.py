@@ -80,21 +80,21 @@ def course_confirmation():
 def course_error():
     return render_template('error.html', context="course")
 
-@course_bp.route('/success/')
+@course_bp.route('/added_successfully/')
 def add_success_message():
-    return render_template('success_message.html', context="course_add")
+    return render_template('add_success_message.html', context="course")
 
 @course_bp.route('/error/')
 def add_error_message():
-    return render_template('error_message.html', context="course_add")
+    return render_template('add_error_message.html', context="course")
 
-@course_bp.route('/success/')
+@course_bp.route('/updated/')
 def edit_success_message():
-    return render_template('success_message.html', context="course_edit")
+    return render_template('edit_success_message.html', context="course")
 
-@course_bp.route('/error/')
+@course_bp.route('/error_update/')
 def edit_error_message():
-    return render_template('error_message.html', context="course_edit")
+    return render_template('edit_error_message.html', context="course")
 
 @course_bp.route('/list/')
 def course_list():
