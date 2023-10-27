@@ -64,7 +64,7 @@
                         <input name="csrf_token" value="{{ csrf_token() }}" hidden />
                         <input type="hidden" name="college_code" value="{{ college[0] }}" hidden>
                         <input type="hidden" name="college_name" value="{{ college[1] }}" hidden>
-                        <button type="submit" class="custom-delete-button" data-confirm="By clicking delete, you acknowledge that the information will be removed.">DELETE</button>
+                        <button class="custom-delete-button" data-confirm="By clicking delete, you acknowledge that the information will be removed." type="submit" >DELETE</button>
                     </form>
                 </td>
             </tr>
@@ -74,8 +74,6 @@
 </div>   
 
 <script>
-    window.addEventListener('load', addRowNumbers);
-
     // SEARCH
     const dropdownsearch = document.getElementById('search-dropdown');
     const optionsearch = document.getElementById('search-options');
@@ -114,7 +112,7 @@
 
                 this.closest('form').submit();
             } else {
-                
+
             }
         });
     });

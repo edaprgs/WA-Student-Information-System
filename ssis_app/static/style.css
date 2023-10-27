@@ -567,6 +567,10 @@ th {
     cursor: pointer;
 }
 
+.custom-edit-button:hover {
+    transform: scale(105%);
+}
+
 /* delete button in list */
 .custom-delete-button {
     border: none;
@@ -580,6 +584,10 @@ th {
     text-decoration: none;
     display: inline-block;
     cursor: pointer;
+}
+
+.custom-delete-button:hover {
+    transform: scale(105%);
 }
 
 /* add button in list */
@@ -596,6 +604,10 @@ th {
     position: relative;
     background-size: 200%;
     text-decoration: none;
+}
+
+.custom-add-button:hover {
+    transform: scale(105%);
 }
 
 /* search bar in list */

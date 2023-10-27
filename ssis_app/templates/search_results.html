@@ -45,7 +45,7 @@
                             <input name="csrf_token" value="{{ csrf_token() }}" hidden />
                             <input type="hidden" name="college_code" value="{{ result[0] }}" hidden>
                             <input type="hidden" name="college_name" value="{{ result[1] }}" hidden>
-                            <button type="submit" class="custom-delete-button">DELETE</button>
+                            <button type="submit" class="custom-delete-button" data-confirm="By clicking delete, you acknowledge that the information will be removed." >DELETE</button>
                         </form>
                     </td>
                 </tr>
@@ -120,7 +120,7 @@
                         <input type="hidden" name="course_code" value="{{ result[0] }}">
                         <input type="hidden" name="course_name" value="{{ result[1] }}">
                         <input type="hidden" name="college_code" value="{{ result[2] }}">
-                        <button type="submit" class="custom-delete-button">DELETE</button>
+                        <button type="submit" class="custom-delete-button" data-confirm="By clicking delete, you acknowledge that the information will be removed." >DELETE</button>
                     </form>
                 </td>
             </tr>
@@ -163,7 +163,7 @@
                 <td>{{ result[3] }}</td>
                 <td>{{ result[4] }}</td>
                 <td>{{ result[5] }}</td>
-                <td>{{ result[6] }}</td>
+                <td>{{ result[7] }} ({{ result[8] }})</td>
                 <td>
                     <!-- EDIT -->
                     <form method="GET" action="/student/edit">
@@ -188,7 +188,7 @@
                         <input id="year_level" name="year_level" value="{{ result[4] }}" hidden>
                         <input id="gender" name="gender" value="{{ result[5] }}" hidden>
     
-                        <button type="submit" class="custom-delete-button">DELETE</button>
+                        <button type="submit" class="custom-delete-button" data-confirm="By clicking delete, you acknowledge that the information will be removed." >DELETE</button>
                     </form>
                 </td>
             </tr>
@@ -206,5 +206,26 @@
     <a href="{{ url_for('base.html') }}" class="btn redirect">GO BACK</a>
 
 {% endif %}
+
+<script>
+    // DELETE
+    const deleteButtons = document.querySelectorAll('.custom-delete-button');
+
+    deleteButtons.forEach((button) => {
+        button.addEventListener('click', function (event) {
+
+            event.preventDefault();
+
+            const confirmationMessage = this.getAttribute('data-confirm');
+
+            if (window.confirm(confirmationMessage)) {
+
+                this.closest('form').submit();
+            } else {
+
+            }
+        });
+    });
+</script>
 
 {% endblock %}  
