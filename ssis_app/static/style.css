@@ -16,120 +16,125 @@
 }
 
 /* logo */
-.logo-style {
-    width: 15px;
-    height: 60px;
+.nav-logo {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--pinkA);
+    font-weight: 900;
+    border-bottom: 1px solid var(--pinkB);
+}
+
+.nav-logo p {
+    margin-bottom: 20px;
+}
+
+.nav-logo img {
+    width: 70px;
+}
+
+/* NAVBAR */
+.sidenav {
+    width: 230px;
+    top: 0;
+    height: 100vh;
+    position: fixed;
+    padding: 8px;
+    z-index: 1;
+}
+
+.navbar {
+    width: 100%;
+    height: 70px;
+    position: fixed; 
+    background-color: white;
+    border-bottom: 1px solid var(--pinkC);
+    left: 230px;    
+    padding: 23px;
+    font-weight: 900;
+    color: var(--pinkA);
+    font-size: 20px;
+}
+
+.navbar.add {
+    display: flex;
+    gap: 30px;
+}
+
+/* icon */
+.icon-bg {
+    width: 100%;  
+    height: 40px; 
+    padding: 4px;
+    border-radius: 5px; 
+}
+
+.icon-bg:hover {
+    transition: 0.3s;
     background-color: var(--pinkA);
-    top: 15px;
-    left: 20px;
-    position: absolute;
+    border-radius: 5px; 
 }
 
-.main-logo {
-    color: #000;
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
-    top: 31px;
-    left: 60px;
-    position: absolute;
+.icon-bg:hover img, .icon-bg:hover p {
+    filter: brightness(0) invert(1);
 }
 
-/* home page nav */
-.left-rectangle {
-    width: 260px; 
-    height: 380px; 
+/* selected icon */
+.selected-icon-bg {
+    width: 100%;    
+    height: 40px; 
     background-color: var(--pinkA);
-    border-radius: 12px;
-    top: 140px;
-    left: 410px;
-    position: absolute;
+    border-radius: 5px; 
+    padding: 4px;
 }
 
-.student-icon {
-    top: 110px;
-    left: 380px;
-    position: absolute;
+.selected-icon-bg img {
+    filter: brightness(0) invert(1);
 }
 
-.student-title-text {
-    color: #FFF;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-    bottom: 220px;
-    left: 500px;
-    position: absolute;
+.selected-icon-bg p {
+    color: white;
 }
 
-.right-rectangle {
-    width: 440px; 
-    height: 180px; 
-    border-radius: 12px;
-    position: absolute;
-    left: 695px;
+ul {
+    list-style: none;
 }
 
-.right-rectangle.college {
-    background-color: var(--purpleA);
-    top: 140px;
+ul li {
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    cursor: pointer;
+    transition: 1ms;
 }
 
-.college-icon {
-    top: 80px;
-    left: 865px;
-    position: absolute;
+a {
+    text-decoration: none;
+    color: white;
 }
 
-.college-title-text {
-    color: #FFF;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-    top: 210px;
-    left: 740px;
-    position: absolute;
+ul li img {
+    margin-right: 10px;
+    margin-left: 15px;
+    width: 22px;
+    z-index: 1;
 }
 
-.right-rectangle.course {
-    background-color: var(--cyanA);
-    top: 340px;
-}
-
-.course-icon {
-    bottom: 150px;
-    left: 730px;
-    position: absolute;
-}
-
-.course-title-text {
-    color: #FFF;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-    bottom: 290px;
-    left: 1005px;
-    position: absolute;
-}
-
-.right-rectangle, .left-rectangle {
-    transition: box-shadow 0.5s; 
-}
-
-.right-rectangle:hover, .left-rectangle:hover {
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4); 
+ul li p {
+    white-space: nowrap;
+    z-index: 1;
+    color: var(--pinkA);
+    font-size: 14px;
 }
 
 /* footer styles */
 .footer-rect {
-    font-size: small;
+    font-size: 12px;
     width: 100%; 
-    height: 50px;
-    background-color: var(--pinkC);
+    height: 45px;
+    background-color: var(--pinkA);
     text-align: left;
     padding: 15px;
     position: fixed; 
@@ -137,238 +142,11 @@
     left: 0; 
     right: 0; 
     z-index: 999; 
-}
-
-/* header navigation */
-nav ul {
-    display: flex;
-    align-items: center;
-    position: absolute;
-    top: 25px;
-    right: 20px; 
-    list-style: none;
-}
-
-nav li {
-    background-color: var(--pinkB); 
-    padding: 10px 30px;
-}
-
-nav a {
-    text-decoration: none;
-    color: #fff;
-}
-
-.current.tab {
-    background-color: var(--pinkA); 
-    padding: 10px 30px;
-}
-
-nav li:hover {
-    background-color: var(--pinkA); 
-}
-
-/* categorization custom style */
-.add-text {
     color: white;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-    top: 390px;
-    left: 340px;
-    position: absolute;
 }
 
-.list-text {
-    color: white;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-    top: 390px;
-    left: 810px;
-    position: absolute;
-}
-
-.add-icon {
-    top: 230px;
-    left: 660px;
-    position: absolute;
-}
-
-.list-icon {
-    top: 230px;
-    left: 1125px;
-    position: absolute;
-}
-
-/* college category */
-.college-add-rect {
-    width: 450px; 
-    height: 250px; 
-    background-color: var(--purpleA);
-    border-radius: 12px;
-    top: 200px;
-    left: 300px;
-    position: absolute;
-}
-
-.college-list-rect {
-    width: 450px; 
-    height: 250px; 
-    background-color: var(--pinkB);
-    border-radius: 12px;
-    top: 200px;
-    left: 770px;
-    position: absolute;
-}
-
-/* course category */
-.course-add-rect {
-    width: 450px; 
-    height: 250px; 
-    background-color: var(--pinkB);
-    border-radius: 12px;
-    top: 200px;
-    left: 300px;
-    position: absolute;
-}
-
-.course-list-rect {
-    width: 450px; 
-    height: 250px; 
-    background-color: var(--cyanA);
-    border-radius: 12px;
-    top: 200px;
-    left: 770px;
-    position: absolute;
-}
-
-/* student category */
-.student-add-rect {
-    width: 450px; 
-    height: 250px; 
-    background-color: var(--pinkA);
-    border-radius: 12px;
-    top: 200px;
-    left: 300px;
-    position: absolute;
-}
-
-.student-list-rect {
-    width: 450px; 
-    height: 250px; 
-    background-color: var(--purpleA);
-    border-radius: 12px;
-    top: 200px;
-    left: 770px;
-    position: absolute;
-}
-
-.college-add-rect, 
-.college-list-rect, 
-.course-add-rect, 
-.course-list-rect, 
-.student-add-rect, 
-.student-list-rect {
-    transition: box-shadow 0.5s; 
-}
-
-.college-add-rect:hover, 
-.college-list-rect:hover, 
-.course-add-rect:hover, 
-.course-list-rect:hover, 
-.student-add-rect:hover, 
-.student-list-rect:hover {
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4); 
-}
-
-.back-icon {
-    top: 138px;
-    left: 250px;
-    position: absolute;
-}
-
-/* add and edit styles */
-.entity.bg {
-    width: 1100px; 
-    height: 500px; 
-    background-color: white;
-    box-shadow: 5px 5px 10px rgba(255, 132, 177, 0.5);
-    border-radius: 12px;
-    top: 50%; 
-    left: 50%; 
-    transform: translate(-50%, -50%);
-    position: absolute;
-}
-.entity.heading {
-    top: 141px;
-    left: 315px;
-    position: absolute;
-}
-
-/* delete styles */
-.delete-entity.bg {
-    width: 500px; 
-    height: 300px; 
-    background-color: white;
-    box-shadow: 5px 15px 20px rgba(255, 132, 177, 0.5);
-    border-radius: 12px;
-    top: 50%; 
-    left: 50%; 
-    transform: translate(-50%, -60%); 
-    position: absolute;
-}
-
-.delete-redirect.bg {
-    width: 630px; 
-    height: 250px; 
-    background-color: white;
-    box-shadow: 5px 15px 20px rgba(255, 132, 177, 0.5);
-    border-radius: 12px;
-    top: 50%; 
-    left: 50%; 
-    transform: translate(-50%, -60%); 
-    position: absolute;
-}
-
-.delete-entity.heading {
-    top: 33%; 
-    left: 50%; 
-    transform: translate(-50%, -50%); 
-    position: absolute;
-    font-size: 22px;
-    font-weight: 900;
-    text-align: center;
-}
-
-.delete-text.body {
-    top: 43%; 
-    left: 50%; 
-    transform: translate(-50%, -50%); 
-    position: absolute;
-    font-weight: bold;
-}
-
-.btn.delete-yes {
-    position: relative;
-    top: 390px;
-    left: 690px;
-}
-
-.btn.delete-no {
-    position: relative;
-    top: 363px;
-    left: 950px;
-    background: var(--pinkC);
-    color: var(--pinkA);
-}
-
-.btn.redirect {
-    position: absolute;
-    top: 355px;
-    left: 710px;
+.back-icon img {
+    width: 25px;
 }
 
 /* input box styles */
@@ -421,44 +199,42 @@ nav li:hover {
 .inputBox.code {
     position: absolute;
     top: 240px;
-    left: 315px;
+    left: 400px;
 }
 
 .inputBox.name {
     position: absolute;
     top: 300px;
-    left: 315px;
+    left: 400px;
 }
 
 .inputBox.id {
     position: absolute;
     top: 200px;
-    left: 315px;
+    left: 400px;
 }
 
 .inputBox.fname {
     position: absolute;
     top: 255px;
-    left: 315px;
+    left: 400px;
 }
 
 .inputBox.lname {
     position: absolute;
     top: 310px;
-    left: 315px;
+    left: 400px;
 }
 
 /* icon in add forms */
 .sideicon {
-    top: 185px;
-    left: 860px;
+    top: 18%;
+    right: 180px;
     position: absolute;
 }
 
 .sideicon.student {
-    top: 160px;
-    left: 900px;
-    position: absolute;
+    top: 24%;
 }
 
 /* button to submit */
@@ -483,19 +259,19 @@ nav li:hover {
 .btn.btn1 {
     position: relative;
     top: 440px;
-    left: 538px;
+    left: 630px;
 }
 
 .btn.btn2 {
     position: relative;
     top: 530px;
-    left: 538px;
+    left: 630px;
 }
 
 .btn.btn3 {
     position: relative;
     top: 480px;
-    left: 538px;
+    left: 630px;
 }
 
 .btn:hover {
@@ -504,14 +280,6 @@ nav li:hover {
 
 .btn:active {
     transform: scale(0.80);
-}
-
-/* table styles */
-/* header */
-.header {
-    top: 125px;
-    left: 20px;
-    position: absolute;
 }
 
 /* table */
@@ -527,22 +295,39 @@ thead {
 
 .table-container {
     position: relative; 
-    top: 175px; 
+    top: 170px; 
     margin-right: 20px; 
-    margin-left: 20px;      
+    margin-left: 250px;      
     overflow-y: scroll; 
     overflow-x: hidden;
-    max-height: 435px;
+    max-height: 450px;
+}
+
+.table-container::-webkit-scrollbar, .dropdown-options::-webkit-scrollbar {
+    width: 10px; 
+}
+
+.table-container::-webkit-scrollbar-thumb, .dropdown-options::-webkit-scrollbar-thumb {
+    background-color: var(--pinkA); 
+    border-radius: 5px;
+}
+
+.table-container::-webkit-scrollbar-track, .dropdown-options::-webkit-scrollbar-track {
+    background-color: var(--pinkC);
+    margin-top: 50px;
+    border-radius: 5px;
+}
+
+.dropdown-options::-webkit-scrollbar-track {
+    background-color: var(--pinkC);
+    margin-top: 5px;
 }
 
 th, td {
     border: 2px solid white;
     text-align: center;
     padding: 10px;
-}
-
-tr:nth-child(even) {
-    background-color: whitesmoke;
+    border-bottom: 2px solid var(--pinkC);
 }
 
 th {
@@ -552,65 +337,27 @@ th {
     font-size: 16px;
 }
 
-/* edit button in list */
-.custom-edit-button {
+.custom-edit-button, .custom-delete-button  {
     border: none;
-    padding: 8px 30px;
-    font-size: 15px;
-    border-radius: 5px;
-    background-color: #ffffba;
-    font-weight: 900;
-    color: #8B8000;
-    background-size: 200%;
-    text-decoration: none;
-    display: inline-block;
+    background-color: white;
     cursor: pointer;
 }
 
-.custom-edit-button:hover {
-    transform: scale(105%);
+.custom-edit-button img, .custom-delete-button img {
+    width: 25px;
 }
 
-/* delete button in list */
-.custom-delete-button {
-    border: none;
-    padding: 8px 26px;
-    font-size: 15px;
-    border-radius: 5px;
-    background-color: #ffb3ba;
-    font-weight: 900;
-    color: #6E260E;
-    background-size: 200%;
-    text-decoration: none;
-    display: inline-block;
-    cursor: pointer;
-}
-
-.custom-delete-button:hover {
-    transform: scale(105%);
-}
-
-/* add button in list */
 .custom-add-button {
-    border: none;
-    top: 125px;
-    left: 1365px;
-    padding: 8px 20px;
-    font-size: 15px;
-    border-radius: 5px;
-    background-color: #baffc9;
-    font-weight: 900;
-    color: #355E3B;
-    position: relative;
-    background-size: 200%;
-    text-decoration: none;
+    position: absolute;
+    right: 20px;
+    top: 15px;
 }
 
-.custom-add-button:hover {
-    transform: scale(105%);
+.custom-add-button img {
+    width: 40px;
+    border-radius: 100%;
 }
 
-/* search bar in list */
 /* Style for the search bar container */
 .search-bar {
     display: flex;
@@ -619,10 +366,9 @@ th {
     background-color: white;
     border: 2px solid var(--pinkC);
     overflow: hidden;
-    color: #bfbdbeab;
-    border-radius: 20px;
-    top: 120px;
-    left: 190px;
+    border-radius: 5px;
+    top: 100px;
+    left: 420px;
     position: absolute;
 }
 
@@ -662,7 +408,7 @@ th {
 .custom-return-button {
     position: relative;
     top: 123px;
-    left: 20px;
+    left: 250px;
     border: none;
     padding: 8px 30px;
     font-size: 15px;
@@ -672,46 +418,7 @@ th {
     color: var(--pinkA);
     background-size: 200%;
     text-decoration: none;
-}
-
-/* message */
-/* Message Text */
-.message-text {
-    position: absolute;
-    top: 370px;
-    left: 315px;
-    font-style: italic; 
-    font-size: 14px;    
-}
-
-/* Success Message */
-.message-text.success {
-    color: blue;
-}
-
-.message-text.success.course {
-    color: blue;
-    top: 415px;
-}
-
-.message-text.success.student {
-    color: blue;
-    top: 475px;
-}
-
-/* Error Message */
-.message-text.error {
-    color: red;
-}
-
-.message-text.error.course {
-    color: red;
-    top: 415px;
-}
-
-.message-text.error.student {
-    color: red;
-    top: 475px;
+    cursor: pointer;
 }
 
 /* dropdown */
@@ -726,30 +433,30 @@ th {
 
 .custom-select.college {
     top: 360px;
-    left: 315px;
+    left: 400px;
 }
 
 .custom-select.course {
     top: 420px;
-    left: 315px;
+    left: 400px;
 }
 
 .custom-dropdown.gender {
     position: absolute;
     top: 365px;
-    left: 315px;
+    left: 400px;
 }
 
 .custom-dropdown.yearlevel {
     position: absolute;
     top: 365px;
-    left: 550px;
+    left: 635px;
 }
 
 .custom-dropdown.search {
     position: absolute;
-    top: 120px;
-    left: 20px;
+    top: 100px;
+    left: 250px;
 }
 
 .dropdown-select.course {
@@ -774,16 +481,15 @@ th {
     display: none;
     position: absolute;
     background-color: white;
-    border-radius: 5px;
+    color: var(--pinkA);
     width: 100%;
     z-index: 1000;
     max-height: 200px;
-    overflow: auto;
+    overflow-y: scroll;
 }
 
 .dropdown-option:hover {
-    background-color: var(--pinkC); 
-    border-radius: 5px;
+    background-color: #fbf0f5 
 }
 
 .dropdown-option {
@@ -793,4 +499,78 @@ th {
 
 .dropdown-options.show {
     display: block;
+}
+
+/* modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+  
+.modal-dialog {
+    position: relative;
+    width: auto;
+    margin: 12% auto;
+}
+  
+.modal-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    background-color: #fff;
+    border-radius: 5px;
+    margin: 0 auto;
+    padding: 10px;
+}
+  
+.modal-header {
+    padding: 10px;
+    border-bottom: 1px solid var(--pinkA);
+    color: var(--pinkA);
+    font-size: 12px;
+}
+  
+.modal-body {
+    padding: 20px;
+    font-size: 16px;
+}
+  
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+}
+  
+.modal-title {
+    margin: 0;
+}
+
+.modal.show {
+    display: block;
+}
+  
+/* modal confirmation button */
+.btn-done {
+    color: white;
+    background-color: var(--pinkA);
+    border: none;
+    border-radius: 5px;
+    width: 100px;
+    height: 40px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.btn-done:active {
+    transform: translateY(1px);
 }

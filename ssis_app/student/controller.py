@@ -1,4 +1,4 @@
-from flask import render_template, redirect, request, url_for, flash
+from flask import render_template, request
 from ssis_app.student.forms import *
 import ssis_app.models as models
 from ssis_app.models.student import *
@@ -28,9 +28,9 @@ def add_student():
         result = new_student.add()
 
         if result:
-            return redirect(url_for('student.add_success_message'))
+            return render_template('add_student.html', success=True, student_form=form)
         else:
-            return redirect(url_for('student.add_error_message'))
+            return render_template('add_student.html', error=True, student_form=form)
 
     return render_template('add_student.html', course_codes=course_codes,student_form=form)
 
@@ -58,9 +58,9 @@ def student_edit():
         updated = student.update(studentID=_studentID, firstName=new_fname, lastName=new_lname, course=new_course, yearlevel=new_ylevel, gender=new_gender)  
 
         if updated:
-            return redirect(url_for('student.edit_success_message'))
+            return render_template('edit_student.html', success=True)
         else:
-            return redirect(url_for('student.edit_error_message'))
+            return render_template('edit_student.html', error=True)
         
     return render_template("edit_student.html")
 
@@ -81,35 +81,11 @@ def student_delete():
         print(result, student_ID, fname, lname, student_course, ylevel, gender)
 
         if result:
-            return redirect(url_for('student.student_confirmation'))
+            return render_template('student_list.html', success=True, student_form=form)
         else:
-            return redirect(url_for('student.student_error'))
+            return render_template('student_list.html', error=True, student_form=form)
             
     return render_template("student_list.html", student_form=form)
-
-@student_bp.route('/student_confirmation/')
-def student_confirmation():
-    return render_template('confirmation.html', context="student")
-
-@student_bp.route('/student_error/')
-def student_error():
-    return render_template('error.html', context="student")
-
-@student_bp.route('/added_successfully/')
-def add_success_message():
-    return render_template('add_success_message.html', context="student")
-
-@student_bp.route('/error/')
-def add_error_message():
-    return render_template('add_error_message.html', context="student")
-
-@student_bp.route('/updated/')
-def edit_success_message():
-    return render_template('edit_success_message.html', context="student")
-
-@student_bp.route('/error_update/')
-def edit_error_message():
-    return render_template('edit_error_message.html', context="student")
 
 @student_bp.route('/list/')
 def student_list():
