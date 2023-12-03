@@ -2,17 +2,43 @@
 {% block title %}SSIS | SEARCH RESULTS{% endblock title %}
 {% block content %}
 
-<!-- NAVIGATION -->
-<nav>
-    <ul>
-        <li><a href="{{ url_for('college.college_list') }}">COLLEGE</a></li>
-        <li><a href="{{ url_for('course.course_list') }}">COURSE</a></li>
-        <li><a href="{{ url_for('student.student_list') }}">STUDENT</a></li>
-    </ul>
-</nav>
-
 <!-- COLLEGE -->
 {% if context == "college" %}
+    <div class="sidenav">
+        <ul>
+            <div class="nav-logo">
+                <img src="{{ url_for('static', filename='images/Student-Info Logo.png') }}"> 
+                <p>STUDENT INFORMATION SYSTEM</p>
+            </div>
+            <a href="{{ url_for('index') }}">
+                <li class="icon-bg">
+                    <img src="{{ url_for('static', filename='images/Home.png') }}"> 
+                    <p>Home</p>
+                </li>
+            </a>    
+            <li class="selected-icon-bg">
+                <img src="{{ url_for('static', filename='images/College.png') }}"> 
+                <p>College</p>
+            </li>
+            <a href="{{ url_for('course.course_list') }}">
+                <li class="icon-bg">
+                    <img src="{{ url_for('static', filename='images/Course.png') }}"> 
+                    <p>Course</p>
+                </li>
+            </a>
+            <a href="{{ url_for('student.student_list') }}">
+                <li class="icon-bg">
+                    <img src="{{ url_for('static', filename='images/Student.png') }}"> 
+                    <p>Student</p>
+                </li>
+            </a>
+        </ul>
+    </div>
+
+    <div class="navbar">
+        <p>COLLEGE</p>
+    </div>
+
     <form action="/college/list/">
         <button type="submit" class="custom-return-button">BACK</button>
     </form>
@@ -36,7 +62,9 @@
                         <form method="GET" action="/college/edit">
                             <input id="college_code" name="college_code" value="{{ result[0] }}" hidden>
                             <input id="college_name" name="college_name" value="{{ result[1] }}" hidden>
-                            <button type="submit" class="custom-edit-button">EDIT</button>
+                            <button type="submit" class="custom-edit-button">
+                                <img src="{{ url_for('static', filename='images/Edit.png') }}"> 
+                            </button>
                         </form>
                     </td>
                     <td>
@@ -45,7 +73,9 @@
                             <input name="csrf_token" value="{{ csrf_token() }}" hidden />
                             <input type="hidden" name="college_code" value="{{ result[0] }}" hidden>
                             <input type="hidden" name="college_name" value="{{ result[1] }}" hidden>
-                            <button type="submit" class="custom-delete-button" data-confirm="By clicking delete, you acknowledge that the information will be removed." >DELETE</button>
+                            <button class="custom-delete-button" data-confirm="By clicking delete, you acknowledge that the information will be removed." type="submit" >
+                                <img src="{{ url_for('static', filename='images/Delete.png') }}"> 
+                            </button>
                         </form>
                     </td>
                 </tr>
@@ -61,6 +91,41 @@
 
 <!-- COURSE -->
 {% elif context == "course" %}
+    <div class="sidenav">
+        <ul>
+            <div class="nav-logo">
+                <img src="{{ url_for('static', filename='images/Student-Info Logo.png') }}"> 
+                <p>STUDENT INFORMATION SYSTEM</p>
+            </div>
+            <a href="{{ url_for('index') }}">
+                <li class="icon-bg">
+                    <img src="{{ url_for('static', filename='images/Home.png') }}"> 
+                    <p>Home</p>
+                </li>
+            </a>  
+            <a href="{{ url_for('college.college_list') }}">
+                <li class="icon-bg">
+                    <img src="{{ url_for('static', filename='images/College.png') }}"> 
+                    <p>College</p>
+                </li>
+            </a>
+            <li class="selected-icon-bg">
+                <img src="{{ url_for('static', filename='images/Course.png') }}"> 
+                <p>Course</p>
+            </li>
+            <a href="{{ url_for('student.student_list') }}">
+                <li class="icon-bg">
+                    <img src="{{ url_for('static', filename='images/Student.png') }}"> 
+                    <p>Student</p>
+                </li>
+            </a>
+        </ul>
+    </div>
+
+    <div class="navbar">
+        <p>COURSE</p>
+    </div>
+
     <form action="/course/list/">
         <button type="submit" class="custom-return-button">BACK</button>
     </form>
@@ -110,7 +175,9 @@
                             </select>
                         </div>    
 
-                        <button type="submit" class="custom-edit-button">EDIT</button>
+                        <button type="submit" class="custom-edit-button">
+                            <img src="{{ url_for('static', filename='images/Edit.png') }}"> 
+                        </button>
                     </form>
                 </td>
                 <td>
@@ -120,13 +187,15 @@
                         <input type="hidden" name="course_code" value="{{ result[0] }}">
                         <input type="hidden" name="course_name" value="{{ result[1] }}">
                         <input type="hidden" name="college_code" value="{{ result[2] }}">
-                        <button type="submit" class="custom-delete-button" data-confirm="By clicking delete, you acknowledge that the information will be removed." >DELETE</button>
+                        <button class="custom-delete-button" data-confirm="By clicking delete, you acknowledge that the information will be removed." type="submit" >
+                            <img src="{{ url_for('static', filename='images/Delete.png') }}"> 
+                        </button>
                     </form>
                 </td>
             </tr>
             {% endfor %}
             {% if results | length == 0 %}
-                <td colspan="3">
+                <td colspan="4">
                     <h3 style="text-align: center; color: #FF84B1;">NO COURSE RECORD FOUND</h3>
                 </td>
             {% endif %} 
@@ -136,6 +205,41 @@
 
 <!-- STUDENT -->
 {% elif context == "student" %}
+    <div class="sidenav">
+        <ul>
+            <div class="nav-logo">
+                <img src="{{ url_for('static', filename='images/Student-Info Logo.png') }}"> 
+                <p>STUDENT INFORMATION SYSTEM</p>
+            </div>
+            <a href="{{ url_for('index') }}">
+                <li class="icon-bg">
+                    <img src="{{ url_for('static', filename='images/Home.png') }}"> 
+                    <p>Home</p>
+                </li>
+            </a>  
+            <a href="{{ url_for('college.college_list') }}">
+                <li class="icon-bg">
+                    <img src="{{ url_for('static', filename='images/College.png') }}"> 
+                    <p>College</p>
+                </li>
+            </a>
+            <a href="{{ url_for('course.course_list') }}">
+                <li class="icon-bg">
+                    <img src="{{ url_for('static', filename='images/Course.png') }}"> 
+                    <p>Course</p>
+                </li>
+            </a>
+            <li class="selected-icon-bg">
+                <img src="{{ url_for('static', filename='images/Student.png') }}"> 
+                <p>Student</p>
+            </li>
+        </ul>
+    </div>
+
+    <div class="navbar">
+        <p>STUDENT</p>
+    </div>
+
     <form action="/student/list/">
         <button type="submit" class="custom-return-button">BACK</button>
     </form>
@@ -174,7 +278,9 @@
                         <input id="year_level" name="year_level" value="{{ result[4] }}" hidden>
                         <input id="gender" name="gender" value="{{ result[5] }}" hidden>
     
-                        <button type="submit" class="custom-edit-button">EDIT</button>
+                        <button type="submit" class="custom-edit-button">
+                            <img src="{{ url_for('static', filename='images/Edit.png') }}"> 
+                        </button>
                     </form>
                 </td>
                 <td>
@@ -188,7 +294,9 @@
                         <input id="year_level" name="year_level" value="{{ result[4] }}" hidden>
                         <input id="gender" name="gender" value="{{ result[5] }}" hidden>
     
-                        <button type="submit" class="custom-delete-button" data-confirm="By clicking delete, you acknowledge that the information will be removed." >DELETE</button>
+                        <button class="custom-delete-button" data-confirm="By clicking delete, you acknowledge that the information will be removed." type="submit" >
+                            <img src="{{ url_for('static', filename='images/Delete.png') }}"> 
+                        </button>
                     </form>
                 </td>
             </tr>

@@ -3,13 +3,40 @@
 {% block content %}
 
 <!-- NAVIGATION -->
-<nav>
+<div class="sidenav">
     <ul>
-        <li><a href="{{ url_for('college.college_list') }}">COLLEGE</a></li>
-        <li> <a href="{{ url_for('course.course_list') }}">COURSE</a></li>
-        <li class="current tab"><a href="{{ url_for('student.student_list') }}">STUDENT</a></li>
+        <div class="nav-logo">
+            <img src="{{ url_for('static', filename='images/Student-Info Logo.png') }}"> 
+            <p>STUDENT INFORMATION SYSTEM</p>
+        </div>
+        <a href="{{ url_for('index') }}">
+            <li class="icon-bg">
+                <img src="{{ url_for('static', filename='images/Home.png') }}"> 
+                <p>Home</p>
+            </li>
+        </a>  
+        <a href="{{ url_for('college.college_list') }}">
+            <li class="icon-bg">
+                <img src="{{ url_for('static', filename='images/College.png') }}"> 
+                <p>College</p>
+            </li>
+        </a>
+        <a href="{{ url_for('course.course_list') }}">
+            <li class="icon-bg">
+                <img src="{{ url_for('static', filename='images/Course.png') }}"> 
+                <p>Course</p>
+            </li>
+        </a>
+        <li class="selected-icon-bg">
+            <img src="{{ url_for('static', filename='images/Student.png') }}"> 
+            <p>Student</p>
+        </li>
     </ul>
-</nav>
+</div>
+
+<div class="navbar">
+    <p>STUDENT</p>
+</div>
 
 <!-- SEARCH -->
 <div class="search-container">
@@ -37,7 +64,9 @@
 </div>
 
 <!-- ADD -->
-<a href="{{ url_for('student.add_student') }}" class="custom-add-button">+ ADD STUDENT</a>
+<a href="{{ url_for('student.add_student') }}" class="custom-add-button">
+    <img src="{{ url_for('static', filename='images/Add.png') }}"> 
+</a>
 
 <!-- STUDENT LIST -->
 <div class="table-container">
@@ -47,10 +76,10 @@
                 <th>STUDENT ID</th>
                 <th>FIRST NAME</th>
                 <th>LAST NAME</th>
+                <th>COLLEGE</th>
                 <th>COURSE</th>
                 <th>YEAR</th>
                 <th>GENDER</th>
-                <th>COLLEGE</th>
                 <th colspan="2">ACTION</th>
             </tr>
         </thead>
@@ -60,10 +89,10 @@
                 <td>{{ student[0] }}</td>
                 <td>{{ student[1] }}</td>
                 <td>{{ student[2] }}</td>
+                <td>{{ student[8] }}</td>
                 <td>{{ student[3] }}</td>
                 <td>{{ student[4] }}</td>
                 <td>{{ student[5] }}</td>
-                <td>{{ student[7] }} ({{ student[8] }})</td>
 
                 <td>
                     <!-- EDIT -->
@@ -74,7 +103,9 @@
                         <input id="course_code" name="course_code" value="{{ student[3] }}" hidden>
                         <input id="year_level" name="year_level" value="{{ student[4] }}" hidden>
                         <input id="gender" name="gender" value="{{ student[5] }}" hidden>
-                        <button type="submit" class="custom-edit-button">EDIT</button>
+                        <button type="submit" class="custom-edit-button">
+                            <img src="{{ url_for('static', filename='images/Edit.png') }}"> 
+                        </button>
                     </form>
                 </td>
 
@@ -88,7 +119,9 @@
                         <input id="course_code" name="course_code" value="{{ student[3] }}" hidden>
                         <input id="year_level" name="year_level" value="{{ student[4] }}" hidden>
                         <input id="gender" name="gender" value="{{ student[5] }}" hidden>
-                        <button type="submit" class="custom-delete-button" data-confirm="By clicking delete, you acknowledge that the information will be deleted.">DELETE</button>
+                        <button class="custom-delete-button" data-confirm="By clicking delete, you acknowledge that the information will be removed." type="submit" >
+                            <img src="{{ url_for('static', filename='images/Delete.png') }}"> 
+                        </button>
                     </form>
                 </td>
 
@@ -97,6 +130,44 @@
         </tbody>
     </table>
 </div>
+
+{% if success %}
+    <div id="successModal" class="modal" style="display: block;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">Success</h1>
+                </div>
+                <div class="modal-body">
+                    Student information was deleted successfully!
+                </div>
+                <a href="{{ url_for('student.student_list') }}">
+                    <div class="modal-footer">
+                        <button type="button" class="btn-done">DONE</button>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+{% elif error %}
+    <div id="errorModal" class="modal" style="display: block;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">Error</h1>
+                </div>
+                <div class="modal-body">
+                    Error in deleting student information. Please try again.
+                </div>
+                <a href="{{ url_for('student.student_list') }}">
+                    <div class="modal-footer">
+                        <button type="button" class="btn-done">OKAY</button>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+{% endif %}
 
 <script>
     // SEARCH

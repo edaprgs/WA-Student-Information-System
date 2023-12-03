@@ -3,13 +3,40 @@
 {% block content %}
 
 <!-- NAVIGATION -->
-<nav>
+<div class="sidenav">
     <ul>
-        <li><a href="{{ url_for('college.college_list') }}">COLLEGE</a></li>
-        <li class="current tab"><a href="{{ url_for('course.course_list') }}">COURSE</a></li>
-        <li><a href="{{ url_for('student.student_list') }}">STUDENT</a></li>
+        <div class="nav-logo">
+            <img src="{{ url_for('static', filename='images/Student-Info Logo.png') }}"> 
+            <p>STUDENT INFORMATION SYSTEM</p>
+        </div>
+        <a href="{{ url_for('index') }}">
+            <li class="icon-bg">
+                <img src="{{ url_for('static', filename='images/Home.png') }}"> 
+                <p>Home</p>
+            </li>
+        </a>  
+        <a href="{{ url_for('college.college_list') }}">
+            <li class="icon-bg">
+                <img src="{{ url_for('static', filename='images/College.png') }}"> 
+                <p>College</p>
+            </li>
+        </a>
+        <li class="selected-icon-bg">
+            <img src="{{ url_for('static', filename='images/Course.png') }}"> 
+            <p>Course</p>
+        </li>
+        <a href="{{ url_for('student.student_list') }}">
+            <li class="icon-bg">
+                <img src="{{ url_for('static', filename='images/Student.png') }}"> 
+                <p>Student</p>
+            </li>
+        </a>
     </ul>
-</nav>
+</div>
+
+<div class="navbar">
+    <p>COURSE</p>
+</div>
 
 <!-- SEARCH -->
 <div class="search-container">
@@ -33,7 +60,9 @@
 </div>
 
 <!-- ADD -->
-<a href="{{ url_for('course.add_course') }}" class="custom-add-button">+ ADD COURSE</a>
+<a href="{{ url_for('course.add_course') }}" class="custom-add-button">
+    <img src="{{ url_for('static', filename='images/Add.png') }}"> 
+</a>
 
 <!-- COURSE LIST -->
 <div class="table-container">
@@ -80,7 +109,9 @@
                             {% endfor %}
                         </select>
                     </div>    
-                    <button type="submit" class="custom-edit-button">EDIT</button>
+                    <button type="submit" class="custom-edit-button">
+                        <img src="{{ url_for('static', filename='images/Edit.png') }}"> 
+                    </button>
                 </form>
             </td>
             <td>
@@ -90,7 +121,9 @@
                     <input type="hidden" name="course_code" value="{{ course[0] }}">
                     <input type="hidden" name="course_name" value="{{ course[1] }}">
                     <input type="hidden" name="college_code" value="{{ course[2] }}">
-                    <button type="submit" class="custom-delete-button" data-confirm="By clicking delete, you acknowledge that the information will be deleted.">DELETE</button>
+                    <button class="custom-delete-button" data-confirm="By clicking delete, you acknowledge that the information will be removed." type="submit" >
+                        <img src="{{ url_for('static', filename='images/Delete.png') }}"> 
+                    </button>
                 </form>
             </td>
         </tr>
@@ -98,6 +131,44 @@
         </tbody>
     </table>
 </div>
+
+{% if success %}
+    <div id="successModal" class="modal" style="display: block;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">Success</h1>
+                </div>
+                <div class="modal-body">
+                    Course was deleted successfully!
+                </div>
+                <a href="{{ url_for('course.course_list') }}">
+                    <div class="modal-footer">
+                        <button type="button" class="btn-done">DONE</button>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+{% elif error %}
+    <div id="errorModal" class="modal" style="display: block;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">Error</h1>
+                </div>
+                <div class="modal-body">
+                    Course cannot be deleted as it is associated with another record.
+                </div>
+                <a href="{{ url_for('course.course_list') }}">
+                    <div class="modal-footer">
+                        <button type="button" class="btn-done">OKAY</button>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+{% endif %}
 
 <script>
     // SEARCH

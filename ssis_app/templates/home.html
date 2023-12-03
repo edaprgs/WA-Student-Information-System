@@ -2,7 +2,39 @@
 {% block title %}SSIS | HOME{% endblock title %}
 {% block content %}
 
-<a href="{{ url_for('student.student_list') }}">
+<!-- NAVIGATION -->
+<div class="sidenav">
+    <ul>
+        <div class="nav-logo">
+            <img src="{{ url_for('static', filename='images/Student-Info Logo.png') }}"> 
+            <p>STUDENT INFORMATION SYSTEM</p>
+        </div>
+        <li class="selected-icon-bg">
+            <img src="{{ url_for('static', filename='images/Home.png') }}"> 
+            <p>Home</p>
+        </li>
+        <a href="{{ url_for('college.college_list') }}">
+            <li class="icon-bg">
+                <img src="{{ url_for('static', filename='images/College.png') }}"> 
+                <p>College</p>
+            </li>
+        </a>
+        <a href="{{ url_for('course.course_list') }}">
+            <li class="icon-bg">
+                <img src="{{ url_for('static', filename='images/Course.png') }}"> 
+                <p>Course</p>
+            </li>
+        </a>
+        <a href="{{ url_for('student.student_list') }}">
+            <li class="icon-bg">
+                <img src="{{ url_for('static', filename='images/Student.png') }}"> 
+                <p>Student</p>
+            </li>
+        </a>
+    </ul>
+</div>
+
+<!-- <a href="{{ url_for('student.student_list') }}">
     <div class="left-rectangle"></div>
     <div class="student-title-text">STUDENT</div>
     <div class="student-icon"><img src="{{ url_for('static', filename='images/STUDENT ICON.png') }}" width="300"></div>
@@ -18,6 +50,6 @@
     <div class="right-rectangle course"></div>
     <div class="course-title-text">COURSE</div>
     <div class="course-icon"><img src="{{ url_for('static', filename='images/COURSE ICON.png') }}" width="230"></div>
-</a>
+</a> -->
 
 {% endblock %}  

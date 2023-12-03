@@ -1,15 +1,42 @@
 {% extends "base.html" %}
 {% block title %}SSIS | COLLEGE{% endblock title %}
+
 {% block content %}
 
-<!-- NAVIGATION -->
-<nav>
+<div class="sidenav">
     <ul>
-        <li class="current tab"><a href="{{ url_for('college.college_list') }}">COLLEGE</a></li>
-        <li><a href="{{ url_for('course.course_list') }}">COURSE</a></li>
-        <li><a href="{{ url_for('student.student_list') }}">STUDENT</a></li>
+        <div class="nav-logo">
+            <img src="{{ url_for('static', filename='images/Student-Info Logo.png') }}"> 
+            <p>STUDENT INFORMATION SYSTEM</p>
+        </div>
+        <a href="{{ url_for('index') }}">
+            <li class="icon-bg">
+                <img src="{{ url_for('static', filename='images/Home.png') }}"> 
+                <p>Home</p>
+            </li>
+        </a>    
+        <li class="selected-icon-bg">
+            <img src="{{ url_for('static', filename='images/College.png') }}"> 
+            <p>College</p>
+        </li>
+        <a href="{{ url_for('course.course_list') }}">
+            <li class="icon-bg">
+                <img src="{{ url_for('static', filename='images/Course.png') }}"> 
+                <p>Course</p>
+            </li>
+        </a>
+        <a href="{{ url_for('student.student_list') }}">
+            <li class="icon-bg">
+                <img src="{{ url_for('static', filename='images/Student.png') }}"> 
+                <p>Student</p>
+            </li>
+        </a>
     </ul>
-</nav>
+</div>
+
+<div class="navbar">
+    <p>COLLEGE</p>
+</div>
 
 <!-- SEARCH -->
 <div class="search-container">
@@ -32,10 +59,11 @@
 </div>
 
 <!-- ADD -->
-<a href="{{ url_for('college.add_college') }}" class="custom-add-button">+ ADD COLLEGE</a>
+<a href="{{ url_for('college.add_college') }}" class="custom-add-button">
+    <img src="{{ url_for('static', filename='images/Add.png') }}"> 
+</a>
 
 <!-- COLLEGE LIST --> 
-<!--  id="results-container" -->
 <div class="table-container">
     <table>
         <thead>
@@ -52,11 +80,13 @@
                 <td>{{ college[1] }}</td>
                 <td>
                     <!-- EDIT -->
-                    <form method="GET" action="/college/edit">
-                        <input id="college_code" name="college_code" value="{{ college[0] }}" hidden>
-                        <input id="college_name" name="college_name" value="{{ college[1] }}" hidden>
-                        <button type="submit" class="custom-edit-button">EDIT</button>
-                    </form>
+                        <form method="GET" action="/college/edit">
+                            <input id="college_code" name="college_code" value="{{ college[0] }}" hidden>
+                            <input id="college_name" name="college_name" value="{{ college[1] }}" hidden>
+                            <button type="submit" class="custom-edit-button">
+                                <img src="{{ url_for('static', filename='images/Edit.png') }}"> 
+                            </button>
+                        </form>
                 </td>
                 <td>
                     <!-- DELETE -->
@@ -64,14 +94,54 @@
                         <input name="csrf_token" value="{{ csrf_token() }}" hidden />
                         <input type="hidden" name="college_code" value="{{ college[0] }}" hidden>
                         <input type="hidden" name="college_name" value="{{ college[1] }}" hidden>
-                        <button class="custom-delete-button" data-confirm="By clicking delete, you acknowledge that the information will be removed." type="submit" >DELETE</button>
+                        <button class="custom-delete-button" data-confirm="By clicking delete, you acknowledge that the information will be removed." type="submit" >
+                            <img src="{{ url_for('static', filename='images/Delete.png') }}"> 
+                        </button>
                     </form>
                 </td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
-</div>   
+</div>
+
+{% if success %}
+    <div id="successModal" class="modal" style="display: block;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">Success</h1>
+                </div>
+                <div class="modal-body">
+                    College was deleted successfully!
+                </div>
+                <a href="{{ url_for('college.college_list') }}">
+                    <div class="modal-footer">
+                        <button type="button" class="btn-done">DONE</button>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+{% elif error %}
+    <div id="errorModal" class="modal" style="display: block;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">Error</h1>
+                </div>
+                <div class="modal-body">
+                    College cannot be deleted as it is associated with another record.
+                </div>
+                <a href="{{ url_for('college.college_list') }}">
+                    <div class="modal-footer">
+                        <button type="button" class="btn-done">OKAY</button>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+{% endif %}
 
 <script>
     // SEARCH

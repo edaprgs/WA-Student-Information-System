@@ -3,17 +3,45 @@
 {% block content %}
 
 <!-- NAVIGATION -->
-<nav>
+<div class="sidenav">
     <ul>
-        <li class="current tab"><a href="{{ url_for('college.college_list') }}">COLLEGE</a></li>
-        <li><a href="{{ url_for('course.course_list') }}">COURSE</a></li>
-        <li><a href="{{ url_for('student.student_list') }}">STUDENT</a></li>
+        <div class="nav-logo">
+            <img src="{{ url_for('static', filename='images/Student-Info Logo.png') }}"> 
+            <p>STUDENT INFORMATION SYSTEM</p>
+        </div>
+        <a href="{{ url_for('index') }}">
+            <li class="icon-bg">
+                <img src="{{ url_for('static', filename='images/Home.png') }}"> 
+                <p>Home</p>
+            </li>
+        </a>    
+        <li class="selected-icon-bg">
+            <img src="{{ url_for('static', filename='images/College.png') }}"> 
+            <p>College</p>
+        </li>
+        <a href="{{ url_for('course.course_list') }}">
+            <li class="icon-bg">
+                <img src="{{ url_for('static', filename='images/Course.png') }}"> 
+                <p>Course</p>
+            </li>
+        </a>
+        <a href="{{ url_for('student.student_list') }}">
+            <li class="icon-bg">
+                <img src="{{ url_for('static', filename='images/Student.png') }}"> 
+                <p>Student</p>
+            </li>
+        </a>
     </ul>
-</nav>
+</div>
 
-<div class="entity bg"></div>
-<div class="back-icon"><a href="{{ url_for('college.college_list') }}"><img src="{{ url_for('static', filename='images/back-icon.png') }}"></a></div>
-<div class="entity heading">EDIT COLLEGE INFORMATION</div>
+<div class="navbar add">
+    <div class="back-icon">
+        <a href="{{ url_for('college.college_list') }}">
+            <img src="{{ url_for('static', filename='images/back-icon.png') }}">
+        </a>
+    </div>
+    <p>EDIT COLLEGE INFORMATION</p>
+</div>
 
 <!-- EDIT COLLEGE FORM -->
 <form action="{{ url_for('college.college_edit') }}" method="POST">
@@ -31,6 +59,46 @@
     </div>
 </form>
 
-<div class="sideicon"><img src="{{ url_for('static', filename='images/COLLEGE ICON.png') }}" width="350"></div>
+<div class="sideicon">
+    <img src="{{ url_for('static', filename='images/COLLEGE ICON.png') }}" width="380">
+</div>
+
+{% if success %}
+    <div id="successModal" class="modal" style="display: block;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">Success</h1>
+                </div>
+                <div class="modal-body">
+                    College information updated successfully!
+                </div>
+                <a href="{{ url_for('college.college_list') }}">
+                    <div class="modal-footer">
+                        <button type="button" class="btn-done">DONE</button>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+{% elif error %}
+    <div id="errorModal" class="modal" style="display: block;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">Error</h1>
+                </div>
+                <div class="modal-body">
+                    Unable to save changes. Please try again.
+                </div>
+                <a href="{{ url_for('college.college_list') }}">
+                    <div class="modal-footer">
+                        <button type="button" class="btn-done">OKAY</button>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+{% endif %}
 
 {% endblock %}  

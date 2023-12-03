@@ -3,17 +3,45 @@
 {% block content %}
 
 <!-- NAVIGATION -->
-<nav>
+<div class="sidenav">
     <ul>
-        <li><a href="{{ url_for('college.college_list') }}">COLLEGE</a></li>
-        <li><a href="{{ url_for('course.course_list') }}">COURSE</a></li>
-        <li class="current tab"><a href="{{ url_for('student.student_list') }}">STUDENT</a></li>
+        <div class="nav-logo">
+            <img src="{{ url_for('static', filename='images/Student-Info Logo.png') }}"> 
+            <p>STUDENT INFORMATION SYSTEM</p>
+        </div>
+        <a href="{{ url_for('index') }}">
+            <li class="icon-bg">
+                <img src="{{ url_for('static', filename='images/Home.png') }}"> 
+                <p>Home</p>
+            </li>
+        </a>  
+        <a href="{{ url_for('college.college_list') }}">
+            <li class="icon-bg">
+                <img src="{{ url_for('static', filename='images/College.png') }}"> 
+                <p>College</p>
+            </li>
+        </a>
+        <a href="{{ url_for('course.course_list') }}">
+            <li class="icon-bg">
+                <img src="{{ url_for('static', filename='images/Course.png') }}"> 
+                <p>Course</p>
+            </li>
+        </a>
+        <li class="selected-icon-bg">
+            <img src="{{ url_for('static', filename='images/Student.png') }}"> 
+            <p>Student</p>
+        </li>
     </ul>
-</nav>
+</div>
 
-<div class="entity bg"></div>
-<div class="back-icon"><a href="{{ url_for('student.student_list') }}"><img src="{{ url_for('static', filename='images/back-icon.png') }}"></a></div>
-<div class="entity heading">ADD STUDENT</div>
+<div class="navbar add">
+    <div class="back-icon">
+        <a href="{{ url_for('student.student_list') }}">
+            <img src="{{ url_for('static', filename='images/back-icon.png') }}">
+        </a>
+    </div>
+    <p>ADD STUDENT</p>
+</div>
 
 <!-- ADD STUDENT FORM -->
 <form action="/student/add/" method="POST">
@@ -87,7 +115,47 @@
     </div>
 </form>
 
-<div class="sideicon student"><img src="{{ url_for('static', filename='images/STUDENT ICON.png') }}" width="350"></div>
+<div class="sideicon student">
+    <img src="{{ url_for('static', filename='images/STUDENT ICON.png') }}" width="380">
+</div>
+
+{% if success %}
+    <div id="successModal" class="modal" style="display: block;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">Success</h1>
+                </div>
+                <div class="modal-body">
+                    Student added successfully!
+                </div>
+                <a href="{{ url_for('student.student_list') }}">
+                    <div class="modal-footer">
+                        <button type="button" class="btn-done">DONE</button>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+{% elif error %}
+    <div id="errorModal" class="modal" style="display: block;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">Error</h1>
+                </div>
+                <div class="modal-body">
+                    Unable to add, student already exists.
+                </div>
+                <a href="{{ url_for('student.student_list') }}">
+                    <div class="modal-footer">
+                        <button type="button" class="btn-done">OKAY</button>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+{% endif %}
 
 <script>
     /* GENDER DROPDOWN */

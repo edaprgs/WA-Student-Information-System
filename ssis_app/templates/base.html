@@ -11,17 +11,12 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <header>
-        <a href="{{ url_for('index') }}">
-            <div class="logo-style"></div>
-            <div class="main-logo">STUDENT INFORMATION SYSTEM</div>
-        </a>
-    </header>
 
     {% block content %} {% endblock %}
 
     <footer>
         <div class="footer-rect">Copyright © 2023 Paragoso</div>
     </footer>
+    
 </body>
 </html>
