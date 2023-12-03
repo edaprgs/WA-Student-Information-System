@@ -17,7 +17,7 @@ def create_app(test_config=None):
 
     mysql.init_app(app)
     CSRFProtect(app)
-  
+    
     @app.route("/")
     def index():
         return render_template('home.html')
