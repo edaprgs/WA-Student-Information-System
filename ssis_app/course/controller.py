@@ -1,4 +1,4 @@
-from flask import render_template, redirect, request, url_for
+from flask import render_template, request
 from ssis_app.course.forms import *
 import ssis_app.models as models
 from ssis_app.models.course import course
@@ -23,9 +23,9 @@ def add_course():
         result = new_course.add()
 
         if result:
-            return redirect(url_for('course.add_success_message'))
+            return render_template('add_course.html', success=True, course_form=form)
         else:
-            return redirect(url_for('course.add_error_message'))
+            return render_template('add_course.html', error=True, course_form=form)
 
     return render_template('add_course.html',course_form=form, college_codes=college_codes)
 
@@ -47,9 +47,9 @@ def course_edit():
         
 
         if updated:
-            return redirect(url_for('college.edit_success_message'))
+            return render_template('edit_course.html', success=True)
         else:
-            return redirect(url_for('college.edit_error_message'))
+            return render_template('edit_course.html', error=True)
         
     return render_template("edit_course.html")
 
@@ -66,35 +66,11 @@ def course_delete():
         print(result, code, name, college)
 
         if result:
-            return redirect(url_for('course.course_confirmation'))
+            return render_template('course_list.html', success=True, course_form=form)
         else:
-            return redirect(url_for('course.course_error'))
+            return render_template('course_list.html', error=True, course_form=form)
             
-    return render_template("course_list.html", college_form=form)
-
-@course_bp.route('/course_confirmation/')
-def course_confirmation():
-    return render_template('confirmation.html', context="course")
-
-@course_bp.route('/course_error/')
-def course_error():
-    return render_template('error.html', context="course")
-
-@course_bp.route('/added_successfully/')
-def add_success_message():
-    return render_template('add_success_message.html', context="course")
-
-@course_bp.route('/error/')
-def add_error_message():
-    return render_template('add_error_message.html', context="course")
-
-@course_bp.route('/updated/')
-def edit_success_message():
-    return render_template('edit_success_message.html', context="course")
-
-@course_bp.route('/error_update/')
-def edit_error_message():
-    return render_template('edit_error_message.html', context="course")
+    return render_template("course_list.html", course_form=form)
 
 @course_bp.route('/list/')
 def course_list():

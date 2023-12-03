@@ -1,10 +1,15 @@
-from flask import render_template, redirect, request, url_for
+from flask import render_template, request
 from ssis_app.college.forms import *
 import ssis_app.models as models
 from ssis_app.models.college import *
 from flask import Blueprint
 
 college_bp = Blueprint('college', __name__)
+
+@college_bp.route('/list/')
+def college_list():
+    colleges_data = college.get_colleges()
+    return render_template('college_list.html', colleges=colleges_data)
 
 @college_bp.route('/add/', methods=["GET", "POST"])
 def add_college():
@@ -19,9 +24,9 @@ def add_college():
         result = new_college.add()
 
         if result:
-            return redirect(url_for('college.add_success_message'))
+            return render_template('add_college.html', success=True, college_form=form)
         else:
-            return redirect(url_for('college.add_error_message'))
+            return render_template('add_college.html', error=True, college_form=form)
 
     return render_template("add_college.html", college_form=form)
 
@@ -39,9 +44,9 @@ def college_edit():
         updated = college.update(collegeCode=_college_code, collegeName=new_college_name)  
         
         if updated:
-            return redirect(url_for('college.edit_success_message'))
+            return render_template('edit_college.html', success=True)
         else:
-            return redirect(url_for('college.edit_error_message'))
+            return render_template('edit_college.html', error=True)
         
     return render_template("edit_college.html")
 
@@ -56,40 +61,11 @@ def college_delete():
         result = college.delete(code, name)
 
         if result:
-            return redirect(url_for('college.college_confirmation'))
+            return render_template('college_list.html', success=True, college_form=form)
         else:
-            return redirect(url_for('college.college_error'))
+            return render_template('college_list.html', error=True, college_form=form)
             
     return render_template("college_list.html", college_form=form)
-
-@college_bp.route('/college_confirmation/')
-def college_confirmation():
-    return render_template('confirmation.html', context="college")
-
-@college_bp.route('/college_error/')
-def college_error():
-    return render_template('error.html', context="college")
-
-@college_bp.route('/added_successfully/')
-def add_success_message():
-    return render_template('add_success_message.html', context="college")
-
-@college_bp.route('/error/')
-def add_error_message():
-    return render_template('add_error_message.html', context="college")
-
-@college_bp.route('/updated/')
-def edit_success_message():
-    return render_template('edit_success_message.html', context="college")
-
-@college_bp.route('/error_update/')
-def edit_error_message():
-    return render_template('editerror_message.html', context="college")
-
-@college_bp.route('/list/')
-def college_list():
-    colleges_data = college.get_colleges()
-    return render_template('college_list.html', colleges=colleges_data)
 
 @college_bp.route('/search/', methods=['GET', 'POST'])
 def search_colleges():
