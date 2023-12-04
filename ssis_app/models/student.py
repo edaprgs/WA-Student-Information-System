@@ -1,4 +1,5 @@
 from ssis_app import mysql
+import os
 
 class student(object):
 
@@ -12,29 +13,29 @@ class student(object):
         if existing_student:
             return False
 
-        sql = "INSERT INTO student(studentID, firstName, lastName, course, yearlevel, gender) VALUES(%s, %s, %s, %s, %s, %s)"
-        cursor.execute(sql, (self.studentID, self.firstName, self.lastName, self.course, self.yearlevel, self.gender))
+        sql = "INSERT INTO student(studentID, firstName, lastName, course, yearlevel, gender, profilePhoto) VALUES(%s, %s, %s, %s, %s, %s, %s)"
+        cursor.execute(sql, (self.studentID, self.firstName, self.lastName, self.course, self.yearlevel, self.gender, self.profilePhoto))
         mysql.connection.commit()
 
         return True
     
     @classmethod
-    def update(cls, studentID, firstName, lastName, course, yearlevel, gender):
+    def update(cls, studentID, firstName, lastName, course, yearlevel, gender, profilePhoto):
         cursor = mysql.connection.cursor()
 
-        sql = "UPDATE student SET firstName = %s, lastName = %s, course = %s, yearlevel = %s, gender = %s WHERE studentID = %s"
-        cursor.execute(sql, (firstName, lastName, course, yearlevel, gender, studentID))
-        print(sql, firstName, lastName, course, yearlevel, gender, studentID)
+        sql = "UPDATE student SET firstName = %s, lastName = %s, course = %s, yearlevel = %s, gender = %s, profilePhoto = %s WHERE studentID = %s"
+        cursor.execute(sql, (firstName, lastName, course, yearlevel, gender, profilePhoto, studentID))
+        print(sql, firstName, lastName, course, yearlevel, gender, studentID, profilePhoto)
         mysql.connection.commit()
 
         return True
 
     @classmethod
-    def delete(cls, studentID, firstName, lastName, course, yearlevel, gender):
+    def delete(cls, studentID):
         cursor = mysql.connection.cursor()
 
-        delete_sql = "DELETE FROM student WHERE studentID = %s AND firstName = %s AND lastName = %s AND course = %s AND yearlevel = %s AND gender = %s"
-        cursor.execute(delete_sql, (studentID, firstName, lastName, course, yearlevel, gender))
+        delete_sql = "DELETE FROM student WHERE studentID = %s"
+        cursor.execute(delete_sql, (studentID,))
         mysql.connection.commit()
         
         return True
@@ -47,6 +48,27 @@ class student(object):
         cursor.close()
         return students
     
+    @classmethod
+    def get_student_info(cls, student_id):
+        cursor = mysql.connection.cursor()
+        query = "SELECT * FROM student WHERE studentID = %s"
+        cursor.execute(query, (student_id,))
+        student = cursor.fetchone()
+
+        if student:
+            student_dict = {
+            'studentID': student[0],
+            'firstName': student[1],
+            'lastName': student[2],
+            'course': student[3],
+            'yearlevel': student[4],
+            'gender': student[5],
+            'profilePhoto': os.path.basename(student[6].decode('utf-8')) if student[6] else None
+        }
+            return student_dict
+        else:
+            return None
+
     @classmethod
     def search(cls, query, selected_field):
         cursor = mysql.connection.cursor()

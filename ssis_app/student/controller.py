@@ -1,8 +1,9 @@
-from flask import render_template, request
+from flask import render_template, request, Blueprint, current_app
 from ssis_app.student.forms import *
 import ssis_app.models as models
 from ssis_app.models.student import *
 from flask import Blueprint
+import os
 
 student_bp = Blueprint('student', __name__)
 
@@ -18,6 +19,14 @@ def add_student():
         course_code = request.form.get("course_code")
         year_level = request.form.get("selectedYLevel")
         gender = request.form.get("selectedGender")
+        file_path = None
+        current_app.config['UPLOAD_FOLDER'] = os.path.join(current_app.root_path, 'static', 'images')
+        
+        if 'input-file' in request.files:
+            profile = request.files['input-file']
+            if profile.filename != '':
+                file_path = os.path.join(current_app.config['UPLOAD_FOLDER'], profile.filename)
+                profile.save(file_path)
 
         new_student.studentID = student_ID 
         new_student.firstName = first_name 
@@ -25,6 +34,8 @@ def add_student():
         new_student.course = course_code 
         new_student.yearlevel = year_level 
         new_student.gender = gender 
+        new_student.profilePhoto = file_path
+        print(file_path)
         result = new_student.add()
 
         if result:
@@ -40,13 +51,10 @@ def student_edit():
     course_codes = update_student.get_course_codes()
     if request.method == 'GET':
         studentID = request.args.get('studentID')
-        first_name = request.args.get('first_name')   
-        last_name = request.args.get('last_name')   
-        course_code = request.args.get('course_code')   
-        year_level = request.args.get('year_level')   
-        gender = request.args.get('gender')   
-        print(studentID, first_name, last_name, course_code, year_level, gender)
-        return render_template('edit_student.html', course_codes=course_codes,id=studentID, fname=first_name, lname=last_name, course=course_code, ylevel=year_level, sex=gender)
+        student_info  = student.get_student_info(studentID)
+        print("student info:", student_info)
+        return render_template('edit_student.html', course_codes=course_codes, student=student_info)
+   
     elif request.method == 'POST':
         _studentID = request.form.get('studentID')
         new_fname = request.form.get('first_name').upper()
@@ -54,13 +62,36 @@ def student_edit():
         new_course = request.form.get('course_code')
         new_ylevel = request.form.get('year_level')
         new_gender = request.form.get('gender')
+        file_path = None
 
-        updated = student.update(studentID=_studentID, firstName=new_fname, lastName=new_lname, course=new_course, yearlevel=new_ylevel, gender=new_gender)  
-
-        if updated:
-            return render_template('edit_student.html', success=True)
+        current_app.config['UPLOAD_FOLDER'] = os.path.join(current_app.root_path, 'static', 'images')
+        
+        if 'input-file' in request.files:
+                profile = request.files['input-file']
+                if profile.filename != '':
+                    file_path = os.path.join(current_app.config['UPLOAD_FOLDER'], profile.filename)
+                    profile.save(file_path)
+                    print('File saved at:', file_path)  
         else:
-            return render_template('edit_student.html', error=True)
+            file_path = None
+
+        print('New path:', file_path)
+
+        student_info = student.get_student_info(_studentID)
+        current_image_path = student_info['profilePhoto'] if student_info and 'profilePhoto' in student_info else None
+
+        print('Old path:', current_image_path)
+
+        if file_path:
+            updated = student.update(studentID=_studentID, firstName=new_fname, lastName=new_lname, course=new_course, yearlevel=new_ylevel, gender=new_gender, profilePhoto=file_path)
+        else:
+            updated = student.update(studentID=_studentID, firstName=new_fname, lastName=new_lname, course=new_course, yearlevel=new_ylevel, gender=new_gender, profilePhoto=current_image_path)
+        
+        if updated:
+            student_info = student.get_student_info(_studentID)
+            return render_template('edit_student.html', success=True, student=student_info)
+        else:
+            return render_template('edit_student.html', error=True, student=student_info)
         
     return render_template("edit_student.html")
 
@@ -70,15 +101,10 @@ def student_delete():
     delete_student = student()
 
     if request.method == "POST":
-        student_ID = request.form.get('studentID')
-        fname = request.form.get('first_name')
-        lname = request.form.get('last_name')
-        student_course = request.form.get('course_code')
-        ylevel = request.form.get('year_level')
-        gender = request.form.get('gender')
+        studentID = request.form.get('studentID')
+        print('student id', studentID)
 
-        result = delete_student.delete(student_ID, fname, lname, student_course, ylevel, gender)
-        print(result, student_ID, fname, lname, student_course, ylevel, gender)
+        result = delete_student.delete(studentID)
 
         if result:
             return render_template('student_list.html', success=True, student_form=form)

@@ -44,24 +44,24 @@
 </div>
 
 <!-- ADD STUDENT FORM -->
-<form action="{{ url_for('student.student_edit') }}" method="POST">
+<form action="{{ url_for('student.student_edit') }}" method="POST" enctype="multipart/form-data">
     <input name="csrf_token" value="{{ csrf_token() }}" hidden />
 
     <!-- STUDENT ID -->
     <div class="inputBox id">
-        <input disabled name="studentID" value="{{ id }}">
-        <input hidden name="studentID" value="{{ id }}" >
+        <input disabled name="studentID" value="{{ student['studentID'] }}">
+        <input hidden name="studentID" value="{{ student['studentID'] }}" >
     </div>
 
     <!-- FIRST NAME -->
     <div class="inputBox fname">
-        <input type="text" required="required" name="first_name" value="{{ fname }}">
+        <input type="text" required="required" name="first_name" value="{{ student['firstName'] }}">
         <span>FIRST NAME</span>
     </div>
 
     <!-- LAST NAME -->
     <div class="inputBox lname">
-        <input type="text" required="required" name="last_name" value="{{ lname }}">
+        <input type="text" required="required" name="last_name" value="{{ student['lastName'] }}">
         <span>LAST NAME</span>
     </div>
 
@@ -78,7 +78,7 @@
         padding: 5px;
         outline: none;
         cursor: pointer;">
-            <option value="{{ course }}" selected style="color: gainsboro; background-color: white;">{{ course }}</option>
+            <option value="{{ student['course']}}" selected style="color: gainsboro; background-color: white;">{{ student['course'] }}</option>
             {% for course_code in course_codes %}
                 <option value="{{course_code}}" data-value="{{course_code}}" style="
                 color: black; 
@@ -90,9 +90,9 @@
     </div>    
 
     <!-- YEAR LEVEL -->
-    <input type="hidden" name="year_level" id="selectedYLevel" value="{{ ylevel }}">
+    <input type="hidden" name="year_level" id="selectedYLevel" value="{{ student['yearlevel'] }}">
     <div class="custom-dropdown yearlevel">
-        <div class="dropdown-select" id="ylevel-dropdown">{{ ylevel }}</div>
+        <div class="dropdown-select" id="ylevel-dropdown">{{ student['yearlevel'] }}</div>
         <div class="dropdown-options" id="ylevel-options">
             <div class="dropdown-option" data-value="1ST YEAR">1ST YEAR</div>
             <div class="dropdown-option" data-value="2ND YEAR">2ND YEAR</div>
@@ -102,23 +102,33 @@
     </div>
 
     <!-- GENDER -->
-    <input type="hidden" name="gender" id="selectedGender" value="{{ sex }}">
+    <input type="hidden" name="gender" id="selectedGender" value="{{ student['gender'] }}">
     <div class="custom-dropdown gender">
-        <div class="dropdown-select" id="gender-dropdown">{{ sex }}</div>
+        <div class="dropdown-select" id="gender-dropdown">{{ student['gender'] }}</div>
         <div class="dropdown-options" id="gender-options">
             <div class="dropdown-option" data-value="FEMALE">FEMALE</div>
             <div class="dropdown-option" data-value="MALE">MALE</div>
         </div>
     </div>
 
+    <div class="profile">
+        {% if student and student['profilePhoto'] %}
+            <img src="{{ url_for('static', filename='images/' + student['profilePhoto']) }}" id="profile-pic">
+        {% else %}
+            <img src="{{ url_for('static', filename='images/Default-profile.png') }}" id="profile-pic">
+        {% endif %}
+    </div>
+    <div class="upload-image">
+        <input type="file" accept="image/jpeg, image/png, image/jpg" id="input-file" name="input-file" style="display: none;">
+        <label for="input-file">
+            <img src="{{ url_for('static', filename='images/Upload-image.png') }}">
+        </label>
+    </div>
+
     <div class="container">
-        <button class="btn btn2" type="submit">UPDATE</button>
+        <button class="btn btn2" type="submit" value="Submit">UPDATE</button>
     </div>
 </form>
-
-<div class="sideicon student">
-    <img src="{{ url_for('static', filename='images/STUDENT ICON.png') }}" width="380">
-</div>
 
 {% if success %}
     <div id="successModal" class="modal" style="display: block;">
@@ -206,6 +216,14 @@
             optionsylevel.classList.remove('show');
         }
     });
+
+    /* PROFILE PICTURE*/
+    let profilePic = document.getElementById("profile-pic")
+    let inputFile = document.getElementById("input-file")
+
+    inputFile.onchange = function() {
+        profilePic.src = URL.createObjectURL(inputFile.files[0])
+    }
 </script>
 
 {% endblock %}  

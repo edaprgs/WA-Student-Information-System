@@ -44,7 +44,7 @@
 </div>
 
 <!-- ADD STUDENT FORM -->
-<form action="/student/add/" method="POST">
+<form action="/student/add/" method="POST" enctype="multipart/form-data">
     {{ student_form.csrf_token }}
     <!-- STUDENT ID -->
     <div class="inputBox id">
@@ -110,14 +110,20 @@
         </div>
     </div>
 
+    <div class="profile">
+        <img src="{{ url_for('static', filename='images/Default-profile.png') }}" id="profile-pic">
+    </div>
+    <div class="upload-image">
+        <input type="file" accept="image/jpeg, image/png, image/jpg" id="input-file" name="input-file" style="display: none;">
+        <label for="input-file">
+            <img src="{{ url_for('static', filename='images/Upload-image.png') }}">
+        </label>
+    </div>
+
     <div class="container">
-        <button class="btn btn2" type="submit">SUBMIT</button>
+        <button class="btn btn2" type="submit" value="Upload">SUBMIT</button>
     </div>
 </form>
-
-<div class="sideicon student">
-    <img src="{{ url_for('static', filename='images/STUDENT ICON.png') }}" width="380">
-</div>
 
 {% if success %}
     <div id="successModal" class="modal" style="display: block;">
@@ -206,6 +212,13 @@
         }
     });
 
+    /* PROFILE PICTURE*/
+    let profilePic = document.getElementById("profile-pic")
+    let inputFile = document.getElementById("input-file")
+
+    inputFile.onchange = function() {
+        profilePic.src = URL.createObjectURL(inputFile.files[0])
+    }
 </script>
 
 {% endblock %}  
