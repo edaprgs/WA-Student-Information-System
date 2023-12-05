@@ -69,10 +69,11 @@
 </a>
 
 <!-- STUDENT LIST -->
-<div class="table-container">
+<div class="table-container student">
     <table>
         <thead>
             <tr>
+                <th></th>
                 <th>STUDENT ID</th>
                 <th>FIRST NAME</th>
                 <th>LAST NAME</th>
@@ -86,18 +87,26 @@
         <tbody>
             {% for student in students %}
             <tr>
-                <td>{{ student[0] }}</td>
-                <td>{{ student[1] }}</td>
-                <td>{{ student[2] }}</td>
-                <td>{{ student[8] }}</td>
-                <td>{{ student[3] }}</td>
-                <td>{{ student[4] }}</td>
-                <td>{{ student[5] }}</td>
-
+                <td>
+                    <div class="profile-display">
+                        {% if student['profilePhoto'] %}
+                            <img src="{{ student['profilePhoto'] }}" id="profile-pic">
+                        {% else %}
+                            <img src="{{ url_for('static', filename='images/Default-profile.png') }}" id="profile-pic">
+                        {% endif %}
+                    </div>
+                </td>
+                <td>{{ student['studentID'] }}</td>
+                <td>{{ student['firstName'] }}</td>
+                <td>{{ student['lastName'] }}</td>
+                <td>{{ student['collegeCode'] }}</td>
+                <td>{{ student['course'] }}</td>
+                <td>{{ student['yearlevel'] }}</td>
+                <td>{{ student['gender'] }}</td>
                 <td>
                     <!-- EDIT -->
                     <form method="GET" action="/student/edit">
-                        <input id="studentID" name="studentID" value="{{ student[0] }}" hidden>
+                        <input id="studentID" name="studentID" value="{{ student['studentID'] }}" hidden>
                         <button type="submit" class="custom-edit-button">
                             <img src="{{ url_for('static', filename='images/Edit.png') }}"> 
                         </button>
@@ -108,7 +117,7 @@
                     <!-- DELETE -->
                     <form method="POST" action="/student/delete/">
                         <input name="csrf_token" value="{{ csrf_token() }}" hidden />
-                        <input id="studentID" name="studentID" value="{{ student[0] }}" hidden>
+                        <input id="studentID" name="studentID" value="{{ student['studentID'] }}" hidden>
                         <button class="custom-delete-button" data-confirm="By clicking delete, you acknowledge that the information will be removed." type="submit" >
                             <img src="{{ url_for('static', filename='images/Delete.png') }}"> 
                         </button>

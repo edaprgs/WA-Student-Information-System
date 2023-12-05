@@ -113,7 +113,7 @@
 
     <div class="profile">
         {% if student and student['profilePhoto'] %}
-            <img src="{{ url_for('static', filename='images/' + student['profilePhoto']) }}" id="profile-pic">
+            <img src="{{ student['profilePhoto'] }}" id="profile-pic">
         {% else %}
             <img src="{{ url_for('static', filename='images/Default-profile.png') }}" id="profile-pic">
         {% endif %}

@@ -46,7 +46,27 @@ class student(object):
         cursor.execute("SELECT student.*, college.collegeName, course.collegeCode FROM student INNER JOIN course ON course.courseCode = student.course INNER JOIN college ON course.collegeCode = college.collegeCode ORDER BY student.lastName ASC") 
         students = cursor.fetchall()
         cursor.close()
-        return students
+
+        student_list = []
+        for student in students:
+            profile_photo = student[6] if student[6] else None
+            profile_photo_filename = os.path.basename(profile_photo.decode('utf-8')) if profile_photo else None
+            print('PROFILE PHOTO:', profile_photo_filename)
+
+            student_dict = {
+                'studentID': student[0],
+                'firstName': student[1],
+                'lastName': student[2],
+                'course': student[3],
+                'yearlevel': student[4],
+                'gender': student[5],
+                'profilePhoto': f"https://res.cloudinary.com/ds0ppkkkj/image/upload/student_profile/{profile_photo_filename}" if profile_photo_filename else None,
+                'collegeName': student[7],
+                'collegeCode': student[8]
+            }
+            student_list.append(student_dict)
+
+        return student_list
     
     @classmethod
     def get_student_info(cls, student_id):
@@ -56,15 +76,18 @@ class student(object):
         student = cursor.fetchone()
 
         if student:
+            profile_photo = student[6] if student[6] else None
+            profile_photo_filename = os.path.basename(profile_photo.decode('utf-8')) if profile_photo else None
+
             student_dict = {
-            'studentID': student[0],
-            'firstName': student[1],
-            'lastName': student[2],
-            'course': student[3],
-            'yearlevel': student[4],
-            'gender': student[5],
-            'profilePhoto': os.path.basename(student[6].decode('utf-8')) if student[6] else None
-        }
+                'studentID': student[0],
+                'firstName': student[1],
+                'lastName': student[2],
+                'course': student[3],
+                'yearlevel': student[4],
+                'gender': student[5],
+                'profilePhoto': f"https://res.cloudinary.com/ds0ppkkkj/image/upload/student_profile/{profile_photo_filename}" if profile_photo_filename else None
+            }
             return student_dict
         else:
             return None
@@ -128,7 +151,24 @@ class student(object):
 
         results = cursor.fetchall()
 
-        return results
+        student_list = []
+        for result in results:
+            profile_photo = result[6] if result[6] else None
+            profile_photo_filename = os.path.basename(profile_photo.decode('utf-8')) if profile_photo else None
+
+            student_dict = {
+                'studentID': result[0],
+                'firstName': result[1],
+                'lastName': result[2],
+                'collegeCode': result[8],
+                'course': result[3],
+                'yearlevel': result[4],
+                'gender': result[5],
+                'profilePhoto': f"https://res.cloudinary.com/ds0ppkkkj/image/upload/student_profile/{profile_photo_filename}" if profile_photo_filename else None
+            }
+            student_list.append(student_dict)
+
+        return student_list
     
     # get the college code from the college table for the college dropdown
     def get_course_codes(cls):

@@ -35,15 +35,16 @@
         </ul>
     </div>
 
-    <div class="navbar">
-        <p>COLLEGE</p>
+    <div class="navbar add">
+        <div class="back-icon">
+            <a href="{{ url_for('college.college_list') }}">
+                <img src="{{ url_for('static', filename='images/back-icon.png') }}">
+            </a>
+        </div>
+        <p>SEARCH COLLEGE</p>
     </div>
 
-    <form action="/college/list/">
-        <button type="submit" class="custom-return-button">BACK</button>
-    </form>
-
-    <div class="table-container">
+    <div class="table-container search">
         <table>
             <thead>
                 <tr>
@@ -122,15 +123,16 @@
         </ul>
     </div>
 
-    <div class="navbar">
-        <p>COURSE</p>
+    <div class="navbar add">
+        <div class="back-icon">
+            <a href="{{ url_for('course.course_list') }}">
+                <img src="{{ url_for('static', filename='images/back-icon.png') }}">
+            </a>
+        </div>
+        <p>SEARCH COURSE</p>
     </div>
 
-    <form action="/course/list/">
-        <button type="submit" class="custom-return-button">BACK</button>
-    </form>
-
-    <div class="table-container">
+    <div class="table-container search">
         <table>
             <thead>
                 <tr>
@@ -236,18 +238,20 @@
         </ul>
     </div>
 
-    <div class="navbar">
-        <p>STUDENT</p>
+    <div class="navbar add">
+        <div class="back-icon">
+            <a href="{{ url_for('student.student_list') }}">
+                <img src="{{ url_for('static', filename='images/back-icon.png') }}">
+            </a>
+        </div>
+        <p>SEARCH STUDENT</p>
     </div>
-
-    <form action="/student/list/">
-        <button type="submit" class="custom-return-button">BACK</button>
-    </form>
     
-    <div class="table-container">
+    <div class="table-container search">
         <table>
             <thead>
                 <tr>
+                    <th></th>
                     <th>STUDENT ID</th>
                     <th>FIRST NAME</th>
                     <th>LAST NAME</th>
@@ -261,23 +265,26 @@
             <tbody>
                 {% for result in results %}
             <tr>
-                <td>{{ result[0] }}</td>
-                <td>{{ result[1] }}</td>
-                <td>{{ result[2] }}</td>
-                <td>{{ result[3] }}</td>
-                <td>{{ result[4] }}</td>
-                <td>{{ result[5] }}</td>
-                <td>{{ result[7] }} ({{ result[8] }})</td>
+                <td>
+                    <div class="profile-display">
+                        {% if result['profilePhoto'] %}
+                            <img src="{{ result['profilePhoto'] }}" id="profile-pic">
+                        {% else %}
+                            <img src="{{ url_for('static', filename='images/Default-profile.png') }}" id="profile-pic">
+                        {% endif %}
+                    </div>
+                </td>
+                <td>{{ result['studentID'] }}</td>
+                <td>{{ result['firstName'] }}</td>
+                <td>{{ result['lastName'] }}</td>
+                <td>{{ result['collegeCode'] }}</td>
+                <td>{{ result['course'] }}</td>
+                <td>{{ result['yearlevel'] }}</td>
+                <td>{{ result['gender'] }}</td>
                 <td>
                     <!-- EDIT -->
                     <form method="GET" action="/student/edit">
                         <input id="studentID" name="studentID" value="{{ result[0] }}" hidden>
-                        <input id="first_name" name="first_name" value="{{ result[1] }}" hidden>
-                        <input id="last_name" name="last_name" value="{{ result[2] }}" hidden>
-                        <input id="course_code" name="course_code" value="{{ result[3] }}" hidden>
-                        <input id="year_level" name="year_level" value="{{ result[4] }}" hidden>
-                        <input id="gender" name="gender" value="{{ result[5] }}" hidden>
-    
                         <button type="submit" class="custom-edit-button">
                             <img src="{{ url_for('static', filename='images/Edit.png') }}"> 
                         </button>
@@ -288,12 +295,6 @@
                     <form method="POST" action="/student/delete/">
                         <input name="csrf_token" value="{{ csrf_token() }}" hidden />
                         <input id="studentID" name="studentID" value="{{ result[0] }}" hidden>
-                        <input id="first_name" name="first_name" value="{{ result[1] }}" hidden>
-                        <input id="last_name" name="last_name" value="{{ result[2] }}" hidden>
-                        <input id="course_code" name="course_code" value="{{ result[3] }}" hidden>
-                        <input id="year_level" name="year_level" value="{{ result[4] }}" hidden>
-                        <input id="gender" name="gender" value="{{ result[5] }}" hidden>
-    
                         <button class="custom-delete-button" data-confirm="By clicking delete, you acknowledge that the information will be removed." type="submit" >
                             <img src="{{ url_for('static', filename='images/Delete.png') }}"> 
                         </button>

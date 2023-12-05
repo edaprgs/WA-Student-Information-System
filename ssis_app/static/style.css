@@ -238,7 +238,7 @@ ul li p {
 /* icon in add forms */
 .sideicon {
     top: 18%;
-    right: 180px;
+    right: 150px;
     position: absolute;
 }
 
@@ -304,12 +304,23 @@ thead {
 
 .table-container {
     position: relative; 
-    top: 170px; 
+    top: 150px; 
     margin-right: 20px; 
     margin-left: 250px;      
     overflow-y: scroll; 
     overflow-x: hidden;
-    max-height: 450px;
+    max-height: 395px;
+    font-size: 15px;
+}
+
+.table-container.student {
+    top: 150px; 
+    max-height: 420px;
+}
+
+.table-container.search {
+    top: 100px; 
+    max-height: 420px;
 }
 
 .table-container::-webkit-scrollbar, .dropdown-options::-webkit-scrollbar {
@@ -376,7 +387,7 @@ th {
     border: 2px solid var(--pinkC);
     overflow: hidden;
     border-radius: 5px;
-    top: 100px;
+    top: 90px;
     left: 420px;
     position: absolute;
 }
@@ -415,8 +426,8 @@ th {
 }
 
 .custom-return-button {
-    position: relative;
-    top: 123px;
+    position: absolute;
+    top: 85px;
     left: 250px;
     border: none;
     padding: 8px 30px;
@@ -464,7 +475,7 @@ th {
 
 .custom-dropdown.search {
     position: absolute;
-    top: 100px;
+    top: 90px;
     left: 250px;
 }
 
@@ -586,13 +597,21 @@ th {
 
 /* profile */
 .profile img {
-    width: 300px;
-    height: 300px;
+    width: 260px;
+    height: 260px;
     position: absolute;
-    top: 25%;
+    top: 28%;
     right: 180px;
     border-radius: 100%;
-    border: 3px solid var(--pinkB);
+    border: 5px solid var(--pinkB);
+    object-fit: cover;
+}
+
+.profile-display img {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    object-fit: cover;
 }
 
 .profile input {
@@ -608,6 +627,7 @@ th {
     right: 210px;
     border-radius: 100%;
     cursor: pointer;
+    border: 5px solid white;
 }
 
 .upload-image:hover img {
