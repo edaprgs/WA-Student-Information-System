@@ -12,9 +12,9 @@ def add_course():
     new_course = course()
     college_codes = new_course.get_college_codes()
     if request.method == "POST":
-        course_code = request.form.get("course_code").upper()
-        course_name = request.form.get("course_name").upper()
-        college_code = request.form.get("college_code")
+        course_code = form.course_code.data.upper()
+        course_name = form.course_name.data.upper()
+        college_code = form.college_code.data
 
         new_course.courseCode = course_code 
         new_course.courseName = course_name     
@@ -31,36 +31,36 @@ def add_course():
 
 @course_bp.route('/edit/', methods=['GET', 'POST'])
 def course_edit():
+    form = course_form()
     update_course = course()
     college_codes = update_course.get_college_codes()
     if request.method == 'GET':
         course_code = request.args.get('course_code')
         course_name = request.args.get('course_name')   
         college_code = request.args.get('college_code') 
-        return render_template('edit_course.html', college_codes=college_codes,code=course_code, name=course_name, college=college_code)
+        return render_template('edit_course.html', college_codes=college_codes,code=course_code, name=course_name, college=college_code, course_form=form)
     elif request.method == 'POST':
-        _course_code = request.form.get('course_code')
-        new_course_name = request.form.get('course_name').upper()
-        new_college = request.form.get('college_code')
+        _course_code = form.course_code.data
+        new_course_name = form.course_name.data.upper()
+        new_college = form.college_code.data
 
         updated = course.update(courseCode=_course_code, courseName=new_course_name, collegeCode=new_college)  
         
-
         if updated:
-            return render_template('edit_course.html', success=True)
+            return render_template('edit_course.html', success=True, course_form=form)
         else:
-            return render_template('edit_course.html', error=True)
+            return render_template('edit_course.html', error=True, course_form=form)
         
-    return render_template("edit_course.html")
+    return render_template("edit_course.html", course_form=form)
 
 @course_bp.route('/delete/', methods=['GET', 'POST'])
 def course_delete():
     form = course_form()
 
     if request.method == "POST":
-        code = request.form.get("course_code")
-        name = request.form.get("course_name")
-        college = request.form.get("college_code")
+        code = form.course_code.data
+        name = form.course_name.data
+        college = form.college_code.data
 
         result = course.delete(code, name, college)
         print(result, code, name, college)

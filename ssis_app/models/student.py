@@ -25,7 +25,6 @@ class student(object):
 
         sql = "UPDATE student SET firstName = %s, lastName = %s, course = %s, yearlevel = %s, gender = %s, profilePhoto = %s WHERE studentID = %s"
         cursor.execute(sql, (firstName, lastName, course, yearlevel, gender, profilePhoto, studentID))
-        print(sql, firstName, lastName, course, yearlevel, gender, studentID, profilePhoto)
         mysql.connection.commit()
 
         return True
@@ -51,7 +50,6 @@ class student(object):
         for student in students:
             profile_photo = student[6] if student[6] else None
             profile_photo_filename = os.path.basename(profile_photo.decode('utf-8')) if profile_photo else None
-            print('PROFILE PHOTO:', profile_photo_filename)
 
             student_dict = {
                 'studentID': student[0],
