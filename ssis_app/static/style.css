@@ -15,13 +15,32 @@
     font-family: "Roboto";
 }
 
+.home-logo img {
+    width: 100px;
+}
+
+/* .homepage-bg p {
+    position: absolute;
+    right: 450px;
+    top: 330px;
+    color: white;
+    font-weight: 900;
+    font-size: 40px;
+} */
+
 .homepage-bg img {
     position: absolute;
-    border-radius: 10px;
-    top: 90px;
-    left: 250px;
-    width: 82%;
-    height: 78%;
+    /* border-radius: 10px; */
+    /* top: 90px;
+    right: 20px;
+    width: 55%;
+    height: 76%;
+    opacity: 0.9; */
+    opacity: 1; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
 
 /* logo */
@@ -54,10 +73,10 @@
 }
 
 .navbar {
+    z-index: 1;
     width: 84%;
     height: 70px;
     position: fixed; 
-    background-color: white;
     border-bottom: 1px solid var(--pinkC);
     left: 230px;    
     padding: 23px;
@@ -207,38 +226,38 @@ ul li p {
 /* add college, course, student */
 .inputBox.code {
     position: absolute;
-    top: 240px;
+    top: 200px;
     left: 400px;
 }
 
 .inputBox.name {
     position: absolute;
-    top: 300px;
+    top: 260px;
     left: 400px;
 }
 
 .inputBox.id {
     position: absolute;
-    top: 200px;
+    top: 160px;
     left: 400px;
 }
 
 .inputBox.fname {
     position: absolute;
-    top: 255px;
+    top: 215px;
     left: 400px;
 }
 
 .inputBox.lname {
     position: absolute;
-    top: 310px;
+    top: 270px;
     left: 400px;
 }
 
 /* icon in add forms */
 .sideicon {
     top: 18%;
-    right: 150px;
+    right: 120px;
     position: absolute;
 }
 
@@ -267,19 +286,19 @@ ul li p {
 
 .btn.btn1 {
     position: relative;
-    top: 440px;
+    top: 390px;
     left: 630px;
 }
 
 .btn.btn2 {
     position: relative;
-    top: 530px;
+    top: 480px;
     left: 630px;
 }
 
 .btn.btn3 {
     position: relative;
-    top: 480px;
+    top: 440px;
     left: 630px;
 }
 
@@ -368,6 +387,8 @@ th {
 }
 
 .custom-add-button {
+    z-index: 1;
+    cursor: pointer;
     position: absolute;
     right: 25px;
     top: 15px;
@@ -452,24 +473,24 @@ th {
 }
 
 .custom-select.college {
-    top: 360px;
+    top: 320px;
     left: 400px;
 }
 
 .custom-select.course {
-    top: 420px;
+    top: 380px;
     left: 400px;
 }
 
 .custom-dropdown.gender {
     position: absolute;
-    top: 365px;
+    top: 325px;
     left: 400px;
 }
 
 .custom-dropdown.yearlevel {
     position: absolute;
-    top: 365px;
+    top: 325px;
     left: 635px;
 }
 
