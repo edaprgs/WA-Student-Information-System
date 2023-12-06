@@ -43,14 +43,14 @@
 </div>
 
 <!-- ADD COLLEGE FORM -->
-<form action="/college/add/" method="POST">
+<form action="/college/add/" method="POST" onsubmit="return validateForm()">
     {{ college_form.csrf_token }}
     <div class="inputBox code">
-        <input type="text" required="required" name="college_code">
+        <input type="text" required="required" name="college_code" id="college_code">
         <span>CODE</span>
     </div>
     <div class="inputBox name">
-        <input type="text" required="required" name="college_name">
+        <input type="text" required="required" name="college_name" id="college_name">
         <span>NAME</span>
     </div>
     <div class="container">
@@ -99,5 +99,27 @@
         </div>
     </div>
 {% endif %}
+
+<script>
+    function validateForm() {
+        var codeInput = document.getElementById("college_code");
+        var nameInput = document.getElementById("college_name");
+        
+        var codeLength = codeInput.value.length;
+        var nameLength = nameInput.value.length;
+
+        if (codeLength < 3 || codeLength > 50) {
+            alert("College code should be between 3 and 50 characters.");
+            return false;
+        }
+
+        if (nameLength < 10 || nameLength > 100) {
+            alert("College name should be between 10 and 100 characters.");
+            return false;
+        }
+
+        return true;
+    }
+</script>
 
 {% endblock %}  

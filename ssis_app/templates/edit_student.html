@@ -44,7 +44,7 @@
 </div>
 
 <!-- ADD STUDENT FORM -->
-<form action="{{ url_for('student.student_edit') }}" method="POST" enctype="multipart/form-data">
+<form action="{{ url_for('student.student_edit') }}" method="POST" enctype="multipart/form-data" onsubmit="return validateForm()">
     <input name="csrf_token" value="{{ csrf_token() }}" hidden />
 
     <!-- STUDENT ID -->
@@ -55,13 +55,13 @@
 
     <!-- FIRST NAME -->
     <div class="inputBox fname">
-        <input type="text" required="required" name="first_name" value="{{ student['firstName'] }}">
+        <input type="text" required="required" name="first_name" value="{{ student['firstName'] }}" id="first_name">
         <span>FIRST NAME</span>
     </div>
 
     <!-- LAST NAME -->
     <div class="inputBox lname">
-        <input type="text" required="required" name="last_name" value="{{ student['lastName'] }}">
+        <input type="text" required="required" name="last_name" value="{{ student['lastName'] }}" id="last_name">
         <span>LAST NAME</span>
     </div>
 
@@ -223,6 +223,27 @@
 
     inputFile.onchange = function() {
         profilePic.src = URL.createObjectURL(inputFile.files[0])
+    }
+
+    // VALIDATE FORM
+    function validateForm() {
+        var fNameInput = document.getElementById("first_name");
+        var lNameInput = document.getElementById("last_name");
+        
+        var fnameLength = fNameInput.value.length;
+        var lnameLength = lNameInput.value.length;
+       
+        if (fnameLength < 2 || fnameLength > 50) {
+            alert("First Name should be between 2 and 50 characters.");
+            return false;
+        }
+    
+        if (lnameLength < 2 || lnameLength > 50) {
+            alert("Last Name should be between 2 and 50 characters.");
+            return false;
+        }
+
+        return true;
     }
 </script>
 

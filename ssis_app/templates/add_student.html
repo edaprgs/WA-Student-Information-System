@@ -44,23 +44,23 @@
 </div>
 
 <!-- ADD STUDENT FORM -->
-<form action="/student/add/" method="POST" enctype="multipart/form-data">
+<form action="/student/add/" method="POST" enctype="multipart/form-data" onsubmit="return validateForm()">
     {{ student_form.csrf_token }}
     <!-- STUDENT ID -->
     <div class="inputBox id">
-        <input type="text" required="required" name="student_ID">
+        <input type="text" required name="student_ID" id="student_ID">
         <span>ID NUMBER <em>(YYYY-NNNN)</em></span>
     </div>
 
     <!-- FIRST NAME -->
     <div class="inputBox fname">
-        <input type="text" required="required" name="first_name">
+        <input type="text" required name="first_name" id="first_name">
         <span>FIRST NAME</span>
     </div>
 
     <!-- LAST NAME -->
     <div class="inputBox lname">
-        <input type="text" required="required" name="last_name">
+        <input type="text" required name="last_name" id="last_name">
         <span>LAST NAME</span>
     </div>
 
@@ -218,6 +218,34 @@
 
     inputFile.onchange = function() {
         profilePic.src = URL.createObjectURL(inputFile.files[0])
+    }
+
+    // VALIDATE FORM
+    function validateForm() {
+        var studentIdInput = document.getElementById("student_ID");
+        var fNameInput = document.getElementById("first_name");
+        var lNameInput = document.getElementById("last_name");
+        
+        var fnameLength = fNameInput.value.length;
+        var lnameLength = lNameInput.value.length;
+        var idPattern = /^\d{4}-\d{4}$/;
+
+        if (!idPattern.test(studentIdInput.value)) {
+            alert("Student ID should be in the format YYYY-NNNN");
+            return false;
+        }
+    
+        if (fnameLength < 2 || fnameLength > 50) {
+            alert("First Name should be between 2 and 50 characters.");
+            return false;
+        }
+    
+        if (lnameLength < 2 || lnameLength > 50) {
+            alert("Last Name should be between 2 and 50 characters.");
+            return false;
+        }
+
+        return true;
     }
 </script>
 

@@ -44,8 +44,8 @@
 </div>
 
 <!-- EDIT COURSE FORM -->
-<form action="{{ url_for('course.course_edit') }}" method="POST">
-    <input name="csrf_token" value="{{ csrf_token() }}" hidden />
+<form action="{{ url_for('course.course_edit') }}" method="POST" onsubmit="return validateForm()">
+    <input name="csrf_token" value="{{ csrf_token() }}" hidden/>
 
     <!-- COURSE CODE -->
     <div class="inputBox code">
@@ -55,7 +55,7 @@
 
     <!-- COURSE NAME -->
     <div class="inputBox name">
-        <input type="text" required="required" name="course_name" value="{{ name }}">
+        <input type="text" required name="course_name" value="{{ name }}" id="course_name">
         <span>NAME</span>
     </div>
 
@@ -129,5 +129,19 @@
         </div>
     </div>
 {% endif %}
+
+<script>
+    function validateForm() {
+        var nameInput = document.getElementById("course_name");
+        var nameLength = nameInput.value.length;
+
+        if (nameLength < 10 || nameLength > 100) {
+            alert("Course name should be between 10 and 100 characters.");
+            return false;
+        }
+
+        return true;
+    }
+</script>
 
 {% endblock %}  
