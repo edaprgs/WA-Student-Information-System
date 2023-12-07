@@ -284,7 +284,7 @@
                 <td>
                     <!-- EDIT -->
                     <form method="GET" action="/student/edit">
-                        <input id="studentID" name="studentID" value="{{ result[0] }}" hidden>
+                        <input id="studentID" name="studentID" value="{{ result['studentID'] }}" hidden>
                         <button type="submit" class="custom-edit-button">
                             <img src="{{ url_for('static', filename='images/Edit.png') }}"> 
                         </button>
@@ -294,7 +294,7 @@
                     <!-- DELETE -->
                     <form method="POST" action="/student/delete/">
                         <input name="csrf_token" value="{{ csrf_token() }}" hidden />
-                        <input id="studentID" name="studentID" value="{{ result[0] }}" hidden>
+                        <input id="studentID" name="studentID" value="{{ result['studentID'] }}" hidden>
                         <button class="custom-delete-button" data-confirm="By clicking delete, you acknowledge that the information will be removed." type="submit" >
                             <img src="{{ url_for('static', filename='images/Delete.png') }}"> 
                         </button>

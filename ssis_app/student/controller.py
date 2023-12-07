@@ -111,7 +111,7 @@ def student_delete():
     delete_student = student()
 
     if request.method == "POST":
-        studentID = form.student_ID.data
+        studentID = request.form.get('studentID')
         print('student id', studentID)
 
         student_info = student.get_student_info(studentID)
