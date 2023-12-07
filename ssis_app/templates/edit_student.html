@@ -245,6 +245,22 @@
 
         return true;
     }
+
+    document.getElementById('input-file').addEventListener('change', function() {
+        var file = this.files[0];
+        var fileSizeInMB = file.size / (1024 * 1024);
+        var fileType = file.type;
+
+        if (fileSizeInMB > 1) {
+            alert("Uploaded image exceeds 1MB");
+            document.getElementById('profile-pic').src = '{{ student.profilePhoto }}';
+        } 
+
+        if (!fileType.startsWith('image/')) {
+            alert('Please select a valid image file.');
+            document.getElementById('profile-pic').src = '{{ student.profilePhoto }}';
+        }
+    });
 </script>
 
 {% endblock %}  
